@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import Countdown from '../components/countdown';
 
 const IndexPage = () => (
   <Layout>
@@ -19,7 +20,7 @@ const IndexPage = () => (
         `react`,
       ]}
     />
-    <h1>NEXT LAUNCH</h1>
+    <Countdown />
     <Link to="/launches/">VIEW ALL</Link>
   </Layout>
 );
