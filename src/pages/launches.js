@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
+import React from 'react';
+import { Link, graphql } from 'gatsby';
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 const launchStyle = {
   border: '1px solid lightgray',
@@ -10,7 +10,7 @@ const launchStyle = {
   marginBottom: '12px',
   display: 'flex',
   justifyContent: 'space-between',
-}
+};
 
 const renderLaunches = edges => {
   return edges.map(edge => {
@@ -26,22 +26,21 @@ const renderLaunches = edges => {
           />
         )}
       </div>
-    )
-  })
-}
+    );
+  });
+};
 
 const SecondPage = data => {
-  const { edges } = data.data.allInternalLaunches
+  const { edges } = data.data.allInternalLaunches;
   return (
     <Layout>
       <SEO title="Page two" />
-      <h1>Hi from the second page</h1>
-      <p>Welcome to page 2</p>
+      <h1>RECENT LAUNCHES</h1>
       <Link to="/">Go back to the homepage</Link>
       {renderLaunches(edges)}
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   {
@@ -58,6 +57,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default SecondPage
+export default SecondPage;
