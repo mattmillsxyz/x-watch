@@ -3,20 +3,35 @@ import React from 'react';
 const wrapperStyles = {
   background: '#f4f4f4',
   width: '100%',
-  padding: '2rem',
 };
 
 const timerStyles = {
-  fontSize: '8rem',
-  lineHeight: 1,
-  margin: '1rem 0',
+  padding: '3% 7% 5%',
+};
+
+const headingStyle = {
+  margin: '0 0 0 7%',
+  paddingTop: '3rem',
+  fontWeight: 700,
 };
 
 const Countdown = data => {
   return (
     <div style={wrapperStyles}>
-      <h6>NEXT LAUNCH</h6>
-      <div style={timerStyles}>01 : 18 : 32 : 17</div>
+      <h5 style={headingStyle}>NEXT LAUNCH</h5>
+      <div style={timerStyles}>
+        <svg viewBox="0 0 66 12">
+          <text
+            style={{ fontFamily: 'Rajdhani' }}
+            x="50%"
+            y="12"
+            textAnchor="middle"
+          >
+            01:10:23:36
+          </text>
+        </svg>
+        <div style={{ marginTop: '2rem' }}>MISSON: SSO-A</div>
+      </div>
     </div>
   );
 };

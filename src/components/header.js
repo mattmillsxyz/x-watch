@@ -7,7 +7,7 @@ import menuIcon from '../images/menu-icon.svg';
 const headerStyle = {
   margin: `0 auto`,
   maxWidth: 1400,
-  padding: `1.45rem 2rem`,
+  padding: `1.45rem 0`,
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',

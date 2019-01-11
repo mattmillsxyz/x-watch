@@ -36,9 +36,12 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
-        pathToConfigModule: `src/utils/typography.js`,
+        fonts: [
+          `Rajdhani`,
+          `Lato\:400,900`, // you can also specify font weights and styles
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
