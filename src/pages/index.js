@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Countdown from '../components/countdown';
+import RecentLaunches from '../components/recentLaunches';
 
 const IndexPage = () => (
   <Layout>
@@ -21,7 +21,7 @@ const IndexPage = () => (
       ]}
     />
     <Countdown />
-    <Link to="/launches/">VIEW ALL</Link>
+    <RecentLaunches />
   </Layout>
 );
 

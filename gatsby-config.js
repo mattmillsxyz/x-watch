@@ -44,6 +44,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-apiserver`,
+      options: {
+        typePrefix: 'internal__',
+        name: `pastLaunches`,
+        url: `https://api.spacexdata.com/v3/launches/past?order=desc`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [

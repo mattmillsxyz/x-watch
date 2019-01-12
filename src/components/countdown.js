@@ -6,6 +6,7 @@ import CountdownDetails from './countdownDetails';
 const Wrapper = styled.div`
   background: #f4f4f4;
   width: 100%;
+  margin-bottom: 1.5rem;
 `;
 
 const Heading = styled.h5`
