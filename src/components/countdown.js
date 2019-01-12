@@ -12,7 +12,8 @@ const timerStyles = {
 const headingStyle = {
   margin: '0 0 0 7%',
   paddingTop: '3rem',
-  fontWeight: 700,
+  color: '#00CACA',
+  fontWeight: 400,
 };
 
 const Countdown = data => {

@@ -1,9 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import Header from './header';
-import styles from './layout.module.css';
+import Footer from './footer';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Lato', Helvetica, sans-serif;
+    margin: 0;
+    padding: 0 2rem;
+    min-height: 100vh;
+  }
+`;
+
+const Container = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+`;
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -18,20 +33,10 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
+        <GlobalStyle />
         <Header />
-        <div
-          style={{
-            maxWidth: 900,
-            margin: '0 auto',
-          }}
-        >
-          {children}
-        </div>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        <Container>{children}</Container>
+        <Footer />
       </>
     )}
   />
