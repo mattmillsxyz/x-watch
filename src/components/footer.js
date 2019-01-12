@@ -3,19 +3,27 @@ import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
   width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0;
+  font-size: 0.875rem;
 `;
 
 const Footer = () => {
   return (
     <StyledFooter>
-      © {new Date().getFullYear()}, Built with
+      A project by{' '}
+      <a href="https://mattmills.xyz" aria-label="Go to Matt Mills' website">
+        Matt Mills
+      </a>{' '}
+      using the
       {` `}
-      <a href="https://www.gatsbyjs.org">Gatsby</a>
+      <a
+        href="https://github.com/r-spacex/SpaceX-API"
+        aria-label="Go to SpaceX API"
+      >
+        SpaceX-API
+      </a>
+      .
     </StyledFooter>
   );
 };

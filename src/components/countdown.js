@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import CountdownDetails from './countdownDetails';
+import CountdownDetails from './CountdownDetails';
 
 const Wrapper = styled.div`
   background: #f4f4f4;

@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.span`
-  font-weight: 700;
+  font-weight: 600;
   margin-right: 0.5rem;
 `;
 

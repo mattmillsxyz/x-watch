@@ -7,11 +7,24 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const Heading = styled.h5`
-  margin: 0 0 0 7%;
-  padding-top: 3rem;
+  margin-left: 7%;
+  margin-top: 3rem;
   color: #00caca;
   font-weight: 400;
+`;
+
+const HeadingLink = styled(Link)`
+  margin-top: 3rem;
+  color: #ff006b;
+  font-weight: 600;
+  font-size: 0.83rem;
+  margin-right: 7%;
 `;
 
 const Container = styled.div`
@@ -34,7 +47,6 @@ const Badge = styled.img`
 const Date = styled.div`
   font-size: 0.75rem;
   margin-top: 0.5rem;
-  font-weight: 700;
 `;
 
 const renderBadges = badges => {
@@ -63,10 +75,13 @@ const RecentLaunches = () => (
     query={launchBadges}
     render={data => (
       <Wrapper>
-        <Heading>RECENT LAUNCHES</Heading>
+        <Header>
+          <Heading>RECENT LAUNCHES</Heading>
+          <HeadingLink to="/launches/">VIEW ALL</HeadingLink>
+        </Header>
+
         <Container>
           <BadgeContainer>{renderBadges(data)}</BadgeContainer>
-          <Link to="/launches/">VIEW ALL</Link>
         </Container>
       </Wrapper>
     )}

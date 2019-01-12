@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `X Watch`,
+    description: `Tracking past and future SpaceX launches.`,
+    author: `@mattmillsxyz`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -18,13 +18,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `x-watch`,
+        short_name: `x-watch`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/x-watch-icon.png`, // This path is relative to the root of the site.
       },
     },
     {
@@ -52,11 +52,19 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-apiserver`,
+      options: {
+        typePrefix: 'internal__',
+        name: `upcomingLaunches`,
+        url: `https://api.spacexdata.com/v3/launches/upcoming`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
           `Rajdhani`,
-          `Lato\:400,900`, // you can also specify font weights and styles
+          `Source+Sans+Pro\:400,600`, // you can also specify font weights and styles
         ],
       },
     },

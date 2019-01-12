@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
 
-import Header from './header';
-import Footer from './footer';
+import Header from './Header';
+import Footer from './Footer';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: 'Lato', Helvetica, sans-serif;
+    font-family: 'Source Sans Pro', Helvetica, sans-serif;
     margin: 0;
     padding: 0 2rem;
     min-height: 100vh;
@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6, img {
     margin: 0;
+  }
+
+  a, a:visited {
+    color: #FF006B;
   }
 `;
 

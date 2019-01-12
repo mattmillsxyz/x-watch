@@ -4,6 +4,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Countdown from '../components/countdown';
 import RecentLaunches from '../components/recentLaunches';
+import UpcomingLaunches from '../components/upcomingLaunches';
 
 const IndexPage = () => (
   <Layout>
@@ -22,6 +23,7 @@ const IndexPage = () => (
     />
     <Countdown />
     <RecentLaunches />
+    <UpcomingLaunches />
   </Layout>
 );
 

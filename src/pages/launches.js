@@ -30,7 +30,7 @@ const renderLaunches = edges => {
   });
 };
 
-const SecondPage = data => {
+const LaunchesPage = data => {
   const { edges } = data.data.allInternalLaunches;
   return (
     <Layout>
@@ -59,4 +59,4 @@ export const query = graphql`
   }
 `;
 
-export default SecondPage;
+export default LaunchesPage;
