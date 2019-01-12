@@ -1,43 +1,20 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-
-const launchStyle = {
-  border: '1px solid lightgray',
-  padding: '12px',
-  marginBottom: '12px',
-  display: 'flex',
-  justifyContent: 'space-between',
-};
-
-const renderLaunches = edges => {
-  return edges.map(edge => {
-    return (
-      <div key={edge.node.id} style={launchStyle}>
-        <h4>{edge.node.mission_name}</h4>
-        <p>{edge.node.launch_date_utc}</p>
-        {edge.node.links && (
-          <img
-            src={edge.node.links.mission_patch}
-            alt="patch"
-            style={{ maxWidth: '60px', alignSelf: 'center' }}
-          />
-        )}
-      </div>
-    );
-  });
-};
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
+import LatestLaunch from '../components/LatestLaunch';
+import UpcomingLaunches from '../components/UpcomingLaunches';
+import RecentLaunches from '../components/RecentLaunches';
 
 const LaunchesPage = data => {
   const { edges } = data.data.allInternalLaunches;
   return (
     <Layout>
-      <SEO title="Page two" />
-      <h1>RECENT LAUNCHES</h1>
-      <Link to="/">Go back to the homepage</Link>
-      {renderLaunches(edges)}
+      <SEO title="Recent Launches" />
+      <LatestLaunch />
+      <RecentLaunches />
+      <UpcomingLaunches />
     </Layout>
   );
 };

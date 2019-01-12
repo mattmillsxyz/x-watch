@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-import Countdown from '../components/countdown';
-import RecentLaunches from '../components/recentLaunches';
-import UpcomingLaunches from '../components/upcomingLaunches';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
+import Countdown from '../components/Countdown';
+import RecentLaunches from '../components/RecentLaunches';
+import UpcomingLaunches from '../components/UpcomingLaunches';
 
 const IndexPage = () => (
   <Layout>

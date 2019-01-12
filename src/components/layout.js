@@ -21,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
   a, a:visited {
     color: #FF006B;
   }
+
+  a:hover {
+    text-decoration: none;
+  }
 `;
 
 const Container = styled.div`
