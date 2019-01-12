@@ -1,26 +1,29 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const wrapperStyles = {
-  background: '#f4f4f4',
-  width: '100%',
-};
+import CountdownDetails from './countdownDetails';
 
-const timerStyles = {
-  padding: '3% 7% 5%',
-};
+const Wrapper = styled.div`
+  background: #f4f4f4;
+  width: 100%;
+`;
 
-const headingStyle = {
-  margin: '0 0 0 7%',
-  paddingTop: '3rem',
-  color: '#00CACA',
-  fontWeight: 400,
-};
+const Heading = styled.h5`
+  margin: 0 0 0 7%;
+  padding-top: 3rem;
+  color: #00caca;
+  font-weight: 400;
+`;
+
+const Timer = styled.div`
+  padding: 3% 7% 5%;
+`;
 
 const Countdown = data => {
   return (
-    <div style={wrapperStyles}>
-      <h5 style={headingStyle}>NEXT LAUNCH</h5>
-      <div style={timerStyles}>
+    <Wrapper>
+      <Heading>NEXT LAUNCH</Heading>
+      <Timer>
         <svg viewBox="0 0 66 12">
           <text
             style={{ fontFamily: 'Rajdhani' }}
@@ -31,9 +34,9 @@ const Countdown = data => {
             01:10:23:36
           </text>
         </svg>
-        <div style={{ marginTop: '2rem' }}>MISSON: SSO-A</div>
-      </div>
-    </div>
+        <CountdownDetails />
+      </Timer>
+    </Wrapper>
   );
 };
 

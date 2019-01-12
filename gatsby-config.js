@@ -36,6 +36,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-apiserver`,
+      options: {
+        typePrefix: 'internal__',
+        name: `nextLaunch`,
+        url: `https://api.spacexdata.com/v3/launches/next`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
