@@ -5,6 +5,7 @@ import moment from 'moment';
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 const Heading = styled.span`
@@ -21,30 +22,32 @@ const MissionName = styled.div`
   h1 {
     line-height: 1;
   }
-
-  span {
-    color: #27d872;
-    font-size: 0.875rem;
-  }
 `;
 
-const LeftBlock = styled.div`
+const Status = styled.span`
+  color: #27d872;
+`;
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const PatchBlock = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 1.5rem;
 
   img {
     width: 160px;
   }
 `;
 
-const RightBlock = styled.div`
+const DetailsBlock = styled.div`
   display: flex;
   flex-direction: column;
+  padding-right: 3rem;
 `;
 
 const Detail = styled.div`
-  font-size: 0.875rem;
   &:not(:last-child) {
     margin-bottom: 0.35rem;
   }
@@ -53,7 +56,7 @@ const Detail = styled.div`
 const Actions = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
 
   a {
     padding: 0.75rem 1.75rem;
@@ -69,13 +72,17 @@ const Actions = styled.div`
 `;
 
 const Number = styled.div`
-  font-size: 2.25rem;
+  font-size: 1.5rem;
   line-height: 1;
+  width: 160px;
+  display: flex;
+  justify-content: center;
 
   span {
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 1;
     vertical-align: top;
+    margin-left: 0.5rem;
   }
 `;
 
@@ -99,33 +106,39 @@ const LatestLaunchDetails = () => {
 
         return (
           <Wrapper>
-            <LeftBlock>
-              <img src={links.mission_patch} alt={`${mission_name} patch`} />
-            </LeftBlock>
-            <RightBlock>
-              <MissionName>
-                <h1>{mission_name}</h1>
-                <span>{launch_success ? 'SUCCESSFUL' : 'FAILURE'}</span>
-              </MissionName>
-              <Detail>{details}</Detail>
-              <Detail>
-                <Heading>LAUNCH DATE:</Heading>
-                {date.format('MM.DD.YYYY')}
-              </Detail>
-              <Detail>
-                <Heading>LAUNCH SITE:</Heading>
-                {launch_site.site_name_long}
-              </Detail>
-              <Actions>
-                <Link to="/" arial-label="Go to flight details">
-                  LAUNCH DETAILS
-                </Link>
-                <Number>
-                  <span>#</span>
-                  {flight_number}
-                </Number>
-              </Actions>
-            </RightBlock>
+            <Container>
+              <DetailsBlock>
+                <MissionName>
+                  <h1>{mission_name}</h1>
+                </MissionName>
+                <Detail>{details}</Detail>
+                <Detail>
+                  <Heading>LAUNCH STATUS:</Heading>
+                  <Status>{launch_success ? 'SUCCESSFUL' : 'FAILURE'}</Status>
+                </Detail>
+                <Detail>
+                  <Heading>LAUNCH DATE:</Heading>
+                  {date.format('MM.DD.YYYY')}
+                </Detail>
+                <Detail>
+                  <Heading>LAUNCH SITE:</Heading>
+                  {launch_site.site_name_long}
+                </Detail>
+              </DetailsBlock>
+              <PatchBlock>
+                <img src={links.mission_patch} alt={`${mission_name} patch`} />
+              </PatchBlock>
+            </Container>
+            <Actions>
+              <Link to="/" arial-label="Go to flight details">
+                LAUNCH DETAILS
+              </Link>
+              <Number>
+                FLIGHT
+                <span> #</span>
+                {flight_number}
+              </Number>
+            </Actions>
           </Wrapper>
         );
       }}

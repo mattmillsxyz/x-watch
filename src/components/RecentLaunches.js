@@ -23,7 +23,6 @@ const HeadingLink = styled(Link)`
   margin-top: 3rem;
   color: #ff006b;
   font-weight: 600;
-  font-size: 0.83rem;
   margin-right: 7%;
 `;
 

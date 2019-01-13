@@ -23,7 +23,6 @@ const HeadingLink = styled(Link)`
   margin-top: 3rem;
   color: #ff006b;
   font-weight: 600;
-  font-size: 0.83rem;
   margin-right: 7%;
 `;
 
@@ -38,7 +37,6 @@ const LaunchList = styled.div`
 `;
 
 const Date = styled.div`
-  font-size: 0.75rem;
   min-width: 6rem;
 `;
 
@@ -67,7 +65,6 @@ const MissionName = styled.div`
 `;
 
 const LaunchSite = styled.div`
-  font-size: 0.875rem;
   margin-bottom: 2rem;
 
   span {
@@ -80,7 +77,7 @@ const Number = styled.div`
   line-height: 1;
 
   span {
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1;
     vertical-align: top;
   }

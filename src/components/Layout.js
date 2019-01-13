@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+  h5 { 
+    font-size: 1rem;
+  }
+
   a, a:visited {
     color: #FF006B;
   }
@@ -28,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
 `;
 

@@ -25,7 +25,6 @@ const RightBlock = styled.div`
 `;
 
 const Detail = styled.div`
-  font-size: 0.875rem;
   &:not(:last-child) {
     margin-bottom: 0.5rem;
   }
