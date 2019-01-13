@@ -60,6 +60,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-apiserver`,
+      options: {
+        typePrefix: 'internal__',
+        name: `latestLaunch`,
+        url: `https://api.spacexdata.com/v3/launches/latest`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
+import moment from 'moment';
 
 const Wrapper = styled.div`
   display: flex;
-  margin-top: 2rem;
 `;
 
 const Heading = styled.span`
@@ -15,13 +15,16 @@ const Heading = styled.span`
 const LeftBlock = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 1.5rem;
+
+  img {
+    width: 160px;
+  }
 `;
 
 const RightBlock = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  flex: 1;
 `;
 
 const Detail = styled.div`
@@ -31,76 +34,65 @@ const Detail = styled.div`
   }
 `;
 
-const LatestLaunchDetails = () => (
-  <StaticQuery
-    query={nextLaunch}
-    render={data => {
-      const { edges } = data.allInternalNextLaunch;
-      const {
-        mission_name,
-        launch_date_utc,
-        launch_site,
-        rocket,
-      } = edges[0].node;
+const LatestLaunchDetails = () => {
+  return (
+    <StaticQuery
+      query={latestLaunch}
+      render={data => {
+        const { edges } = data.allInternalLatestLaunch;
+        const {
+          mission_name,
+          launch_date_utc,
+          launch_site,
+          flight_number,
+          launch_success,
+          detail,
+          links,
+        } = edges[0].node;
 
-      return (
-        <Wrapper>
-          <LeftBlock>
-            <Detail>
-              <Heading>MISSION NAME:</Heading>
-              {mission_name}
-            </Detail>
-            <Detail>
-              <Heading>LAUNCH DATE:</Heading>
-              {launch_date_utc}
-            </Detail>
-            <Detail>
-              <Heading>LAUNCH SITE:</Heading>
-              {launch_site.site_name_long}
-            </Detail>
-          </LeftBlock>
-          <RightBlock>
-            <Detail>
-              <Heading>ROCKET:</Heading>
-              {rocket.rocket_name}
-            </Detail>
-            <Detail>
-              <Heading>PAYLOAD TYPE:</Heading>
-              {rocket.second_stage.payloads[0].payload_type}
-            </Detail>
-            <Detail>
-              <Heading>MANUFACTURER:</Heading>
-              {rocket.second_stage.payloads[0].manufacturer}
-            </Detail>
-          </RightBlock>
-        </Wrapper>
-      );
-    }}
-  />
-);
-const nextLaunch = graphql`
+        const date = moment(launch_date_utc);
+
+        return (
+          <Wrapper>
+            <LeftBlock>
+              <img src={links.mission_patch} alt={`${mission_name} patch`} />
+            </LeftBlock>
+            <RightBlock>
+              <h1>{mission_name}</h1>
+              <Detail>{detail}</Detail>
+              <Detail>
+                <Heading>LAUNCH DATE:</Heading>
+                {date.format('MM.DD.YYYY')}
+              </Detail>
+              <Detail>
+                <Heading>LAUNCH SITE:</Heading>
+                {launch_site.site_name_long}
+              </Detail>
+            </RightBlock>
+          </Wrapper>
+        );
+      }}
+    />
+  );
+};
+
+const latestLaunch = graphql`
   {
-    allInternalNextLaunch {
+    allInternalLatestLaunch {
       edges {
         node {
+          flight_number
           id
-          mission_name
           launch_date_utc
+          mission_name
+          links {
+            mission_patch
+          }
           launch_site {
             site_name_long
           }
-          rocket {
-            rocket_name
-            second_stage {
-              payloads {
-                payload_type
-                manufacturer
-              }
-            }
-          }
-          links {
-            reddit_campaign
-          }
+          launch_success
+          details
         }
       }
     }
