@@ -98,6 +98,7 @@ const LatestLaunchDetails = () => {
           launch_success,
           details,
           links,
+          fields,
         } = data.internalLatestLaunch;
 
         return (
@@ -126,7 +127,7 @@ const LatestLaunchDetails = () => {
               </PatchBlock>
             </Container>
             <Actions>
-              <Link to="/" arial-label="Go to flight details">
+              <Link to={fields.slug} arial-label="Go to flight details">
                 LAUNCH DETAILS
               </Link>
               <Number>
@@ -157,6 +158,9 @@ const latestLaunch = graphql`
       }
       launch_success
       details
+      fields {
+        slug
+      }
     }
   }
 `;

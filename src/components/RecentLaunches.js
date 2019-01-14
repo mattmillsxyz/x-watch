@@ -56,10 +56,15 @@ const renderBadges = badges => {
         style={{ textAlign: 'center' }}
         key={`badge--${edge.node.flight_number}`}
       >
-        <Badge
-          src={edge.node.links.mission_patch}
-          alt={`${edge.node.flight_number} missions patch`}
-        />
+        <Link
+          to={edge.node.fields.slug}
+          aria-label={`Go to flight number ${edge.node.flight_number} details`}
+        >
+          <Badge
+            src={edge.node.links.mission_patch}
+            alt={`${edge.node.flight_number} missions patch`}
+          />
+        </Link>
         <Date>{edge.node.launch_date_utc}</Date>
       </div>
     );
@@ -95,6 +100,9 @@ const launchBadges = graphql`
           launch_year
           links {
             mission_patch
+          }
+          fields {
+            slug
           }
         }
       }

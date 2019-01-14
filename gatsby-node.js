@@ -3,6 +3,18 @@ const Promise = require(`bluebird`);
 const path = require(`path`);
 const slash = require(`slash`);
 
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions;
+  const { type } = node.internal;
+  if (type === 'internal__pastLaunches' || type === 'internal__latestLaunch') {
+    createNodeField({
+      node,
+      name: `slug`,
+      value: `/launch/${node.flight_number}`,
+    });
+  }
+};
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   return new Promise((resolve, reject) => {

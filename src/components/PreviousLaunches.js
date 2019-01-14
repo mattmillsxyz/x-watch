@@ -125,7 +125,7 @@ const renderList = (launches, latest) => {
 
               <DetailsLink>
                 <Link
-                  to="/"
+                  to={edge.node.fields.slug}
                   aria-label={`Go to ${edge.node.mission_name} launch details`}
                 >
                   LAUNCH DETAILS
@@ -188,6 +188,9 @@ const previousLaunches = graphql`
             mission_patch
           }
           launch_success
+          fields {
+            slug
+          }
         }
       }
     }

@@ -5,11 +5,12 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
 const LaunchPage = ({ data }) => {
-  console.log(data);
+  const { node } = data.allInternalPastLaunches.edges[0];
+
   return (
     <Layout>
-      <SEO title="Launch" />
-      <h1>{data.allInternalPastLaunches.edges[0].node.mission_name}</h1>
+      <SEO title={`Launch #${node.flight_number}`} />
+      <h1>{node.mission_name}</h1>
     </Layout>
   );
 };
@@ -21,6 +22,7 @@ export const query = graphql`
         node {
           id
           mission_name
+          flight_number
         }
       }
     }

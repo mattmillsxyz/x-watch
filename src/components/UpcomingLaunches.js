@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticQuery, graphql, Link } from 'gatsby';
+import { StaticQuery, graphql } from 'gatsby';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -16,13 +16,6 @@ const Heading = styled.h5`
   margin-top: 3rem;
   color: #00caca;
   font-weight: 400;
-`;
-
-const HeadingLink = styled(Link)`
-  margin-top: 3rem;
-  color: #ff006b;
-  font-weight: 600;
-  margin-right: 5%;
 `;
 
 const Container = styled.div`
@@ -111,7 +104,6 @@ const UpcomingLaunches = () => (
       <Wrapper>
         <Header>
           <Heading>UPCOMING LAUNCHES</Heading>
-          <HeadingLink to="/launches/">VIEW ALL</HeadingLink>
         </Header>
         <Container>
           <LaunchList>{renderList(data)}</LaunchList>
