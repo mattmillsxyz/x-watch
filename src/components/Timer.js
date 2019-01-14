@@ -24,9 +24,17 @@ const Divider = styled.span`
   font-size: 2rem;
 `;
 
-const Unit = styled.div`
+const UnitWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   margin-top: 1.5rem;
+`;
+
+const Unit = styled.div`
   color: gray;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 `;
 
 class Timer extends React.Component {
@@ -79,63 +87,67 @@ class Timer extends React.Component {
 
   render() {
     return (
-      <TimerWrapper>
-        <TimeBlock>
-          <svg viewBox="0 0 18 12">
-            <text
-              style={{ fontFamily: 'Rajdhani' }}
-              x="50%"
-              y="12"
-              textAnchor="middle"
-            >
-              {this.state.days ? this.state.days : '00'}
-            </text>
-          </svg>
+      <>
+        <TimerWrapper>
+          <TimeBlock>
+            <svg viewBox="0 0 18 12">
+              <text
+                style={{ fontFamily: 'Rajdhani' }}
+                x="50%"
+                y="12"
+                textAnchor="middle"
+              >
+                {this.state.days ? this.state.days : '00'}
+              </text>
+            </svg>
+          </TimeBlock>
+          <Divider>:</Divider>
+          <TimeBlock>
+            <svg viewBox="0 0 18 12">
+              <text
+                style={{ fontFamily: 'Rajdhani' }}
+                x="50%"
+                y="12"
+                textAnchor="middle"
+              >
+                {this.state.hours ? this.state.hours : '00'}
+              </text>
+            </svg>
+          </TimeBlock>
+          <Divider>:</Divider>
+          <TimeBlock>
+            <svg viewBox="0 0 18 12">
+              <text
+                style={{ fontFamily: 'Rajdhani' }}
+                x="50%"
+                y="12"
+                textAnchor="middle"
+              >
+                {this.state.minutes ? this.state.minutes : '00'}
+              </text>
+            </svg>
+          </TimeBlock>
+          <Divider>:</Divider>
+          <TimeBlock>
+            <svg viewBox="0 0 18 12">
+              <text
+                style={{ fontFamily: 'Rajdhani' }}
+                x="50%"
+                y="12"
+                textAnchor="middle"
+              >
+                {this.state.seconds ? this.state.seconds : '00'}
+              </text>
+            </svg>
+          </TimeBlock>
+        </TimerWrapper>
+        <UnitWrapper>
           <Unit>DAYS</Unit>
-        </TimeBlock>
-        <Divider>:</Divider>
-        <TimeBlock>
-          <svg viewBox="0 0 18 12">
-            <text
-              style={{ fontFamily: 'Rajdhani' }}
-              x="50%"
-              y="12"
-              textAnchor="middle"
-            >
-              {this.state.hours ? this.state.hours : '00'}
-            </text>
-          </svg>
           <Unit>HOURS</Unit>
-        </TimeBlock>
-        <Divider>:</Divider>
-        <TimeBlock>
-          <svg viewBox="0 0 18 12">
-            <text
-              style={{ fontFamily: 'Rajdhani' }}
-              x="50%"
-              y="12"
-              textAnchor="middle"
-            >
-              {this.state.minutes ? this.state.minutes : '00'}
-            </text>
-          </svg>
           <Unit>MINUTES</Unit>
-        </TimeBlock>
-        <Divider>:</Divider>
-        <TimeBlock>
-          <svg viewBox="0 0 18 12">
-            <text
-              style={{ fontFamily: 'Rajdhani' }}
-              x="50%"
-              y="12"
-              textAnchor="middle"
-            >
-              {this.state.seconds ? this.state.seconds : '00'}
-            </text>
-          </svg>
           <Unit>SECONDS</Unit>
-        </TimeBlock>
-      </TimerWrapper>
+        </UnitWrapper>
+      </>
     );
   }
 }
