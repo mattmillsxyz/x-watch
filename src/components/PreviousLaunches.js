@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql, Link } from 'gatsby';
-import moment from 'moment';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -13,14 +12,14 @@ const Header = styled.div`
 `;
 
 const Heading = styled.h5`
-  margin-left: 7%;
+  margin-left: 5%;
   margin-top: 3rem;
   color: #00caca;
   font-weight: 400;
 `;
 
 const Container = styled.div`
-  padding: 2rem 7%;
+  padding: 2rem 5%;
 `;
 
 const LaunchList = styled.div`
@@ -105,12 +104,10 @@ const getStatusStyle = status => {
 
 const renderList = (launches, latest) => {
   const { edges } = launches;
-  console.log(latest);
   const latestFlight = latest.edges[0].node.flight_number;
 
   return edges.map(edge => {
     if (edge.node.flight_number && edge.node.flight_number !== latestFlight) {
-      const date = moment(edge.node.launch_date_utc);
       return (
         <Launch key={`previous-list--${edge.node.flight_number}`}>
           <Patch>
@@ -138,7 +135,7 @@ const renderList = (launches, latest) => {
           </Mission>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <Date>{date.format('MM.DD.YYYY')}</Date>
+              <Date>{edge.node.launch_date_utc}</Date>
               <Number>
                 <span>#</span>
                 {edge.node.flight_number}
@@ -185,7 +182,7 @@ const previousLaunches = graphql`
           flight_number
           mission_name
           id
-          launch_date_utc
+          launch_date_utc(formatString: "MM.DD.YYYY")
           details
           links {
             mission_patch

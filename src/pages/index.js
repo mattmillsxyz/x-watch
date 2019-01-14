@@ -6,7 +6,7 @@ import Countdown from '../components/Countdown';
 import RecentLaunches from '../components/RecentLaunches';
 import UpcomingLaunches from '../components/UpcomingLaunches';
 
-const IndexPage = () => (
+const IndexPage = props => (
   <Layout>
     <SEO
       title="Home"
@@ -21,7 +21,7 @@ const IndexPage = () => (
         `react`,
       ]}
     />
-    <Countdown />
+    <Countdown {...props} />
     <RecentLaunches />
     <UpcomingLaunches />
   </Layout>

@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import LatestLaunch from '../components/LatestLaunch';
 import PreviousLaunches from '../components/PreviousLaunches';
 
-const LaunchesPage = () => {
+const LaunchesPage = props => {
   return (
     <Layout>
       <SEO title="Recent Launches" />

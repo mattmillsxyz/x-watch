@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql, Link } from 'gatsby';
-import moment from 'moment';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -13,7 +12,7 @@ const Header = styled.div`
 `;
 
 const Heading = styled.h5`
-  margin-left: 7%;
+  margin-left: 5%;
   margin-top: 3rem;
   color: #00caca;
   font-weight: 400;
@@ -23,11 +22,11 @@ const HeadingLink = styled(Link)`
   margin-top: 3rem;
   color: #ff006b;
   font-weight: 600;
-  margin-right: 7%;
+  margin-right: 5%;
 `;
 
 const Container = styled.div`
-  padding: 2rem 7%;
+  padding: 2rem 5%;
 `;
 
 const BadgeContainer = styled.div`
@@ -52,8 +51,6 @@ const renderBadges = badges => {
   const { edges } = badges.allInternalPastLaunches;
 
   return edges.map(edge => {
-    const date = moment(edge.node.launch_date_utc);
-
     return (
       <div
         style={{ textAlign: 'center' }}
@@ -63,7 +60,7 @@ const renderBadges = badges => {
           src={edge.node.links.mission_patch}
           alt={`${edge.node.flight_number} missions patch`}
         />
-        <Date>{date.format('MM.DD.YYYY')}</Date>
+        <Date>{edge.node.launch_date_utc}</Date>
       </div>
     );
   });
@@ -94,7 +91,7 @@ const launchBadges = graphql`
         node {
           flight_number
           id
-          launch_date_utc
+          launch_date_utc(formatString: "MM.DD.YYYY")
           launch_year
           links {
             mission_patch

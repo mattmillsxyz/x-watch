@@ -10,14 +10,14 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.h5`
-  margin: 0 0 0 7%;
+  margin: 0 0 0 5%;
   padding-top: 3rem;
   color: #00caca;
   font-weight: 400;
 `;
 
 const Container = styled.div`
-  padding: 3% 7% 5%;
+  padding: 3% 5% 5%;
 `;
 
 const LatestLaunch = data => {

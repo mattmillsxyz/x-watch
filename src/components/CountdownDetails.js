@@ -34,13 +34,12 @@ const CountdownDetails = () => (
   <StaticQuery
     query={nextLaunch}
     render={data => {
-      const { edges } = data.allInternalNextLaunch;
       const {
         mission_name,
         launch_date_utc,
         launch_site,
         rocket,
-      } = edges[0].node;
+      } = data.internalNextLaunch;
 
       return (
         <Wrapper>
@@ -79,28 +78,24 @@ const CountdownDetails = () => (
 );
 const nextLaunch = graphql`
   {
-    allInternalNextLaunch {
-      edges {
-        node {
-          id
-          mission_name
-          launch_date_utc
-          launch_site {
-            site_name_long
-          }
-          rocket {
-            rocket_name
-            second_stage {
-              payloads {
-                payload_type
-                manufacturer
-              }
-            }
-          }
-          links {
-            reddit_campaign
+    internalNextLaunch {
+      id
+      mission_name
+      launch_date_utc(formatString: "MM.DD.YYYY")
+      launch_site {
+        site_name_long
+      }
+      rocket {
+        rocket_name
+        second_stage {
+          payloads {
+            payload_type
+            manufacturer
           }
         }
+      }
+      links {
+        reddit_campaign
       }
     }
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql, Link } from 'gatsby';
-import moment from 'moment';
 
 const Wrapper = styled.div`
   display: flex;
@@ -91,7 +90,6 @@ const LatestLaunchDetails = () => {
     <StaticQuery
       query={latestLaunch}
       render={data => {
-        const { edges } = data.allInternalLatestLaunch;
         const {
           mission_name,
           launch_date_utc,
@@ -100,9 +98,7 @@ const LatestLaunchDetails = () => {
           launch_success,
           details,
           links,
-        } = edges[0].node;
-
-        const date = moment(launch_date_utc);
+        } = data.internalLatestLaunch;
 
         return (
           <Wrapper>
@@ -118,7 +114,7 @@ const LatestLaunchDetails = () => {
                 </Detail>
                 <Detail>
                   <Heading>LAUNCH DATE:</Heading>
-                  {date.format('MM.DD.YYYY')}
+                  {launch_date_utc}
                 </Detail>
                 <Detail>
                   <Heading>LAUNCH SITE:</Heading>
@@ -148,23 +144,19 @@ const LatestLaunchDetails = () => {
 
 const latestLaunch = graphql`
   {
-    allInternalLatestLaunch {
-      edges {
-        node {
-          flight_number
-          id
-          launch_date_utc
-          mission_name
-          links {
-            mission_patch
-          }
-          launch_site {
-            site_name_long
-          }
-          launch_success
-          details
-        }
+    internalLatestLaunch {
+      flight_number
+      id
+      launch_date_utc(formatString: "MM.DD.YYYY")
+      mission_name
+      links {
+        mission_patch
       }
+      launch_site {
+        site_name_long
+      }
+      launch_success
+      details
     }
   }
 `;

@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { graphql, StaticQuery } from 'gatsby';
 
 import CountdownDetails from './CountdownDetails';
+import Timer from './Timer';
 
 const Wrapper = styled.div`
   background: #f4f4f4;
@@ -10,35 +12,37 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.h5`
-  margin: 0 0 0 7%;
+  margin: 0 0 0 5%;
   padding-top: 3rem;
   color: #00caca;
   font-weight: 400;
 `;
 
-const Timer = styled.div`
-  padding: 3% 7% 5%;
+const Container = styled.div`
+  padding: 3% 5% 5%;
 `;
 
-const Countdown = data => {
-  return (
-    <Wrapper>
-      <Heading>NEXT LAUNCH</Heading>
-      <Timer>
-        <svg viewBox="0 0 66 12">
-          <text
-            style={{ fontFamily: 'Rajdhani' }}
-            x="50%"
-            y="12"
-            textAnchor="middle"
-          >
-            01:10:23:36
-          </text>
-        </svg>
-        <CountdownDetails />
-      </Timer>
-    </Wrapper>
-  );
-};
+const Countdown = () => (
+  <StaticQuery
+    query={nextLaunchDate}
+    render={data => (
+      <Wrapper>
+        <Heading>NEXT LAUNCH</Heading>
+        <Container>
+          <Timer launchDate={data.internalNextLaunch.launch_date_utc} />
+          <CountdownDetails />
+        </Container>
+      </Wrapper>
+    )}
+  />
+);
+
+const nextLaunchDate = graphql`
+  {
+    internalNextLaunch {
+      launch_date_utc
+    }
+  }
+`;
 
 export default Countdown;
