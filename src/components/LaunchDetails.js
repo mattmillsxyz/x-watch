@@ -93,6 +93,7 @@ const renderActionButton = (type, launchData) => {
         <a
           href={launchData.links.presskit}
           target="_blank"
+          rel="noopener noreferrer"
           arial-label="Go to flight press kit"
         >
           PRESS KIT
@@ -118,7 +119,6 @@ const LaunchDetails = ({ launchData, type }) => {
     launch_success,
     details,
     links,
-    fields,
   } = launchData;
 
   return (
