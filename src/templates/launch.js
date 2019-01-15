@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Launch from '../components/Launch';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
@@ -10,7 +11,7 @@ const LaunchPage = ({ data }) => {
   return (
     <Layout>
       <SEO title={`Launch #${node.flight_number}`} />
-      <h1>{node.mission_name}</h1>
+      <Launch heading="LAUNCH DETAILS" launchData={node} type="details" />
     </Layout>
   );
 };
@@ -20,9 +21,22 @@ export const query = graphql`
     allInternalPastLaunches(filter: { id: { eq: $id } }) {
       edges {
         node {
-          id
-          mission_name
           flight_number
+          id
+          launch_date_utc(formatString: "MM.DD.YYYY")
+          mission_name
+          links {
+            mission_patch
+            presskit
+          }
+          launch_site {
+            site_name_long
+          }
+          launch_success
+          details
+          fields {
+            slug
+          }
         }
       }
     }

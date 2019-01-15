@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import LatestLaunchDetails from './LatestLaunchDetails';
+import LaunchDetails from './LaunchDetails';
 
 const Wrapper = styled.div`
   background: #f4f4f4;
@@ -20,15 +20,15 @@ const Container = styled.div`
   padding: 3% 5% 5%;
 `;
 
-const LatestLaunch = data => {
+const Launch = ({ heading, launchData, type }) => {
   return (
     <Wrapper>
-      <Heading>LATEST LAUNCH</Heading>
+      <Heading>{heading}</Heading>
       <Container>
-        <LatestLaunchDetails />
+        <LaunchDetails launchData={launchData} type={type} />
       </Container>
     </Wrapper>
   );
 };
 
-export default LatestLaunch;
+export default Launch;
