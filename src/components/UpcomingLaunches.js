@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 
+import Flags from './Flags';
+
 const Wrapper = styled.div`
   width: 100%;
 `;
@@ -46,11 +48,11 @@ const Launch = styled.div`
 const Mission = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 2;
 `;
 
 const MissionName = styled.div`
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
   margin-bottom: 0.5rem;
@@ -59,6 +61,13 @@ const MissionName = styled.div`
 const LaunchSite = styled.div`
   margin-bottom: 2rem;
 
+  span {
+    font-weight: 600;
+  }
+`;
+
+const Rocket = styled.div`
+  flex: 1;
   span {
     font-weight: 600;
   }
@@ -88,6 +97,13 @@ const renderList = launches => {
             <span>LAUNCH SITE:</span> {edge.node.launch_site.site_name_long}
           </LaunchSite>
         </Mission>
+        <Rocket>
+          <span>ROCKET:</span> {edge.node.rocket.rocket_name}
+          <Flags
+            id={edge.node.id}
+            countries={edge.node.rocket.second_stage.payloads}
+          />
+        </Rocket>
         <Number>
           <span>#</span>
           {edge.node.flight_number}
@@ -124,6 +140,14 @@ const upcomingLaunches = graphql`
           launch_date_utc(formatString: "MM.DD.YYYY")
           launch_site {
             site_name_long
+          }
+          rocket {
+            rocket_name
+            second_stage {
+              payloads {
+                nationality
+              }
+            }
           }
         }
       }
