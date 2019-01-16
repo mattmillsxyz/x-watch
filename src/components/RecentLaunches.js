@@ -80,7 +80,6 @@ const RecentLaunches = () => (
           <Heading>RECENT LAUNCHES</Heading>
           <HeadingLink to="/launches/">VIEW ALL</HeadingLink>
         </Header>
-
         <Container>
           <BadgeContainer>{renderBadges(data)}</BadgeContainer>
         </Container>

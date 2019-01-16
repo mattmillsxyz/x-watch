@@ -24,9 +24,9 @@ const getCountryCode = country => {
   return 'us';
 };
 
-const renderFlags = (id, countries) => {
-  return countries.map((country, index) => {
-    const countryCode = getCountryCode(country.nationality);
+const renderFlags = (id, payloads) => {
+  return payloads.map((payload, index) => {
+    const countryCode = getCountryCode(payload.nationality);
     return (
       <ReactCountryFlag
         styleProps={{ cursor: 'default' }}
@@ -37,8 +37,8 @@ const renderFlags = (id, countries) => {
   });
 };
 
-const Flags = ({ id, countries }) => {
-  return <Container>{renderFlags(id, countries)}</Container>;
+const Flags = ({ id, payloads }) => {
+  return <Container>{renderFlags(id, payloads)}</Container>;
 };
 
 export default Flags;

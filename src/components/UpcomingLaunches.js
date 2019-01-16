@@ -101,7 +101,7 @@ const renderList = launches => {
           <span>ROCKET:</span> {edge.node.rocket.rocket_name}
           <Flags
             id={edge.node.id}
-            countries={edge.node.rocket.second_stage.payloads}
+            payloads={edge.node.rocket.second_stage.payloads}
           />
         </Rocket>
         <Number>
