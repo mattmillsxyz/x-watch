@@ -39,13 +39,15 @@ exports.createPages = ({ graphql, actions }) => {
 
       const pageTemplate = path.resolve('./src/templates/launch.js');
       each(result.data.allInternalPastLaunches.edges, edge => {
-        createPage({
-          path: `/launch/${edge.node.flight_number}/`,
-          component: slash(pageTemplate),
-          context: {
-            id: edge.node.id,
-          },
-        });
+        if (edge.node.flight_number) {
+          createPage({
+            path: `/launch/${edge.node.flight_number}/`,
+            component: slash(pageTemplate),
+            context: {
+              id: edge.node.id,
+            },
+          });
+        }
       });
       resolve();
     });
