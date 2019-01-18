@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Launch from '../components/Launch';
+import LaunchNav from '../components/LaunchNav';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import RocketDetails from '../components/RocketDetails';
@@ -13,6 +14,7 @@ const LaunchPage = ({ data }) => {
   return (
     <Layout>
       <SEO title={`Launch #${node.flight_number}`} />
+      <LaunchNav flightNumber={node.flight_number} />
       <Launch heading="LAUNCH DETAILS" launchData={node} type="details" />
       <RocketDetails rocketData={node.rocket} />
       <Images imageData={node.links.flickr_images} />
