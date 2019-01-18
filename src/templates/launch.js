@@ -5,6 +5,7 @@ import Launch from '../components/Launch';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import RocketDetails from '../components/RocketDetails';
+import Images from '../components/Images';
 
 const LaunchPage = ({ data }) => {
   const { node } = data.allInternalPastLaunches.edges[0];
@@ -14,6 +15,7 @@ const LaunchPage = ({ data }) => {
       <SEO title={`Launch #${node.flight_number}`} />
       <Launch heading="LAUNCH DETAILS" launchData={node} type="details" />
       <RocketDetails rocketData={node.rocket} />
+      <Images imageData={node.links.flickr_images} />
     </Layout>
   );
 };
@@ -30,6 +32,7 @@ export const query = graphql`
           links {
             mission_patch
             presskit
+            flickr_images
           }
           launch_site {
             site_name_long
