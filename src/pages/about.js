@@ -205,26 +205,28 @@ const AboutPage = () => {
           </DetailsContainer>
           <DetailsFooter>
             <p>
-              If you're interested in seeing the source code and/or contributing
-              to this project, check out{' '}
-              <a
-                href="https://github.com/mattmillsxyz/x-watch"
-                aria-label="Go to the X Watch source code on GitHub"
-              >
-                x-watch on GitHub
-              </a>
-              .
+              {`If you're interested in seeing the source code and/or contributing
+              to this project, check out ${(
+                <a
+                  href="https://github.com/mattmillsxyz/x-watch"
+                  aria-label="Go to the X Watch source code on GitHub"
+                >
+                  x-watch on GitHub
+                </a>
+              )}
+              .`}
             </p>
             <p>
-              Special thanks to{' '}
-              <a
-                href="https://github.com/jakewmeyer"
-                aria-label="Go to Jake Meyer on GitHub"
-              >
-                Jake Meyer
-              </a>{' '}
+              {`Special thanks to ${(
+                <a
+                  href="https://github.com/jakewmeyer"
+                  aria-label="Go to Jake Meyer on GitHub"
+                >
+                  Jake Meyer
+                </a>
+              )}
               for his contributions to the SpaceX-API. Without his efforts, this
-              application would probably not exist.
+              application would probably not exist.`}
             </p>
           </DetailsFooter>
         </DetailsWrapper>
