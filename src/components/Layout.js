@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
   }
 
+  button {
+    font-family: 'Source Sans Pro', Helvetica, sans-serif;
+  }
+
   h1, h2, h3, h4, h5, h6, img {
     margin: 0;
   }

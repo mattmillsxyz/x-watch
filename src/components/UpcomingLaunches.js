@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 
@@ -22,6 +22,8 @@ const Heading = styled.h5`
 
 const Container = styled.div`
   padding: 2rem 5%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const LaunchList = styled.div`
@@ -84,54 +86,83 @@ const Number = styled.div`
   }
 `;
 
-const renderList = launches => {
-  const { edges } = launches.allInternalUpcomingLaunches;
+const ShowAll = styled.button`
+  padding: 0.5rem;
+  background: #f4f4f4;
+  color: #ff006b;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
 
-  return edges.map(edge => {
-    return (
-      <Launch key={`upcoming-list--${edge.node.flight_number}`}>
-        <Date>{edge.node.launch_date_utc}</Date>
-        <Mission>
-          <MissionName>{edge.node.mission_name}</MissionName>
-          <LaunchSite>
-            <span>LAUNCH SITE:</span> {edge.node.launch_site.site_name_long}
-          </LaunchSite>
-        </Mission>
-        <Rocket>
-          <span>ROCKET:</span> {edge.node.rocket.rocket_name}
-          <Flags
-            id={edge.node.id}
-            payloads={edge.node.rocket.second_stage.payloads}
-          />
-        </Rocket>
-        <Number>
-          <span>#</span>
-          {edge.node.flight_number}
-        </Number>
-      </Launch>
-    );
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
+const renderList = (launches, limit) => {
+  const { edges } = launches.allInternalUpcomingLaunches;
+  const limitEdges = limit ? edges.slice(0, limit) : edges;
+
+  return limitEdges.map(edge => {
+    if (edge.node.flight_number) {
+      return (
+        <Launch key={`upcoming-list--${edge.node.flight_number}`}>
+          <Date>{edge.node.launch_date_utc}</Date>
+          <Mission>
+            <MissionName>{edge.node.mission_name}</MissionName>
+            <LaunchSite>
+              <span>LAUNCH SITE:</span> {edge.node.launch_site.site_name_long}
+            </LaunchSite>
+          </Mission>
+          <Rocket>
+            <span>ROCKET:</span> {edge.node.rocket.rocket_name}
+            <Flags
+              id={edge.node.id}
+              payloads={edge.node.rocket.second_stage.payloads}
+            />
+          </Rocket>
+          <Number>
+            <span>#</span>
+            {edge.node.flight_number}
+          </Number>
+        </Launch>
+      );
+    }
+    return false;
   });
 };
 
-const UpcomingLaunches = () => (
-  <StaticQuery
-    query={upcomingLaunches}
-    render={data => (
-      <Wrapper>
-        <Header>
-          <Heading>UPCOMING LAUNCHES</Heading>
-        </Header>
-        <Container>
-          <LaunchList>{renderList(data)}</LaunchList>
-        </Container>
-      </Wrapper>
-    )}
-  />
-);
+const UpcomingLaunches = () => {
+  const count = 5;
+  const [limit, setLimit] = useState(count);
+
+  return (
+    <StaticQuery
+      query={upcomingLaunches}
+      render={data => {
+        return (
+          <Wrapper>
+            <Header>
+              <Heading>UPCOMING LAUNCHES</Heading>
+            </Header>
+            <Container>
+              <LaunchList>{renderList(data, limit)}</LaunchList>
+              <ShowAll onClick={() => setLimit(limit ? null : count)}>
+                {limit ? 'SHOW ALL' : 'SHOW LESS'}
+              </ShowAll>
+            </Container>
+          </Wrapper>
+        );
+      }}
+    />
+  );
+};
 
 const upcomingLaunches = graphql`
   {
-    allInternalUpcomingLaunches(limit: 5) {
+    allInternalUpcomingLaunches {
       edges {
         node {
           flight_number
