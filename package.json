@@ -17,6 +17,7 @@
     "gatsby-source-apiserver": "^2.1.0",
     "gatsby-source-filesystem": "^2.0.16",
     "gatsby-transformer-sharp": "^2.1.8",
+    "intersection-observer": "^0.5.1",
     "iso-country-codes": "0.0.5",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
