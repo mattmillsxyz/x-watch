@@ -175,11 +175,11 @@ const RocketDetails = ({ rocketData }) => {
         <Heading>ROCKET DETAILS</Heading>
       </Header>
       <Container>
-        <RocketNameWrapper>
+        <RocketNameWrapper style={{ width: '20%' }}>
           <RocketName>{rocketData.rocket_name}</RocketName>
           <RocketType>{rocketData.rocket_type}</RocketType>
         </RocketNameWrapper>
-        <Stage>
+        <Stage style={{ width: '25%' }}>
           <StageHeading>FIRST STAGE</StageHeading>
           <Detail>
             <DetailHeading>CORES:</DetailHeading>
@@ -187,14 +187,14 @@ const RocketDetails = ({ rocketData }) => {
           </Detail>
           {renderCores(rocketData.first_stage.cores)}
         </Stage>
-        <Stage>
+        <Stage style={{ width: '25%' }}>
           <StageHeading>SECOND STAGE</StageHeading>
           <Detail>
             <DetailHeading>PAYLOADS:</DetailHeading>
             {rocketData.second_stage.payloads.length}
           </Detail>
         </Stage>
-        <Stage>
+        <Stage style={{ width: '30%' }}>
           <StageHeading>PAYLOAD INFO</StageHeading>
           {renderPayloadInfo(rocketData.second_stage.payloads)}
         </Stage>
