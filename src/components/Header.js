@@ -59,7 +59,7 @@ const Header = () => (
           HOME
         </NavLink>
         <NavLink to="/launches" aria-label="Go to previous launches page">
-          PREVIOUS LAUNCHES
+          LAUNCHES
         </NavLink>
         <NavLink to="/about" aria-label="Go to the about page">
           ABOUT
