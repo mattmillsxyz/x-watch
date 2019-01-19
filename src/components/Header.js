@@ -33,7 +33,7 @@ const Title = styled.div`
   flex: 1;
   margin-left: 1rem;
   margin-top: 1.5rem;
-  color: #00caca;
+  color: #333333;
 `;
 
 const Header = () => (

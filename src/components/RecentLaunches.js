@@ -14,7 +14,7 @@ const Header = styled.div`
 const Heading = styled.h5`
   margin-left: 5%;
   margin-top: 3rem;
-  color: #00caca;
+  color: #333333;
   font-weight: 400;
 `;
 
