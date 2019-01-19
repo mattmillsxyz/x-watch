@@ -36,6 +36,7 @@ const RocketName = styled.div`
 const Stage = styled.div`
   display: flex;
   flex-direction: column;
+  padding-left: 1rem;
 `;
 
 const StageHeading = styled.div`

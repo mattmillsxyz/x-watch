@@ -51,6 +51,7 @@ const Mission = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
+  padding-right: 1rem;
 `;
 
 const MissionName = styled.div`

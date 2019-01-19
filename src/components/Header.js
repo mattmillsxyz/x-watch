@@ -29,15 +29,39 @@ const MenuButton = styled.button`
   justify-content: center;
 `;
 
+const Title = styled.div`
+  flex: 1;
+  margin-left: 1rem;
+  margin-top: 1.5rem;
+  color: #00caca;
+`;
+
 const Header = () => (
   <Wrapper>
     <Container>
       <Link to="/" aria-label="Go to X Watch home page">
         <img src={logo} alt="X Watch logo" />
       </Link>
-      <MenuButton aria-label="Open navigation menu">
+      <Title>The Unoffical SpaceX Launch Tracker</Title>
+      {/* <MenuButton aria-label="Open navigation menu">
         <img src={menuIcon} alt="Menu icon" />
-      </MenuButton>
+      </MenuButton> */}
+      <div style={{ marginTop: '1.5rem' }}>
+        <Link
+          to="/"
+          aria-label="Go to X Watch home page"
+          style={{ marginRight: '1.5rem', fontWeight: 600 }}
+        >
+          HOME
+        </Link>
+        <Link
+          to="/launches"
+          aria-label="Go to previous launches page"
+          style={{ fontWeight: 600 }}
+        >
+          PREVIOUS LAUNCHES
+        </Link>
+      </div>
     </Container>
   </Wrapper>
 );

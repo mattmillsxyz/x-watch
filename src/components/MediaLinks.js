@@ -24,7 +24,7 @@ const Heading = styled.h5`
 `;
 
 const Container = styled.div`
-  padding: 2rem 5% 3rem;
+  padding: 2rem 5% 1rem;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -34,7 +34,8 @@ const IconLink = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 4rem;
+  margin-right: 6%;
+  margin-bottom: 2rem;
 
   span {
     font-size: 0.875rem;
