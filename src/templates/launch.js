@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import RocketDetails from '../components/RocketDetails';
 import Images from '../components/Images';
+import MediaLinks from '../components/MediaLinks';
 
 const LaunchPage = ({ data }) => {
   const { node } = data.allInternalPastLaunches.edges[0];
@@ -18,6 +19,7 @@ const LaunchPage = ({ data }) => {
       <Launch heading="LAUNCH DETAILS" launchData={node} type="details" />
       <RocketDetails rocketData={node.rocket} />
       <Images imageData={node.links.flickr_images} />
+      <MediaLinks links={node.links} />
     </Layout>
   );
 };
@@ -35,6 +37,16 @@ export const query = graphql`
             mission_patch
             presskit
             flickr_images
+            reddit_campaign
+            reddit_launch
+            reddit_recovery
+            reddit_media
+            video_link
+            wikipedia
+            article_link
+          }
+          telemetry {
+            flight_club
           }
           launch_site {
             site_name_long

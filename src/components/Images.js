@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { LazyImage } from 'react-lazy-images';
 import Spinner from 'react-spinkit';
+import { isEmpty } from 'lodash';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -100,7 +101,7 @@ const renderImages = imageData => {
           debounceDurationMs={400}
           placeholder={({ ref }) => (
             <PlaceholderDiv ref={ref}>
-              <Spinner name="pulse" />
+              <Spinner name="cube-grid" color={'lightgray'} />
             </PlaceholderDiv>
           )}
           actual={({ imageProps }) => (
@@ -125,7 +126,9 @@ const Images = ({ imageData }) => {
         <Heading>IMAGES</Heading>
       </Header>
       <Container>
-        {imageData ? renderImages(imageData) : 'Sorry, no images available.'}
+        {!isEmpty(imageData)
+          ? renderImages(imageData)
+          : 'Sorry, no images available.'}
       </Container>
     </Wrapper>
   );
