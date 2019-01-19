@@ -20,7 +20,7 @@ const Heading = styled.h5`
   margin-left: 5%;
   margin-top: 3rem;
   color: #333333;
-  font-weight: 400;
+  font-weight: 600;
 `;
 
 const Container = styled.div`

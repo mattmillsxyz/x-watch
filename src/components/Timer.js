@@ -11,6 +11,10 @@ const TimerWrapper = styled.div`
 
   svg {
     width: 100%;
+
+    text {
+      fill: #ff006b;
+    }
   }
 `;
 
