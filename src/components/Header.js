@@ -31,9 +31,17 @@ const MenuButton = styled.button`
 
 const Title = styled.div`
   flex: 1;
+  font-size: 1.25rem;
   margin-left: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1.23rem;
   color: #333333;
+`;
+
+const NavLink = styled(Link)`
+  font-weight: 600;
+  &:not(:last-child) {
+    margin-right: 1.5rem;
+  }
 `;
 
 const Header = () => (
@@ -42,25 +50,20 @@ const Header = () => (
       <Link to="/" aria-label="Go to X Watch home page">
         <img src={logo} alt="X Watch logo" />
       </Link>
-      <Title>The Unoffical SpaceX Launch Tracker</Title>
+      <Title>An Unoffical SpaceX Launch Tracker</Title>
       {/* <MenuButton aria-label="Open navigation menu">
         <img src={menuIcon} alt="Menu icon" />
       </MenuButton> */}
       <div style={{ marginTop: '1.5rem' }}>
-        <Link
-          to="/"
-          aria-label="Go to X Watch home page"
-          style={{ marginRight: '1.5rem', fontWeight: 600 }}
-        >
+        <NavLink to="/" aria-label="Go to X Watch home page">
           HOME
-        </Link>
-        <Link
-          to="/launches"
-          aria-label="Go to previous launches page"
-          style={{ fontWeight: 600 }}
-        >
+        </NavLink>
+        <NavLink to="/launches" aria-label="Go to previous launches page">
           PREVIOUS LAUNCHES
-        </Link>
+        </NavLink>
+        <NavLink to="/about" aria-label="Go to the about page">
+          ABOUT
+        </NavLink>
       </div>
     </Container>
   </Wrapper>
