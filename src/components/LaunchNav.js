@@ -46,7 +46,7 @@ const LaunchNav = ({ flightNumber }) => (
   <StaticQuery
     query={allPages}
     render={data => (
-      <Sticky>
+      <Sticky innerZ={10}>
         <Wrapper>
           {renderNavLink(
             'prev',
