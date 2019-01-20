@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `X Watch`,
+    title: `X-Watch`,
     description: `Tracking past and future SpaceX launches.`,
     author: `@mattmillsxyz`,
   },
