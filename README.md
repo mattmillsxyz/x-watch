@@ -10,7 +10,7 @@
 
 <strong>DISCLAIMER:</strong> The maintainers of this project have no affiliation with [SpaceX](https://www.spacex.com/). The content herein should be considered for educational purposes only.
 
-This project was built using [Gatsby JS](https://gatsbyjs.org) and [React JS](https://reactjs.org/).
+This project was built using [Gatsby JS](https://gatsbyjs.org), [React JS](https://reactjs.org/), and [Styled Components](https://www.styled-components.com/).
 
 ## 🚀 Development
 
