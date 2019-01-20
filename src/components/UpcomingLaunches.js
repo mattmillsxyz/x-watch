@@ -34,16 +34,25 @@ const LaunchList = styled.div`
 
 const Date = styled.div`
   min-width: 6rem;
+
+  @media (max-width: 740px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const Launch = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid #f4f4f4;
 
   &:not(:last-child) {
     margin-bottom: 2rem;
+    border-bottom: 1px solid #f4f4f4;
+  }
+
+  @media (max-width: 740px) {
+    flex-direction: column;
+    padding-bottom: 2rem;
   }
 `;
 
@@ -87,6 +96,12 @@ const Number = styled.div`
   }
 `;
 
+const RocketDetails = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+`;
+
 const ShowAll = styled.button`
   padding: 0.5rem;
   background: #f4f4f4;
@@ -117,17 +132,19 @@ const renderList = (launches, limit) => {
               <span>LAUNCH SITE:</span> {edge.node.launch_site.site_name_long}
             </LaunchSite>
           </Mission>
-          <Rocket>
-            <span>ROCKET:</span> {edge.node.rocket.rocket_name}
-            <Flags
-              id={edge.node.id}
-              payloads={edge.node.rocket.second_stage.payloads}
-            />
-          </Rocket>
-          <Number>
-            <span>#</span>
-            {edge.node.flight_number}
-          </Number>
+          <RocketDetails>
+            <Rocket>
+              <span>ROCKET:</span> {edge.node.rocket.rocket_name}
+              <Flags
+                id={edge.node.id}
+                payloads={edge.node.rocket.second_stage.payloads}
+              />
+            </Rocket>
+            <Number>
+              <span>#</span>
+              {edge.node.flight_number}
+            </Number>
+          </RocketDetails>
         </Launch>
       );
     }

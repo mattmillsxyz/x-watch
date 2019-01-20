@@ -21,6 +21,10 @@ const MissionName = styled.div`
   h1 {
     line-height: 1;
   }
+
+  @media (max-width: 740px) {
+    font-size: 0.875rem;
+  }
 `;
 
 const Status = styled.span`
@@ -29,6 +33,10 @@ const Status = styled.span`
 
 const Container = styled.div`
   display: flex;
+
+  @media (max-width: 740px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const PatchBlock = styled.div`
@@ -38,6 +46,13 @@ const PatchBlock = styled.div`
   img {
     width: 160px;
   }
+
+  @media (max-width: 740px) {
+    img {
+      width: 100px;
+      margin-bottom: 1.5rem;
+    }
+  }
 `;
 
 const DetailsBlock = styled.div`
@@ -45,6 +60,10 @@ const DetailsBlock = styled.div`
   flex-direction: column;
   padding-right: 3rem;
   flex: 1;
+
+  @media (max-width: 740px) {
+    padding-right: 0;
+  }
 `;
 
 const Detail = styled.div`
@@ -83,6 +102,10 @@ const Number = styled.div`
     line-height: 1;
     vertical-align: top;
     margin-left: 0.5rem;
+  }
+
+  @media (max-width: 740px) {
+    justify-content: flex-end;
   }
 `;
 

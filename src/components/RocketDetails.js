@@ -24,6 +24,10 @@ const Container = styled.div`
   padding: 2rem 5% 3rem;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 740px) {
+    flex-direction: column;
+  }
 `;
 
 const RocketName = styled.div`
@@ -37,6 +41,23 @@ const Stage = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 1rem;
+  width: 25%;
+
+  &:last-child {
+    width: 30%;
+  }
+
+  @media (max-width: 740px) {
+    width: 100%;
+
+    &:last-child {
+      width: 100%;
+    }
+
+    &:nth-last-child(-n + 2) {
+      margin-top: 1rem;
+    }
+  }
 `;
 
 const StageHeading = styled.div`
@@ -93,6 +114,13 @@ const RocketType = styled.div`
 const RocketNameWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 20%;
+
+  @media (max-width: 740px) {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const renderCores = cores => {
@@ -175,11 +203,11 @@ const RocketDetails = ({ rocketData }) => {
         <Heading>ROCKET DETAILS</Heading>
       </Header>
       <Container>
-        <RocketNameWrapper style={{ width: '20%' }}>
+        <RocketNameWrapper>
           <RocketName>{rocketData.rocket_name}</RocketName>
           <RocketType>{rocketData.rocket_type}</RocketType>
         </RocketNameWrapper>
-        <Stage style={{ width: '25%' }}>
+        <Stage>
           <StageHeading>FIRST STAGE</StageHeading>
           <Detail>
             <DetailHeading>CORES:</DetailHeading>
@@ -187,14 +215,14 @@ const RocketDetails = ({ rocketData }) => {
           </Detail>
           {renderCores(rocketData.first_stage.cores)}
         </Stage>
-        <Stage style={{ width: '25%' }}>
+        <Stage>
           <StageHeading>SECOND STAGE</StageHeading>
           <Detail>
             <DetailHeading>PAYLOADS:</DetailHeading>
             {rocketData.second_stage.payloads.length}
           </Detail>
         </Stage>
-        <Stage style={{ width: '30%' }}>
+        <Stage>
           <StageHeading>PAYLOAD INFO</StageHeading>
           {renderPayloadInfo(rocketData.second_stage.payloads)}
         </Stage>
