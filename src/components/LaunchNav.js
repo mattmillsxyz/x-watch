@@ -12,6 +12,12 @@ const Wrapper = styled.div`
   a {
     font-weight: 600;
   }
+
+  @media (max-width: 740px) {
+    a {
+      padding: 0 5%;
+    }
+  }
 `;
 
 const renderNavLink = (direction, flightNumber, pages) => {

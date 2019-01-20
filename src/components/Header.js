@@ -22,6 +22,10 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 740px) {
+    padding: 1rem 5%;
+  }
 `;
 
 const Title = styled.div`

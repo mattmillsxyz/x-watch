@@ -49,6 +49,10 @@ const Mission = styled.div`
   flex-direction: column;
   flex: 1;
   padding: 0 2rem;
+
+  @media (max-width: 740px) {
+    padding-right: 0;
+  }
 `;
 
 const MissionName = styled.div`
@@ -87,9 +91,37 @@ const Number = styled.div`
     line-height: 1;
     vertical-align: top;
   }
+
+  @media (max-width: 740px) {
+    flex: 1;
+  }
 `;
 
 const Status = styled.span``;
+
+const StatWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 740px) {
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+  }
+`;
+
+const DateWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const MissionWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 740px) {
+    flex-direction: column-reverse;
+  }
+`;
 
 const getStatusStyle = status => {
   if (status) {
@@ -116,35 +148,39 @@ const renderList = (launches, latest) => {
               alt={`${edge.node.mission_name} mission patch`}
             />
           </Patch>
-          <Mission>
-            <MissionName>{edge.node.mission_name}</MissionName>
-            <Details>
-              {edge.node.details
-                ? `${edge.node.details.substring(0, 160)}...`
-                : 'No description provided.'}
+          <MissionWrapper>
+            <Mission>
+              <MissionName>{edge.node.mission_name}</MissionName>
+              <Details>
+                {edge.node.details
+                  ? `${edge.node.details.substring(0, 160)}...`
+                  : 'No description provided.'}
 
-              <DetailsLink>
-                <Link
-                  to={edge.node.fields.slug}
-                  aria-label={`Go to ${edge.node.mission_name} launch details`}
-                >
-                  LAUNCH DETAILS
-                </Link>
-              </DetailsLink>
-            </Details>
-          </Mission>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <Date>{edge.node.launch_date_utc}</Date>
-              <Number>
-                <span>#</span>
-                {edge.node.flight_number}
-              </Number>
-            </div>
-            <Status style={getStatusStyle(edge.node.launch_success)}>
-              {edge.node.launch_success ? 'SUCCESSFUL' : 'FAILURE'}
-            </Status>
-          </div>
+                <DetailsLink>
+                  <Link
+                    to={edge.node.fields.slug}
+                    aria-label={`Go to ${
+                      edge.node.mission_name
+                    } launch details`}
+                  >
+                    LAUNCH DETAILS
+                  </Link>
+                </DetailsLink>
+              </Details>
+            </Mission>
+            <StatWrapper>
+              <DateWrapper>
+                <Date>{edge.node.launch_date_utc}</Date>
+                <Number>
+                  <span>#</span>
+                  {edge.node.flight_number}
+                </Number>
+              </DateWrapper>
+              <Status style={getStatusStyle(edge.node.launch_success)}>
+                {edge.node.launch_success ? 'SUCCESSFUL' : 'FAILURE'}
+              </Status>
+            </StatWrapper>
+          </MissionWrapper>
         </Launch>
       );
     }

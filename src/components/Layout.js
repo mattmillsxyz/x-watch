@@ -39,7 +39,7 @@ const Container = styled.div`
   padding-top: 10rem;
 
   @media (max-width: 740px) {
-    padding-top: 97px;
+    padding-top: 83px;
   }
 `;
 
