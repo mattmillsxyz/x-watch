@@ -27,7 +27,6 @@
     "react-helmet": "^5.2.0",
     "react-lazy-images": "^1.1.0",
     "react-spinkit": "^3.0.0",
-    "react-stickynode": "^2.1.1",
     "styled-components": "^4.1.3"
   },
   "keywords": [

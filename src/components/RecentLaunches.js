@@ -57,6 +57,7 @@ const Date = styled.div`
 
   @media (max-width: 740px) {
     margin-bottom: 1rem;
+    margin-right: 1rem;
   }
 `;
 
