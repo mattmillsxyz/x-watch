@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, graphql, StaticQuery } from 'gatsby';
 import styled from 'styled-components';
-import Sticky from 'react-stickynode';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -46,20 +45,18 @@ const LaunchNav = ({ flightNumber }) => (
   <StaticQuery
     query={allPages}
     render={data => (
-      <Sticky innerZ={10}>
-        <Wrapper>
-          {renderNavLink(
-            'prev',
-            flightNumber,
-            data.allInternalPastLaunches.edges
-          )}
-          {renderNavLink(
-            'next',
-            flightNumber,
-            data.allInternalPastLaunches.edges
-          )}
-        </Wrapper>
-      </Sticky>
+      <Wrapper>
+        {renderNavLink(
+          'prev',
+          flightNumber,
+          data.allInternalPastLaunches.edges
+        )}
+        {renderNavLink(
+          'next',
+          flightNumber,
+          data.allInternalPastLaunches.edges
+        )}
+      </Wrapper>
     )}
   />
 );

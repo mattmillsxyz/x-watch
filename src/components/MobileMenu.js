@@ -47,11 +47,19 @@ const CloseButton = styled.button`
   justify-content: center;
 `;
 
+const MenuWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 738px) {
+    display: block;
+  }
+`;
+
 const MobileMenu = props => {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <MenuWrapper>
       <MenuButton onClick={() => setOpen(!open)}>
         <img src={MenuIcon} alt="Open menu" />
       </MenuButton>
@@ -61,7 +69,7 @@ const MobileMenu = props => {
         </CloseButton>
         {props.children}
       </Menu>
-    </>
+    </MenuWrapper>
   );
 };
 

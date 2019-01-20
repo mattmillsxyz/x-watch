@@ -3,24 +3,22 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import logo from '../images/x-watch-logo.svg';
-import Menu from './MobileMenu';
+import MobileMenu from './MobileMenu';
 
 const Wrapper = styled.div`
   margin-bottom: 5rem;
   background: white;
   width: 100%;
-
-  @media (max-width: 738px) {
-    margin-bottom: 1rem;
-    position: fixed;
-    top: 0;
-  }
+  margin-bottom: 1rem;
+  position: fixed;
+  top: 0;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  z-index: 100;
 `;
 
 const Container = styled.div`
   margin: 0 auto;
-  max-width: 1400px;
-  padding: 1.45rem 0;
+  padding: 1.45rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,13 +28,14 @@ const Title = styled.div`
   flex: 1;
   font-size: 1.25rem;
   margin-left: 1rem;
-  margin-top: 1.23rem;
+  margin-top: 1.7rem;
   color: #333333;
 
   @media (max-width: 738px) {
     margin-left: 0;
     margin-top: 0.5rem;
     font-size: 1rem;
+    display: none;
   }
 `;
 
@@ -67,15 +66,7 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const MobileMenu = styled(Menu)`
-  display: none;
-
-  @media (max-width: 738px) {
-    display: block;
-  }
-`;
-
-const renderMobileMenu = () => {
+const renderMobileMenu = props => {
   return (
     <MobileMenu>
       <Link to="/" aria-label="Go to X Watch home page">

@@ -10,8 +10,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Source Sans Pro', Helvetica, sans-serif;
     margin: 0;
-    padding: 0 2rem;
-    min-height: 100vh;
   }
 
   button {
@@ -38,6 +36,7 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   max-width: 1100px;
   margin: 0 auto;
+  padding-top: 10rem;
 `;
 
 const Layout = ({ children }) => (
