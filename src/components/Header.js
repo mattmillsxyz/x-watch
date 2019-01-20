@@ -3,10 +3,18 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import logo from '../images/x-watch-logo.svg';
-import menuIcon from '../images/menu-icon.svg';
+import Menu from './MobileMenu';
 
 const Wrapper = styled.div`
   margin-bottom: 5rem;
+  background: white;
+  width: 100%;
+
+  @media (max-width: 738px) {
+    margin-bottom: 1rem;
+    position: fixed;
+    top: 0;
+  }
 `;
 
 const Container = styled.div`
@@ -18,23 +26,26 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const MenuButton = styled.button`
-  margin-top: 1rem;
-  background: 0;
-  border: 0;
-  cursor: pointer;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const Title = styled.div`
   flex: 1;
   font-size: 1.25rem;
   margin-left: 1rem;
   margin-top: 1.23rem;
   color: #333333;
+
+  @media (max-width: 738px) {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+`;
+
+const NavWrapper = styled.div`
+  margin-top: 1.5rem;
+
+  @media (max-width: 738px) {
+    display: none;
+  }
 `;
 
 const NavLink = styled(Link)`
@@ -44,17 +55,53 @@ const NavLink = styled(Link)`
   }
 `;
 
+const LogoWrapper = styled.div`
+  display: flex;
+
+  @media (max-width: 738px) {
+    flex-direction: column;
+
+    img {
+      width: 100px;
+    }
+  }
+`;
+
+const MobileMenu = styled(Menu)`
+  display: none;
+
+  @media (max-width: 738px) {
+    display: block;
+  }
+`;
+
+const renderMobileMenu = () => {
+  return (
+    <MobileMenu>
+      <Link to="/" aria-label="Go to X Watch home page">
+        HOME
+      </Link>
+      <Link to="/launches" aria-label="Go to previous launches page">
+        LAUNCHES
+      </Link>
+      <Link to="/about" aria-label="Go to the about page">
+        ABOUT
+      </Link>
+    </MobileMenu>
+  );
+};
+
 const Header = () => (
   <Wrapper>
     <Container>
-      <Link to="/" aria-label="Go to X Watch home page">
-        <img src={logo} alt="X Watch logo" />
-      </Link>
-      <Title>An Unoffical SpaceX Launch Tracker</Title>
-      {/* <MenuButton aria-label="Open navigation menu">
-        <img src={menuIcon} alt="Menu icon" />
-      </MenuButton> */}
-      <div style={{ marginTop: '1.5rem' }}>
+      <LogoWrapper>
+        <Link to="/" aria-label="Go to X Watch home page">
+          <img src={logo} alt="X Watch logo" />
+        </Link>
+        <Title>An Unoffical SpaceX Launch Tracker</Title>
+      </LogoWrapper>
+      {renderMobileMenu()}
+      <NavWrapper>
         <NavLink to="/" aria-label="Go to X Watch home page">
           HOME
         </NavLink>
@@ -64,7 +111,7 @@ const Header = () => (
         <NavLink to="/about" aria-label="Go to the about page">
           ABOUT
         </NavLink>
-      </div>
+      </NavWrapper>
     </Container>
   </Wrapper>
 );
