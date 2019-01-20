@@ -37,6 +37,10 @@ const Container = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   padding-top: 10rem;
+
+  @media (max-width: 740px) {
+    padding-top: 97px;
+  }
 `;
 
 const Layout = ({ children }) => (

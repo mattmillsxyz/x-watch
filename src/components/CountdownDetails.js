@@ -5,6 +5,10 @@ import { StaticQuery, graphql } from 'gatsby';
 const Wrapper = styled.div`
   display: flex;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Heading = styled.span`
@@ -22,6 +26,11 @@ const RightBlock = styled.div`
   flex-direction: column;
   align-items: flex-end;
   flex: 1;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+    margin-top: 0.5rem;
+  }
 `;
 
 const Detail = styled.div`

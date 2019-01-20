@@ -32,6 +32,10 @@ const UnitWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
+
+  @media (max-width: 768px) {
+    margin-top: 0.8rem;
+  }
 `;
 
 const Unit = styled.div`
@@ -39,6 +43,10 @@ const Unit = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 class Timer extends React.Component {

@@ -31,7 +31,7 @@ const Title = styled.div`
   margin-top: 1.7rem;
   color: #333333;
 
-  @media (max-width: 738px) {
+  @media (max-width: 740px) {
     margin-left: 0;
     margin-top: 0.5rem;
     font-size: 1rem;
@@ -42,7 +42,7 @@ const Title = styled.div`
 const NavWrapper = styled.div`
   margin-top: 1.5rem;
 
-  @media (max-width: 738px) {
+  @media (max-width: 740px) {
     display: none;
   }
 `;
@@ -57,7 +57,7 @@ const NavLink = styled(Link)`
 const LogoWrapper = styled.div`
   display: flex;
 
-  @media (max-width: 738px) {
+  @media (max-width: 740px) {
     flex-direction: column;
 
     img {

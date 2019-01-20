@@ -32,6 +32,11 @@ const Container = styled.div`
 const BadgeContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 740px) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 `;
 
 const Badge = styled.img`
@@ -40,11 +45,19 @@ const Badge = styled.img`
   svg {
     height: 60px;
   }
+
+  @media (max-width: 740px) {
+    margin-right: 1rem;
+  }
 `;
 
 const Date = styled.div`
   font-size: 0.75rem;
   margin-top: 0.5rem;
+
+  @media (max-width: 740px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const renderBadges = badges => {

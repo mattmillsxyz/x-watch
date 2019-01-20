@@ -50,7 +50,7 @@ const CloseButton = styled.button`
 const MenuWrapper = styled.div`
   display: none;
 
-  @media (max-width: 738px) {
+  @media (max-width: 740px) {
     display: block;
   }
 `;
