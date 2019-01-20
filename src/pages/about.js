@@ -83,9 +83,9 @@ const DetailsFooter = styled.div`
 const AboutPage = () => {
   return (
     <Layout>
-      <SEO title="About X Watch" />
+      <SEO title="About X-Watch" />
       <Wrapper>
-        <h1>About X Watch</h1>
+        <h1>About X-Watch</h1>
         <Container>
           <Story>
             <p>
@@ -234,9 +234,9 @@ const AboutPage = () => {
               to this project, check out `}
                 <a
                   href="https://github.com/mattmillsxyz/x-watch"
-                  aria-label="Go to the X Watch source code on GitHub"
+                  aria-label="Go to the X-Watch source code on GitHub"
                 >
-                  x-watch on GitHub
+                  X-Watch on GitHub
                 </a>
                 {`.`}
               </p>
@@ -248,7 +248,7 @@ const AboutPage = () => {
                 >
                   Jake Meyer
                 </a>
-                {` for his contributions to the SpaceX-API. Without his efforts, this
+                {` and the maintainers of the SpaceX-API. Without their efforts, this
               application would probably not exist.`}
               </p>
             </DetailsFooter>

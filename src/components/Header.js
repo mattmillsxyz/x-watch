@@ -73,7 +73,7 @@ const LogoWrapper = styled.div`
 const renderMobileMenu = props => {
   return (
     <MobileMenu>
-      <Link to="/" aria-label="Go to X Watch home page">
+      <Link to="/" aria-label="Go to X-Watch home page">
         HOME
       </Link>
       <Link to="/launches" aria-label="Go to previous launches page">
@@ -90,14 +90,14 @@ const Header = () => (
   <Wrapper>
     <Container>
       <LogoWrapper>
-        <Link to="/" aria-label="Go to X Watch home page">
-          <img src={logo} alt="X Watch logo" />
+        <Link to="/" aria-label="Go to X-Watch home page">
+          <img src={logo} alt="X-Watch logo" />
         </Link>
         <Title>An Unoffical SpaceX Launch Tracker</Title>
       </LogoWrapper>
       {renderMobileMenu()}
       <NavWrapper>
-        <NavLink to="/" aria-label="Go to X Watch home page">
+        <NavLink to="/" aria-label="Go to X-Watch home page">
           HOME
         </NavLink>
         <NavLink to="/launches" aria-label="Go to previous launches page">
