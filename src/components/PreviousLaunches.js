@@ -117,6 +117,7 @@ const DateWrapper = styled.div`
 const MissionWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  flex: 1;
 
   @media (max-width: 740px) {
     flex-direction: column-reverse;

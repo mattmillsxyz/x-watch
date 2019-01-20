@@ -38,6 +38,10 @@ const Container = styled.div`
   margin: 0 auto;
   padding-top: 10rem;
 
+  @media (min-width: 741px) and (max-width: 1100px) {
+    padding-top: 106px;
+  }
+
   @media (max-width: 740px) {
     padding-top: 83px;
   }
