@@ -75,8 +75,8 @@ const renderBadges = badges => {
           aria-label={`Go to flight number ${edge.node.flight_number} details`}
         >
           <Badge
-            src={edge.node.links.mission_patch}
-            alt={`${edge.node.flight_number} missions patch`}
+            src={edge.node.mission_patch.childImageSharp.fixed.src}
+            alt={`${edge.node.flight_number} mission patch`}
           />
         </Link>
         <Date>{edge.node.launch_date_utc}</Date>
@@ -111,8 +111,12 @@ const launchBadges = graphql`
           id
           launch_date_utc(formatString: "MM.DD.YYYY")
           launch_year
-          links {
-            mission_patch
+          mission_patch {
+            childImageSharp {
+              fixed(width: 120) {
+                src
+              }
+            }
           }
           fields {
             slug

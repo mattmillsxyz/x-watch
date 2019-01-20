@@ -141,7 +141,7 @@ const LaunchDetails = ({ launchData, type }) => {
     flight_number,
     launch_success,
     details,
-    links,
+    mission_patch,
   } = launchData;
 
   return (
@@ -168,7 +168,10 @@ const LaunchDetails = ({ launchData, type }) => {
           </Detail>
         </DetailsBlock>
         <PatchBlock>
-          <img src={links.mission_patch} alt={`${mission_name} patch`} />
+          <img
+            src={mission_patch.childImageSharp.fixed.src}
+            alt={`${mission_name} patch`}
+          />
         </PatchBlock>
       </Container>
       <Actions>

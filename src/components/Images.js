@@ -30,6 +30,11 @@ const Container = styled.div`
 
 const ImageLink = styled.a`
   width: calc(25% - 2px);
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    opacity: 0.75;
+  }
 
   @media (max-width: 750px) {
     width: calc(100% - 2px);

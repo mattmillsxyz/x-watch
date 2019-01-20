@@ -33,8 +33,14 @@ export const query = graphql`
           id
           launch_date_utc(formatString: "MM.DD.YYYY")
           mission_name
+          mission_patch {
+            childImageSharp {
+              fixed(width: 320) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
           links {
-            mission_patch
             presskit
             flickr_images
             reddit_campaign
