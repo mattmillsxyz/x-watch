@@ -11,7 +11,6 @@ import MediaLinks from '../components/MediaLinks';
 
 const LaunchPage = ({ data }) => {
   const { node } = data.allInternalPastLaunches.edges[0];
-  console.log(node.flickr_images);
 
   return (
     <Layout>

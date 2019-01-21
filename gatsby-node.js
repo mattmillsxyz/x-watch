@@ -49,7 +49,7 @@ exports.onCreateNode = async ({
         // Adds a field `localImage` or custom name to the node
         // ___NODE appendix tells Gatsby that this field will link to another node
         if (fileNode) {
-          node.fields.flickr_images[`image_${index}___NODE`] = fileNode.id;
+          node.children.push(fileNode.id);
         }
       });
     }
