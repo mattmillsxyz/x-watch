@@ -36,7 +36,7 @@ exports.onCreateNode = async ({
 
         try {
           fileNode = await createRemoteFileNode({
-            url: node.links.flickr_images[index],
+            url: image,
             store,
             cache,
             createNode,
@@ -46,10 +46,9 @@ exports.onCreateNode = async ({
           console.error('Error downloading Flickr images:', e);
         }
 
-        // Adds a field `localImage` or custom name to the node
         // ___NODE appendix tells Gatsby that this field will link to another node
         if (fileNode) {
-          node.children.push(fileNode.id);
+          node.fields.flickr_images[`image_${index}___NODE`] = fileNode.id;
         }
       });
     }
