@@ -95,7 +95,6 @@ const ImageDiv = styled.div`
 
 const renderImages = imageData => {
   return imageData.map((image, index) => {
-    console.log(image);
     return (
       <ImageLink
         href={image.childImageSharp.fluid.src}
