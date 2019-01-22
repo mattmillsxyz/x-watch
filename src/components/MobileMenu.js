@@ -37,8 +37,8 @@ const MenuButton = styled.button`
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 2.25rem;
-  right: 2rem;
+  top: 1.5rem;
+  right: 1.5rem;
   background: 0;
   border: 0;
   cursor: pointer;
