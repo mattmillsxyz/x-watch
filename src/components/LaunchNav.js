@@ -12,6 +12,10 @@ const Wrapper = styled.div`
   a {
     font-weight: 600;
     padding: 0 5%;
+
+    span {
+      white-space: nowrap;
+    }
   }
 `;
 
