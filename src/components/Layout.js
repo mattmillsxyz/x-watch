@@ -37,6 +37,7 @@ const Container = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   padding-top: 10rem;
+  flex: 1;
 
   @media (min-width: 741px) and (max-width: 1100px) {
     padding-top: 106px;
@@ -59,12 +60,14 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <>
+      <div
+        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+      >
         <GlobalStyle />
         <Header />
         <Container>{children}</Container>
         <Footer />
-      </>
+      </div>
     )}
   />
 );
