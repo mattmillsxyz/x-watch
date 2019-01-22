@@ -30,6 +30,7 @@ const RightBlock = styled.div`
   @media (max-width: 768px) {
     align-items: flex-start;
     margin-top: 0.5rem;
+    margin-bottom: 2rem;
   }
 `;
 
