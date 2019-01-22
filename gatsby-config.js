@@ -77,6 +77,22 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'internal__pastLaunches',
+        imagePath: 'links.mission_patch',
+        name: 'mission_patch',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'internal__latestLaunch',
+        imagePath: 'links.mission_patch',
+        name: 'mission_patch',
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

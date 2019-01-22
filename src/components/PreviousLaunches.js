@@ -145,7 +145,7 @@ const renderList = (launches, latest) => {
         <Launch key={`previous-list--${edge.node.flight_number}`}>
           <Patch>
             <img
-              src={edge.node.links.mission_patch}
+              src={edge.node.mission_patch.childImageSharp.fixed.src}
               alt={`${edge.node.mission_name} mission patch`}
             />
           </Patch>
@@ -221,8 +221,12 @@ const previousLaunches = graphql`
           id
           launch_date_utc(formatString: "MM.DD.YYYY")
           details
-          links {
-            mission_patch
+          mission_patch {
+            childImageSharp {
+              fixed(width: 120) {
+                src
+              }
+            }
           }
           launch_success
           fields {

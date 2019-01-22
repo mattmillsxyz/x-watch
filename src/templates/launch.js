@@ -18,7 +18,7 @@ const LaunchPage = ({ data }) => {
       <LaunchNav flightNumber={node.flight_number} />
       <Launch heading="LAUNCH DETAILS" launchData={node} type="details" />
       <RocketDetails rocketData={node.rocket} />
-      <Images imageData={node.links.flickr_images} />
+      <Images imageData={node.localFiles} />
       <MediaLinks links={node.links} />
     </Layout>
   );
@@ -33,8 +33,14 @@ export const query = graphql`
           id
           launch_date_utc(formatString: "MM.DD.YYYY")
           mission_name
+          mission_patch {
+            childImageSharp {
+              fixed(width: 320) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
           links {
-            mission_patch
             presskit
             flickr_images
             reddit_campaign
@@ -44,6 +50,13 @@ export const query = graphql`
             video_link
             wikipedia
             article_link
+          }
+          localFiles {
+            childImageSharp {
+              fluid(maxWidth: 1024) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
           telemetry {
             flight_club
