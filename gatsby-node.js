@@ -23,14 +23,10 @@ exports.onCreateNode = async ({
     });
   }
 
+  node.localFiles___NODE = [];
+
   if (type === 'internal__pastLaunches') {
     if (node.links && !isEmpty(node.links.flickr_images)) {
-      await createNodeField({
-        node,
-        name: `flickr_images`,
-        value: {},
-      });
-
       node.links.flickr_images.forEach(async (image, index) => {
         let fileNode;
 
@@ -48,7 +44,7 @@ exports.onCreateNode = async ({
 
         // ___NODE appendix tells Gatsby that this field will link to another node
         if (fileNode) {
-          node.fields.flickr_images[`image_${index}___NODE`] = fileNode.id;
+          node.localFiles___NODE.push(fileNode.id);
         }
       });
     }

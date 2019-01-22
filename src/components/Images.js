@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { isEmpty } from 'lodash';
 import { LazyImage } from 'react-lazy-images';
 import Spinner from 'react-spinkit';
-import { isEmpty } from 'lodash';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -95,14 +95,16 @@ const ImageDiv = styled.div`
 
 const renderImages = imageData => {
   return imageData.map((image, index) => {
+    console.log(image);
     return (
       <ImageLink
-        href={image}
+        href={image.childImageSharp.fluid.src}
+        target="_blank"
         key={`flight-image--${index}`}
         aria-label={`View full size launch image number ${index}`}
       >
         <LazyImage
-          src={image}
+          src={image.childImageSharp.fluid.src}
           debounceDurationMs={400}
           placeholder={({ ref }) => (
             <PlaceholderDiv ref={ref}>
