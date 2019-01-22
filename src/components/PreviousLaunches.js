@@ -154,7 +154,7 @@ const renderList = (launches, latest) => {
               <MissionName>{edge.node.mission_name}</MissionName>
               <Details>
                 {edge.node.details
-                  ? `${edge.node.details.substring(0, 160)}...`
+                  ? `${edge.node.details.substring(0, 140)}...`
                   : 'No description provided.'}
 
                 <DetailsLink>

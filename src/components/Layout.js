@@ -35,6 +35,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
   max-width: 1100px;
+  width: 100%;
   margin: 0 auto;
   padding-top: 10rem;
   flex: 1;
@@ -61,7 +62,7 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <div
-        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+        style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
       >
         <GlobalStyle />
         <Header />

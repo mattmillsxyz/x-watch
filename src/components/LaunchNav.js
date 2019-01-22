@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     font-weight: 600;
     padding: 0 5%;
 
-    span {
+    div {
       white-space: nowrap;
     }
   }
@@ -36,9 +36,9 @@ const renderNavLink = (direction, flightNumber, pages) => {
         aria-label={`Go to flight number ${toLaunch} details`}
       >
         {direction === 'prev' ? (
-          <span>&laquo; PREVIOUS</span>
+          <div>&laquo; PREVIOUS</div>
         ) : (
-          <span>NEXT &raquo;</span>
+          <div>NEXT &raquo;</div>
         )}
       </Link>
     );
