@@ -16,39 +16,39 @@ exports.onCreateNode = async ({
   const { type } = node.internal;
 
   if (type === 'internal__pastLaunches' || type === 'internal__latestLaunch') {
-    createNodeField({
+    await createNodeField({
       node,
       name: `slug`,
       value: `/launch/${node.flight_number}`,
     });
   }
 
-  node.localFiles___NODE = [];
+  // node.localFiles___NODE = [];
 
-  if (type === 'internal__pastLaunches') {
-    if (node.links && !isEmpty(node.links.flickr_images)) {
-      for (const image of node.links.flickr_images) {
-        let fileNode;
+  // if (type === 'internal__pastLaunches') {
+  //   if (node.links && !isEmpty(node.links.flickr_images)) {
+  //     for (const image of node.links.flickr_images) {
+  //       let fileNode;
 
-        try {
-          fileNode = await createRemoteFileNode({
-            url: image,
-            store,
-            cache,
-            createNode,
-            createNodeId,
-          });
-        } catch (e) {
-          console.error('Error downloading Flickr images:', e);
-        }
+  //       try {
+  //         fileNode = await createRemoteFileNode({
+  //           url: image,
+  //           store,
+  //           cache,
+  //           createNode,
+  //           createNodeId,
+  //         });
+  //       } catch (e) {
+  //         console.error('Error downloading Flickr images:', e);
+  //       }
 
-        // ___NODE appendix tells Gatsby that this field will link to another node
-        if (fileNode) {
-          node.localFiles___NODE.push(fileNode.id);
-        }
-      }
-    }
-  }
+  //       // ___NODE appendix tells Gatsby that this field will link to another node
+  //       if (fileNode) {
+  //         node.localFiles___NODE.push(fileNode.id);
+  //       }
+  //     }
+  //   }
+  // }
 };
 
 exports.createPages = ({ graphql, actions }) => {
