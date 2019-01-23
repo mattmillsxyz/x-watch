@@ -51,7 +51,13 @@ export const query = graphql`
             wikipedia
             article_link
           }
-
+          localFiles {
+            childImageSharp {
+              fluid(maxWidth: 1024) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
           telemetry {
             flight_club
           }
