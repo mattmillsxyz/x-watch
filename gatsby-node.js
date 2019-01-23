@@ -27,7 +27,7 @@ exports.onCreateNode = async ({
 
   if (type === 'internal__pastLaunches') {
     if (node.links && !isEmpty(node.links.flickr_images)) {
-      node.links.flickr_images.forEach(async (image, index) => {
+      for (const image of node.links.flickr_images) {
         let fileNode;
 
         try {
@@ -46,7 +46,7 @@ exports.onCreateNode = async ({
         if (fileNode) {
           node.localFiles___NODE.push(fileNode.id);
         }
-      });
+      }
     }
   }
 };
