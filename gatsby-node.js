@@ -16,7 +16,7 @@ exports.onCreateNode = async ({
   const { type } = node.internal;
 
   if (type === 'internal__pastLaunches' || type === 'internal__latestLaunch') {
-    createNodeField({
+    await createNodeField({
       node,
       name: `slug`,
       value: `/launch/${node.flight_number}`,
