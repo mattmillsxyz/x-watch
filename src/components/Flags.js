@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { codes } from 'iso-country-codes';
-import ReactCountryFlag from 'react-country-flag';
+import Flag from 'react-flagkit';
 import { find } from 'lodash';
 
 const Container = styled.div`
-  span {
-    font-size: 1.75rem;
+  img {
     margin-right: 0.5rem;
+    margin-top: 0.35rem;
+    height: auto;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
   }
 `;
 
@@ -28,11 +30,7 @@ const renderFlags = (id, payloads) => {
   return payloads.map((payload, index) => {
     const countryCode = getCountryCode(payload.nationality);
     return (
-      <ReactCountryFlag
-        styleProps={{ cursor: 'default' }}
-        key={`flag--${id}--${index}`}
-        code={countryCode}
-      />
+      <Flag key={`flag--${id}--${index}`} country={countryCode.toUpperCase()} />
     );
   });
 };
