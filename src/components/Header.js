@@ -7,12 +7,12 @@ import MobileMenu from './MobileMenu';
 
 const Wrapper = styled.div`
   margin-bottom: 5rem;
-  background: white;
+  background: ${props => props.theme.heroColor};
   width: 100%;
   margin-bottom: 1rem;
   position: fixed;
   top: 0;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: ${props => props.theme.shadow};
   z-index: 100;
 `;
 
@@ -33,7 +33,7 @@ const Title = styled.div`
   font-size: 1.25rem;
   margin-left: 1rem;
   margin-top: 1.7rem;
-  color: #333333;
+  color: ${props => props.theme.fontColor};
 
   @media (max-width: 740px) {
     margin-left: 0;

@@ -6,7 +6,7 @@ import CountdownDetails from './CountdownDetails';
 import Timer from './Timer';
 
 const Wrapper = styled.div`
-  background: #f4f4f4;
+  background: ${props => props.theme.heroColor};
   width: 100%;
   margin-bottom: 1.5rem;
 `;

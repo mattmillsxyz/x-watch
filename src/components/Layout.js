@@ -1,15 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import Header from './Header';
 import Footer from './Footer';
+
+const darkTheme = {
+  backgroundColor: '#111111',
+  fontColor: '#ffffff',
+  heroColor: '#000000',
+  shadow: '0 10px 30px rgba(255, 255, 255, 0.15)',
+};
+
+const lightTheme = {
+  backgroundColor: '#ffffff',
+  fontColor: '#111111',
+  heroColor: '#f4f4f4',
+  shadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+};
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Source Sans Pro', Helvetica, sans-serif;
     margin: 0;
+    background-color: ${props => props.theme.backgroundColor}
+    color: ${props => props.theme.fontColor}
   }
 
   button {
@@ -61,14 +77,20 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <div
-        style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
-      >
-        <GlobalStyle />
-        <Header />
-        <Container>{children}</Container>
-        <Footer />
-      </div>
+      <ThemeProvider theme={darkTheme}>
+        <div
+          style={{
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <GlobalStyle />
+          <Header />
+          <Container>{children}</Container>
+          <Footer />
+        </div>
+      </ThemeProvider>
     )}
   />
 );
