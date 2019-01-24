@@ -113,7 +113,7 @@ class Layout extends React.Component {
   getTheme = () => {
     const cookies = new Cookies();
     const themeCookie = cookies.get('x-watchTheme');
-
+    console.log(themeCookie);
     return themeCookie === 'dark' ? darkTheme : lightTheme;
   };
 
