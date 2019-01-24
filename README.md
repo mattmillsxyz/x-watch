@@ -42,6 +42,6 @@ This project was built using [Gatsby JS](https://gatsbyjs.org), [React JS](https
 
 ## 👨‍💻 Contributions
 
-1. **If you wouldd like to contribute to this project by adding enhancements or fixing bugs, feel free to open up a Pull Request.**
+1. **If you would like to contribute to this project by adding enhancements or fixing bugs, feel free to open up a Pull Request.**
 
 1. **Likewise, if you have encounterd a bug or would like to suggest an enhancement, please [create an issue](https://github.com/mattmillsxyz/x-watch/issues/new).**
