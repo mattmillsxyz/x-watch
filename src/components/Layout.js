@@ -130,7 +130,7 @@ class Layout extends React.Component {
           }
         `}
         render={data => (
-          <ThemeProvider theme={this.getTheme()}>
+          <ThemeProvider theme={lightTheme}>
             <div
               style={{
                 minHeight: '100vh',
@@ -141,10 +141,10 @@ class Layout extends React.Component {
               <GlobalStyle />
               <Header />
               <Container>{this.props.children}</Container>
-              <ThemeToggle
+              {/* <ThemeToggle
                 theme={this.state.theme}
                 onToggleClick={() => this.toggleTheme()}
-              />
+              /> */}
               <Footer />
             </div>
           </ThemeProvider>
