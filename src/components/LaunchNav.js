@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: white;
+  background-color: ${props => props.theme.backgroundColor};
   padding: 1rem 0;
 
   a {

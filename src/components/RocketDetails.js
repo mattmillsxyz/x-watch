@@ -5,7 +5,7 @@ import Flags from './Flags';
 
 const Wrapper = styled.div`
   width: 100%;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid ${props => props.theme.borderColor};
 `;
 
 const Header = styled.div`
@@ -16,8 +16,6 @@ const Header = styled.div`
 const Heading = styled.h5`
   margin-left: 5%;
   margin-top: 3rem;
-  color: #333333;
-  font-weight: 600;
 `;
 
 const Container = styled.div`
@@ -100,7 +98,7 @@ const DetailNumber = styled.div`
 `;
 
 const Num = styled.div`
-  color: #333333;
+  color: ${props => props.theme.sectionHeadingColor};
   font-weight: 600;
   margin-bottom: 0.18rem;
   display: block;

@@ -14,8 +14,6 @@ const Wrapper = styled.div`
 const Heading = styled.h5`
   margin: 0 0 0 5%;
   padding-top: 3rem;
-  color: #333333;
-  font-weight: 600;
 `;
 
 const Container = styled.div`

@@ -5,26 +5,35 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import Header from './Header';
 import Footer from './Footer';
+import ThemeToggle from './ThemeToggle';
 
 const darkTheme = {
+  name: 'dark',
   backgroundColor: '#111111',
   fontColor: '#ffffff',
-  heroColor: '#000000',
+  heroColor: '#1a1a1a',
   shadow: '0 10px 30px rgba(255, 255, 255, 0.15)',
+  headerBackgroundColor: '#2E1A4F',
+  sectionHeadingColor: '#00CACA',
+  borderColor: '#404040',
 };
 
 const lightTheme = {
+  name: 'light',
   backgroundColor: '#ffffff',
   fontColor: '#111111',
   heroColor: '#f4f4f4',
   shadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+  headerBackgroundColor: '#2E1A4F',
+  sectionHeadingColor: '#00CACA',
+  borderColor: '#f4f4f4',
 };
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Source Sans Pro', Helvetica, sans-serif;
     margin: 0;
-    background-color: ${props => props.theme.backgroundColor}
+    background-color: ${props => props.theme.backgroundColor};
     color: ${props => props.theme.fontColor}
   }
 
@@ -38,6 +47,8 @@ const GlobalStyle = createGlobalStyle`
 
   h5 { 
     font-size: 1rem;
+    color: ${props => props.theme.sectionHeadingColor};
+    font-weight: 600;
   }
 
   a, a:visited {
@@ -65,35 +76,63 @@ const Container = styled.div`
   }
 `;
 
-const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
+class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      theme: 'light',
+    };
+  }
+
+  componentDidMount(prevState) {
+    console.log('layout mounted...', prevState.theme);
+  }
+
+  toggleTheme = () => {
+    this.setState(prevState => ({
+      theme: prevState.theme === 'light' ? 'dark' : 'light',
+    }));
+  };
+
+  render() {
+    return (
+      <StaticQuery
+        query={graphql`
+          query SiteTitleQuery {
+            site {
+              siteMetadata {
+                title
+              }
+            }
           }
-        }
-      }
-    `}
-    render={data => (
-      <ThemeProvider theme={darkTheme}>
-        <div
-          style={{
-            minHeight: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <GlobalStyle />
-          <Header />
-          <Container>{children}</Container>
-          <Footer />
-        </div>
-      </ThemeProvider>
-    )}
-  />
-);
+        `}
+        render={data => (
+          <ThemeProvider
+            theme={this.state.theme === 'dark' ? darkTheme : lightTheme}
+          >
+            <div
+              style={{
+                minHeight: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <GlobalStyle />
+              <Header />
+              <Container>{this.props.children}</Container>
+              <ThemeToggle
+                theme={this.state.theme}
+                onToggleClick={() => this.toggleTheme()}
+              />
+              <Footer />
+            </div>
+          </ThemeProvider>
+        )}
+      />
+    );
+  }
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

@@ -16,8 +16,6 @@ const Header = styled.div`
 const Heading = styled.h5`
   margin-left: 5%;
   margin-top: 3rem;
-  color: #333333;
-  font-weight: 600;
 `;
 
 const Container = styled.div`
@@ -47,7 +45,7 @@ const Launch = styled.div`
 
   &:not(:last-child) {
     margin-bottom: 2rem;
-    border-bottom: 1px solid #f4f4f4;
+    border-bottom: 1px solid ${props => props.theme.borderColor};
   }
 
   @media (max-width: 740px) {
@@ -104,7 +102,7 @@ const RocketDetails = styled.div`
 
 const ShowAll = styled.button`
   padding: 0.5rem;
-  background: #f4f4f4;
+  background: ${props => props.theme.heroColor};
   color: #ff006b;
   border: none;
   font-size: 1rem;
