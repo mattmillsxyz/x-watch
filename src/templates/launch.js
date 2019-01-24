@@ -18,7 +18,7 @@ const LaunchPage = ({ data }) => {
       <LaunchNav flightNumber={node.flight_number} />
       <Launch heading="LAUNCH DETAILS" launchData={node} type="details" />
       <RocketDetails rocketData={node.rocket} />
-      <Images imageData={node.localFiles} />
+      <Images imageData={node.links.flickr_images} />
       <MediaLinks links={node.links} />
     </Layout>
   );
@@ -50,13 +50,6 @@ export const query = graphql`
             video_link
             wikipedia
             article_link
-          }
-          localFiles {
-            childImageSharp {
-              fluid(maxWidth: 1024) {
-                ...GatsbyImageSharpFluid
-              }
-            }
           }
           telemetry {
             flight_club

@@ -45,11 +45,13 @@ const PatchBlock = styled.div`
 
   img {
     width: 160px;
+    height: 160px;
   }
 
   @media (max-width: 740px) {
     img {
       width: 100px;
+      height: 100px;
       margin-bottom: 1.5rem;
     }
   }

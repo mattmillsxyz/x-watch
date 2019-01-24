@@ -97,13 +97,13 @@ const renderImages = imageData => {
   return imageData.map((image, index) => {
     return (
       <ImageLink
-        href={image.childImageSharp.fluid.src}
+        href={image}
         target="_blank"
         key={`flight-image--${index}`}
         aria-label={`View full size launch image number ${index}`}
       >
         <LazyImage
-          src={image.childImageSharp.fluid.src}
+          src={image}
           debounceDurationMs={400}
           placeholder={({ ref }) => (
             <PlaceholderDiv ref={ref}>
