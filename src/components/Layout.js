@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Cookies from 'universal-cookie';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -85,14 +86,33 @@ class Layout extends React.Component {
     };
   }
 
-  componentDidMount(prevState) {
-    console.log('layout mounted...', prevState.theme);
+  componentWillMount() {
+    const theme = this.getTheme();
+
+    this.setState({
+      theme: theme.name === 'dark' ? 'dark' : 'light',
+    });
   }
 
   toggleTheme = () => {
+    const cookies = new Cookies();
+
+    cookies.set(
+      'x-watchTheme',
+      `${this.state.theme === 'light' ? 'dark' : 'light'}`,
+      { path: '/' }
+    );
+
     this.setState(prevState => ({
       theme: prevState.theme === 'light' ? 'dark' : 'light',
     }));
+  };
+
+  getTheme = () => {
+    const cookies = new Cookies();
+    const themeCookie = cookies.get('x-watchTheme');
+
+    return themeCookie === 'dark' ? darkTheme : lightTheme;
   };
 
   render() {
@@ -108,9 +128,7 @@ class Layout extends React.Component {
           }
         `}
         render={data => (
-          <ThemeProvider
-            theme={this.state.theme === 'dark' ? darkTheme : lightTheme}
-          >
+          <ThemeProvider theme={this.getTheme()}>
             <div
               style={{
                 minHeight: '100vh',
