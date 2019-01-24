@@ -84,16 +84,8 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
-      theme: 'light',
+      theme: this.getTheme().name === 'dark' ? 'dark' : 'light',
     };
-  }
-
-  componentWillMount() {
-    const theme = this.getTheme();
-
-    this.setState({
-      theme: theme.name === 'dark' ? 'dark' : 'light',
-    });
   }
 
   toggleTheme = () => {
