@@ -113,7 +113,7 @@ class Layout extends React.Component {
   getTheme = () => {
     const cookies = new Cookies();
     const themeCookie = cookies.get('x-watchTheme');
-    console.log(themeCookie);
+
     return themeCookie === 'dark' ? darkTheme : lightTheme;
   };
 
@@ -130,7 +130,9 @@ class Layout extends React.Component {
           }
         `}
         render={data => (
-          <ThemeProvider theme={this.getTheme()}>
+          <ThemeProvider
+            theme={this.state.theme === 'dark' ? darkTheme : lightTheme}
+          >
             <div
               style={{
                 minHeight: '100vh',
