@@ -13,7 +13,7 @@ const TimerWrapper = styled.div`
     width: 100%;
 
     text {
-      fill: #ff006b;
+      fill: ${props => props.theme.linkColor};
     }
   }
 `;

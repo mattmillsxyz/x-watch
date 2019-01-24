@@ -81,7 +81,7 @@ const Actions = styled.div`
 
   a {
     padding: 0.75rem 1.75rem;
-    border: 2px solid #ff006b;
+    border: 2px solid ${props => props.theme.linkColor};
     text-decoration: none;
     font-weight: 600;
     transition: all 0.125s ease-in-out;

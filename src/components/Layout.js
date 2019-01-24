@@ -17,6 +17,7 @@ const darkTheme = {
   headerBackgroundColor: '#2E1A4F',
   sectionHeadingColor: '#00CACA',
   borderColor: '#404040',
+  linkColor: '#FF006B',
 };
 
 const lightTheme = {
@@ -28,6 +29,7 @@ const lightTheme = {
   headerBackgroundColor: '#2E1A4F',
   sectionHeadingColor: '#00CACA',
   borderColor: '#f4f4f4',
+  linkColor: '#FF006B',
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -53,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a, a:visited {
-    color: #FF006B;
+    color: ${props => props.theme.linkColor};
   }
 
   a:hover {

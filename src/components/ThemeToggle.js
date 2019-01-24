@@ -15,8 +15,9 @@ const Toggle = styled.button`
   text-transform: uppercase;
   border-radius: 0;
   background: none;
-  color: ${props => props.theme.fontColor};
+  color: ${props => props.theme.linkColor};
   cursor: pointer;
+  border: 1px solid ${props => props.theme.linkColor};
 `;
 
 const ThemeToggle = ({ theme, onToggleClick }) => {

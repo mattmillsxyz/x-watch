@@ -103,7 +103,7 @@ const RocketDetails = styled.div`
 const ShowAll = styled.button`
   padding: 0.5rem;
   background: ${props => props.theme.heroColor};
-  color: #ff006b;
+  color: ${props => props.theme.linkColor};
   border: none;
   font-size: 1rem;
   cursor: pointer;
