@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import MenuIcon from '../images/menu-icon.svg';
 import CloseIcon from '../images/close-icon.svg';
 
 const Menu = styled.div`
@@ -25,20 +24,22 @@ const Menu = styled.div`
 
 const MenuButton = styled.button`
   position: fixed;
-  top: 1.65rem;
+  top: 1.85rem;
   right: 5%;
   background: 0;
   border: 0;
   cursor: pointer;
   padding: 8px;
+  font-size: 1rem;
   align-items: center;
   justify-content: center;
+  color: white;
 `;
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1.85rem;
+  right: 1.75rem;
   background: 0;
   border: 0;
   cursor: pointer;
@@ -60,9 +61,7 @@ const MobileMenu = props => {
 
   return (
     <MenuWrapper>
-      <MenuButton onClick={() => setOpen(!open)}>
-        <img src={MenuIcon} alt="Open menu" />
-      </MenuButton>
+      <MenuButton onClick={() => setOpen(!open)}>MENU</MenuButton>
       <Menu style={{ right: open ? 0 : '-320px' }}>
         <CloseButton onClick={() => setOpen(!open)}>
           <img src={CloseIcon} alt="Close menu" />

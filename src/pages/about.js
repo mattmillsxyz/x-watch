@@ -47,7 +47,7 @@ const Story = styled.div`
 
 const DetailsContainer = styled.div`
   padding: 2rem;
-  background-color: #f4f4f4;
+  background-color: ${props => props.theme.heroColor};
 
   @media (max-width: 740px) {
     padding: 1.5rem 5%;

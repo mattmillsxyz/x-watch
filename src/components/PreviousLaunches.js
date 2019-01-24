@@ -14,8 +14,6 @@ const Header = styled.div`
 const Heading = styled.h5`
   margin-left: 5%;
   margin-top: 3rem;
-  color: #333333;
-  font-weight: 600;
 `;
 
 const Container = styled.div`
@@ -36,7 +34,7 @@ const Launch = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid ${props => props.theme.borderColor};
   padding-bottom: 2rem;
 
   &:not(:last-child) {
@@ -143,12 +141,17 @@ const renderList = (launches, latest) => {
     if (edge.node.flight_number && edge.node.flight_number !== latestFlight) {
       return (
         <Launch key={`previous-list--${edge.node.flight_number}`}>
-          <Patch>
-            <img
-              src={edge.node.mission_patch.childImageSharp.fixed.src}
-              alt={`${edge.node.mission_name} mission patch`}
-            />
-          </Patch>
+          <Link
+            to={edge.node.fields.slug}
+            aria-label={`Go to ${edge.node.mission_name} launch details`}
+          >
+            <Patch>
+              <img
+                src={edge.node.mission_patch.childImageSharp.fixed.src}
+                alt={`${edge.node.mission_name} mission patch`}
+              />
+            </Patch>
+          </Link>
           <MissionWrapper>
             <Mission>
               <MissionName>{edge.node.mission_name}</MissionName>

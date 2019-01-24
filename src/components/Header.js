@@ -7,13 +7,13 @@ import MobileMenu from './MobileMenu';
 
 const Wrapper = styled.div`
   margin-bottom: 5rem;
-  background: white;
+  background: ${props => props.theme.headerBackgroundColor};
   width: 100%;
   margin-bottom: 1rem;
   position: fixed;
   top: 0;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
   z-index: 100;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 `;
 
 const Container = styled.div`
@@ -33,7 +33,7 @@ const Title = styled.div`
   font-size: 1.25rem;
   margin-left: 1rem;
   margin-top: 1.7rem;
-  color: #333333;
+  color: white;
 
   @media (max-width: 740px) {
     margin-left: 0;
@@ -44,7 +44,7 @@ const Title = styled.div`
 `;
 
 const NavWrapper = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 
   @media (max-width: 740px) {
     display: none;
@@ -53,6 +53,12 @@ const NavWrapper = styled.div`
 
 const NavLink = styled(Link)`
   font-weight: 600;
+  color: white;
+
+  &:visited {
+    color: white;
+  }
+
   &:not(:last-child) {
     margin-right: 1.5rem;
   }
