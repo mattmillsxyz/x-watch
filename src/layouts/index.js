@@ -108,6 +108,7 @@ class Layout extends React.Component {
   };
 
   render() {
+    console.log(this.state.theme);
     return (
       <ThemeProvider
         theme={this.state.theme === 'dark' ? darkTheme : lightTheme}
