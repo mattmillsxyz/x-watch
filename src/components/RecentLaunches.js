@@ -18,7 +18,7 @@ const Heading = styled.h5`
 
 const HeadingLink = styled(Link)`
   margin-top: 3rem;
-  color: ${props => props.theme.sectionHeadingColor};
+  color: ${props => props.theme.linkColor};
   font-weight: 600;
   margin-right: 5%;
 `;
