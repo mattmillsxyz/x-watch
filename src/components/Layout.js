@@ -79,18 +79,18 @@ const Container = styled.div`
   }
 `;
 
+const cookies = new Cookies();
+
 class Layout extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      theme: this.getTheme().name === 'dark' ? 'dark' : 'light',
+      theme: cookies.get('x-watchTheme') === 'dark' ? 'dark' : 'light',
     };
   }
 
   toggleTheme = () => {
-    const cookies = new Cookies();
-
     cookies.set(
       'x-watchTheme',
       `${this.state.theme === 'light' ? 'dark' : 'light'}`,
@@ -103,7 +103,6 @@ class Layout extends React.Component {
   };
 
   getTheme = () => {
-    const cookies = new Cookies();
     const themeCookie = cookies.get('x-watchTheme');
 
     return themeCookie === 'dark' ? darkTheme : lightTheme;
