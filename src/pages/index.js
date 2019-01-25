@@ -21,7 +21,7 @@ const IndexPage = props => (
         `react`,
       ]}
     />
-    <Countdown {...props} />
+    <Countdown />
     <RecentLaunches />
     <UpcomingLaunches />
   </Layout>
