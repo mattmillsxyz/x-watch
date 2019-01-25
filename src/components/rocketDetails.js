@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Flags from './Flags';
+import Flags from './flags';
 
 const Wrapper = styled.div`
   width: 100%;

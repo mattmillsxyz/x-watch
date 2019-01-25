@@ -1,26 +1,25 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Launch from '../components/Launch';
-import LaunchNav from '../components/LaunchNav';
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
-import RocketDetails from '../components/RocketDetails';
-import Images from '../components/Images';
-import MediaLinks from '../components/MediaLinks';
+import Launch from '../components/launch';
+import LaunchNav from '../components/launchNav';
+import SEO from '../components/seo';
+import RocketDetails from '../components/rocketDetails';
+import Images from '../components/images';
+import MediaLinks from '../components/mediaLinks';
 
 const LaunchPage = ({ data }) => {
   const { node } = data.allInternalPastLaunches.edges[0];
 
   return (
-    <Layout>
+    <>
       <SEO title={`Launch #${node.flight_number}`} />
       <LaunchNav flightNumber={node.flight_number} />
       <Launch heading="LAUNCH DETAILS" launchData={node} type="details" />
       <RocketDetails rocketData={node.rocket} />
       <Images imageData={node.links.flickr_images} />
       <MediaLinks links={node.links} />
-    </Layout>
+    </>
   );
 };
 

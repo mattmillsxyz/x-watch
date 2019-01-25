@@ -4,9 +4,9 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Cookies from 'universal-cookie';
 
-import Header from './Header';
-import Footer from './Footer';
-import ThemeToggle from './ThemeToggle';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import ThemeToggle from '../components/themeToggle';
 
 const darkTheme = {
   name: 'dark',

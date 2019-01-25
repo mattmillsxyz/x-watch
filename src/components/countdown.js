@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql, StaticQuery } from 'gatsby';
 
-import CountdownDetails from './CountdownDetails';
-import Timer from './Timer';
+import CountdownDetails from './countdownDetails';
+import Timer from './timer';
 
 const Wrapper = styled.div`
   background-color: ${props => props.theme.heroColor};
