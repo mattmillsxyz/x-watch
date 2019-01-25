@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import LaunchDetails from './LaunchDetails';
 
 const Wrapper = styled.div`
-  background: ${props => props.theme.heroColor};
+  background-color: ${props => props.theme.heroColor};
   width: 100%;
   margin-bottom: 1.5rem;
 `;
