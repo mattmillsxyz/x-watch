@@ -69,6 +69,10 @@ const Container = styled.div`
   padding-top: 10rem;
   flex: 1;
 
+  @media (min-width: 1600px) {
+    max-width: 1400px;
+  }
+
   @media (min-width: 741px) and (max-width: 1100px) {
     padding-top: 106px;
   }
