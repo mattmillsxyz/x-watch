@@ -91,8 +91,14 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
-      theme: cookies.get('x-watchTheme') === 'light' ? 'light' : 'dark',
+      theme: 'light',
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      theme: cookies.get('x-watchTheme') === 'light' ? 'light' : 'dark',
+    });
   }
 
   toggleTheme = () => {
@@ -108,6 +114,7 @@ class Layout extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     console.log(this.state.theme);
     return (
       <ThemeProvider
