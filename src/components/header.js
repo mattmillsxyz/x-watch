@@ -39,7 +39,7 @@ const Title = styled.div`
     margin-left: 0;
     margin-top: 0.5rem;
     font-size: 1rem;
-    display: none;
+    /* display: none; */
   }
 `;
 
