@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 
-import Flags from './Flags';
+import Flags from './flags';
 
 const Wrapper = styled.div`
   width: 100%;

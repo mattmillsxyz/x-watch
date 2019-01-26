@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import logo from '../images/x-watch-logo.svg';
-import MobileMenu from './MobileMenu';
+import MobileMenu from './mobileMenu';
 
 const Wrapper = styled.div`
   margin-bottom: 5rem;

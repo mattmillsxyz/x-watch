@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StaticQuery, graphql } from 'gatsby';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Cookies from 'universal-cookie';
 
-import Header from './Header';
-import Footer from './Footer';
-import ThemeToggle from './ThemeToggle';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import ThemeToggle from '../components/themeToggle';
 
 const darkTheme = {
   name: 'dark',
@@ -79,6 +78,14 @@ const Container = styled.div`
   }
 `;
 
+const Wrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const cookies = new Cookies();
+
 class Layout extends React.Component {
   constructor(props) {
     super(props);
@@ -88,17 +95,13 @@ class Layout extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const theme = this.getTheme();
-
+  componentDidMount() {
     this.setState({
-      theme: theme.name === 'dark' ? 'dark' : 'light',
+      theme: cookies.get('x-watchTheme') === 'dark' ? 'dark' : 'light',
     });
   }
 
   toggleTheme = () => {
-    const cookies = new Cookies();
-
     cookies.set(
       'x-watchTheme',
       `${this.state.theme === 'light' ? 'dark' : 'light'}`,
@@ -110,46 +113,22 @@ class Layout extends React.Component {
     }));
   };
 
-  getTheme = () => {
-    const cookies = new Cookies();
-    const themeCookie = cookies.get('x-watchTheme');
-
-    return themeCookie === 'dark' ? darkTheme : lightTheme;
-  };
-
   render() {
     return (
-      <StaticQuery
-        query={graphql`
-          query SiteTitleQuery {
-            site {
-              siteMetadata {
-                title
-              }
-            }
-          }
-        `}
-        render={data => (
-          <ThemeProvider theme={lightTheme}>
-            <div
-              style={{
-                minHeight: '100vh',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <GlobalStyle />
-              <Header />
-              <Container>{this.props.children}</Container>
-              {/* <ThemeToggle
-                theme={this.state.theme}
-                onToggleClick={() => this.toggleTheme()}
-              /> */}
-              <Footer />
-            </div>
-          </ThemeProvider>
-        )}
-      />
+      <ThemeProvider
+        theme={this.state.theme === 'dark' ? darkTheme : lightTheme}
+      >
+        <Wrapper>
+          <GlobalStyle />
+          <Header />
+          <Container>{this.props.children}</Container>
+          <ThemeToggle
+            theme={this.state.theme}
+            onToggleClick={() => this.toggleTheme()}
+          />
+          <Footer />
+        </Wrapper>
+      </ThemeProvider>
     );
   }
 }

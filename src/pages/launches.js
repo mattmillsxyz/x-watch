@@ -1,14 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
-import Launch from '../components/Launch';
-import PreviousLaunches from '../components/PreviousLaunches';
+import SEO from '../components/seo';
+import Launch from '../components/launch';
+import PreviousLaunches from '../components/previousLaunches';
 
 const LaunchesPage = data => {
   return (
-    <Layout>
+    <>
       <SEO title="Recent Launches" />
       <Launch
         heading="LATEST LAUNCH"
@@ -16,7 +15,7 @@ const LaunchesPage = data => {
         type="latest"
       />
       <PreviousLaunches />
-    </Layout>
+    </>
   );
 };
 

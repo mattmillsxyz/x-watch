@@ -126,7 +126,7 @@ const renderActionButton = (type, launchData) => {
         </a>
       );
     } else {
-      return <div>No press kit available.</div>;
+      return <div>Sorry, no press kit available.</div>;
     }
   }
   return (

@@ -1,13 +1,12 @@
 import React from 'react';
 
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
-import Countdown from '../components/Countdown';
-import RecentLaunches from '../components/RecentLaunches';
-import UpcomingLaunches from '../components/UpcomingLaunches';
+import SEO from '../components/seo';
+import Countdown from '../components/countdown';
+import RecentLaunches from '../components/recentLaunches';
+import UpcomingLaunches from '../components/upcomingLaunches';
 
 const IndexPage = props => (
-  <Layout>
+  <>
     <SEO
       title="Home"
       keywords={[
@@ -21,10 +20,10 @@ const IndexPage = props => (
         `react`,
       ]}
     />
-    <Countdown {...props} />
+    <Countdown />
     <RecentLaunches />
     <UpcomingLaunches />
-  </Layout>
+  </>
 );
 
 export default IndexPage;

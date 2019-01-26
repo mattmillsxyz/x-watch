@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
+import SEO from '../components/seo';
 
 import GatsbyIcon from '../images/gatsby-icon.png';
 import ReactIcon from '../images/react-logo.png';
@@ -84,7 +83,7 @@ const Disclaimer = styled.h4`
 
 const AboutPage = () => {
   return (
-    <Layout>
+    <>
       <SEO title="About X-Watch" />
       <Wrapper>
         <h1>About X-Watch</h1>
@@ -207,7 +206,7 @@ const AboutPage = () => {
           </DetailsWrapper>
         </Container>
       </Wrapper>
-    </Layout>
+    </>
   );
 };
 
