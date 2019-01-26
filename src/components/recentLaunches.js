@@ -77,7 +77,7 @@ const renderBadges = badges => {
             alt={`${edge.node.flight_number} mission patch`}
           />
         </Link>
-        <Date>{edge.node.launch_date_utc}</Date>
+        <Date>{edge.node.launch_date_local}</Date>
       </div>
     );
   });
@@ -107,7 +107,7 @@ const launchBadges = graphql`
         node {
           flight_number
           id
-          launch_date_utc(formatString: "MM.DD.YYYY")
+          launch_date_local(formatString: "MM.DD.YYYY")
           launch_year
           mission_patch {
             childImageSharp {

@@ -72,9 +72,8 @@ class Timer extends React.Component {
 
   getLaunchTime() {
     const now = moment();
-    const nowUtc = now.utc();
     const liftoff = moment(this.state.launchDate);
-    const diff = liftoff.diff(nowUtc);
+    const diff = liftoff.diff(now);
     const diffDuration = moment.duration(diff);
 
     this.setState({

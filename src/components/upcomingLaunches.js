@@ -123,7 +123,7 @@ const renderList = (launches, limit) => {
     if (edge.node.flight_number) {
       return (
         <Launch key={`upcoming-list--${edge.node.flight_number}`}>
-          <Date>{edge.node.launch_date_utc}</Date>
+          <Date>{edge.node.launch_date_local}</Date>
           <Mission>
             <MissionName>{edge.node.mission_name}</MissionName>
             <LaunchSite>
@@ -184,7 +184,7 @@ const upcomingLaunches = graphql`
           flight_number
           mission_name
           id
-          launch_date_utc(formatString: "MM.DD.YYYY")
+          launch_date_local(formatString: "MM.DD.YYYY")
           launch_site {
             site_name_long
           }

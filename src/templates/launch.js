@@ -31,7 +31,7 @@ export const query = graphql`
         node {
           flight_number
           id
-          launch_date_utc(formatString: "MM.DD.YYYY")
+          launch_date_local(formatString: "MM.DD.YYYY")
           mission_name
           mission_patch {
             childImageSharp {

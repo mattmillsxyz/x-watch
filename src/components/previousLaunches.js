@@ -174,7 +174,7 @@ const renderList = (launches, latest) => {
             </Mission>
             <StatWrapper>
               <DateWrapper>
-                <Date>{edge.node.launch_date_utc}</Date>
+                <Date>{edge.node.launch_date_local}</Date>
                 <Number>
                   <span>#</span>
                   {edge.node.flight_number}
@@ -222,7 +222,7 @@ const previousLaunches = graphql`
           flight_number
           mission_name
           id
-          launch_date_utc(formatString: "MM.DD.YYYY")
+          launch_date_local(formatString: "MM.DD.YYYY")
           details
           mission_patch {
             childImageSharp {

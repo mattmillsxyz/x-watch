@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
+import moment from 'moment';
 
 const Wrapper = styled.div`
   display: flex;
@@ -46,10 +47,11 @@ const CountdownDetails = () => (
     render={data => {
       const {
         mission_name,
-        launch_date_utc,
+        launch_date_local,
         launch_site,
         rocket,
       } = data.internalNextLaunch;
+      const launchDate = moment(launch_date_local).format('MM.DD.YYYY hh:mm A');
 
       return (
         <Wrapper>
@@ -60,7 +62,7 @@ const CountdownDetails = () => (
             </Detail>
             <Detail>
               <Heading>LAUNCH DATE:</Heading>
-              {launch_date_utc}
+              {launchDate}
             </Detail>
             <Detail>
               <Heading>LAUNCH SITE:</Heading>
@@ -91,7 +93,7 @@ const nextLaunch = graphql`
     internalNextLaunch {
       id
       mission_name
-      launch_date_utc(formatString: "MM.DD.YYYY")
+      launch_date_local
       launch_site {
         site_name_long
       }

@@ -27,7 +27,7 @@ const Countdown = () => (
       <Wrapper>
         <Heading>NEXT LAUNCH</Heading>
         <Container>
-          <Timer launchDate={data.internalNextLaunch.launch_date_utc} />
+          <Timer launchDate={data.internalNextLaunch.launch_date_local} />
           <CountdownDetails />
         </Container>
       </Wrapper>
@@ -38,7 +38,7 @@ const Countdown = () => (
 const nextLaunchDate = graphql`
   {
     internalNextLaunch {
-      launch_date_utc
+      launch_date_local
     }
   }
 `;
