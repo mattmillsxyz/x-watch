@@ -72,7 +72,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media (min-width: 1600px) {
+  @media (min-width: 1681px) {
     max-width: 1400px;
   }
 
