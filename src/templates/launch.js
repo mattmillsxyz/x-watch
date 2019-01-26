@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Layout from '../components/layout';
 import Launch from '../components/launch';
 import LaunchNav from '../components/launchNav';
 import SEO from '../components/seo';
@@ -12,14 +13,14 @@ const LaunchPage = ({ data }) => {
   const { node } = data.allInternalPastLaunches.edges[0];
 
   return (
-    <>
+    <Layout>
       <SEO title={`Launch #${node.flight_number}`} />
       <LaunchNav flightNumber={node.flight_number} />
       <Launch heading="LAUNCH DETAILS" launchData={node} type="details" />
       <RocketDetails rocketData={node.rocket} />
       <Images imageData={node.links.flickr_images} />
       <MediaLinks links={node.links} />
-    </>
+    </Layout>
   );
 };
 

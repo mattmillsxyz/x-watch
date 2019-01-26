@@ -1,15 +1,13 @@
 {
-  "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "x-watch",
+  "description": "An Unofficial SpaceX Launch Tracker",
+  "version": "1.0.1",
+  "author": "Matt Mills <mattmills1023@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
     "gatsby": "^2.0.97",
     "gatsby-image": "^2.0.26",
     "gatsby-plugin-google-fonts": "0.0.4",
-    "gatsby-plugin-layout": "^1.0.11",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-netlify": "^2.0.6",
     "gatsby-plugin-offline": "^2.0.16",
@@ -34,7 +32,14 @@
     "universal-cookie": "^3.0.7"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "react",
+    "reactjs",
+    "graphql",
+    "spacex",
+    "styled-components",
+    "javascript",
+    "nodejs"
   ],
   "license": "MIT",
   "scripts": {
@@ -49,9 +54,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/mattmillsxyz/x-watch"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/mattmillsxyz/x-watch/issues"
   }
 }

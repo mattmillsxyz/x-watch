@@ -13,6 +13,7 @@ import WikiIconWhite from '../images/wiki-icon-white.svg';
 const Wrapper = styled.div`
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.borderColor};
+  margin-bottom: 2rem;
 `;
 
 const Header = styled.div`
