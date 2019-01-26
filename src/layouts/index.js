@@ -95,7 +95,7 @@ class Layout extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
       theme: cookies.get('x-watchTheme') === 'light' ? 'light' : 'dark',
     });
@@ -114,8 +114,6 @@ class Layout extends React.Component {
   };
 
   render() {
-    console.log(this.props);
-    console.log(this.state.theme);
     return (
       <ThemeProvider
         theme={this.state.theme === 'dark' ? darkTheme : lightTheme}
