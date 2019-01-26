@@ -95,7 +95,7 @@ class Layout extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       theme: cookies.get('x-watchTheme') === 'light' ? 'light' : 'dark',
     });
