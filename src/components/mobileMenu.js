@@ -24,7 +24,7 @@ const Menu = styled.div`
 
 const MenuButton = styled.button`
   position: fixed;
-  top: 1.85rem;
+  top: 2.15rem;
   right: 5%;
   background: 0;
   border: 0;
