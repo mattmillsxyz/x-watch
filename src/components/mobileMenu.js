@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import CloseIcon from '../images/close-icon.svg';
+import Logo from '../images/x-watch-logo.svg';
 
 const Menu = styled.div`
   position: fixed;
   top: 0;
-  height: 100vh;
+  height: calc(100vh - 4rem);
   width: 240px;
   background-color: black;
-  padding: 6rem 2rem;
+  padding: 2rem;
   transition: all 0.25s ease-in-out;
   display: flex;
   flex-direction: column;
+  box-shadow: -5px 0 10px 0 rgba(0, 0, 0, 0.5);
 
   a {
     font-size: 1.25rem;
@@ -37,15 +39,24 @@ const MenuButton = styled.button`
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
-  top: 1.85rem;
-  right: 1.75rem;
   background: 0;
   border: 0;
   cursor: pointer;
   padding: 8px;
   align-items: center;
   justify-content: center;
+`;
+
+const MenuHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  span {
+    font-size: 2rem;
+    color: white;
+  }
 `;
 
 const MenuWrapper = styled.div`
@@ -56,6 +67,17 @@ const MenuWrapper = styled.div`
   }
 `;
 
+const MenuFooter = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  img {
+    width: 80px;
+  }
+`;
+
 const MobileMenu = props => {
   const [open, setOpen] = useState(false);
 
@@ -63,10 +85,17 @@ const MobileMenu = props => {
     <MenuWrapper>
       <MenuButton onClick={() => setOpen(!open)}>MENU</MenuButton>
       <Menu style={{ right: open ? 0 : '-320px' }}>
-        <CloseButton onClick={() => setOpen(!open)}>
-          <img src={CloseIcon} alt="Close menu" />
-        </CloseButton>
+        <MenuHeader>
+          <span>MENU</span>
+          <CloseButton onClick={() => setOpen(!open)}>
+            <img src={CloseIcon} alt="Close menu" />
+          </CloseButton>
+        </MenuHeader>
+
         {props.children}
+        <MenuFooter>
+          <img src={Logo} alt="X-Watch logo" />
+        </MenuFooter>
       </Menu>
     </MenuWrapper>
   );
