@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ToggleContainer = styled.div`
-  max-width: 1100px;
+  width: 100%;
   margin: 1rem auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
   span {
     font-size: 0.75rem;
