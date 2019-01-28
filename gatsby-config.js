@@ -3,7 +3,7 @@ module.exports = {
     title: `X-Watch`,
     description: `Tracking past and future SpaceX launches.`,
     author: `@mattmillsxyz`,
-    image: `/images/x-watch.jpg`,
+    image: `https://i.imgur.com/iHn3AUV.jpg`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
