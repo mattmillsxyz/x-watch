@@ -33,10 +33,9 @@ This project was built using [React JS](https://reactjs.org/), [Styled Component
    ```sh
    yarn start
    ```
+   X-Watch is now running at `http://localhost:3000`!
 
 1. **Open the source code and start editing!**
-
-   X-Watch is now running at `http://localhost:3000`!
 
    Open the project directory in your code editor of choice and edit a page or component. Save your changes and the browser will update in real time!
 
