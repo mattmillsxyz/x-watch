@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SEO from '../components/seo';
-
-import GatsbyIcon from '../images/gatsby-icon.png';
+import Layout from '../components/layout';
 import ReactIcon from '../images/react-logo.png';
 import StyledComponentsIcon from '../images/styled-components-logo.png';
 
@@ -46,7 +44,7 @@ const Story = styled.div`
 
 const DetailsContainer = styled.div`
   padding: 2rem;
-  background-color: ${props => props.theme.heroColor};
+  background-color: ${(props) => props.theme.heroColor};
 
   @media (max-width: 740px) {
     padding: 1.5rem 5%;
@@ -83,8 +81,7 @@ const Disclaimer = styled.h4`
 
 const AboutPage = () => {
   return (
-    <>
-      <SEO title="About X-Watch" />
+    <Layout>
       <Wrapper>
         <h1>About X-Watch</h1>
         <Container>
@@ -177,13 +174,6 @@ const AboutPage = () => {
                 <Heading>Technologies:</Heading>
                 <Detail>
                   <a
-                    href="https://www.gatsbyjs.org/"
-                    aria-label="Go to the Gatsby JS website"
-                    title="Gatsby JS"
-                  >
-                    <img src={GatsbyIcon} alt="Gatsby JS logo" />
-                  </a>
-                  <a
                     href="https://reactjs.org/"
                     aria-label="Go to the React JS website"
                     title="React JS"
@@ -206,7 +196,7 @@ const AboutPage = () => {
           </DetailsWrapper>
         </Container>
       </Wrapper>
-    </>
+    </Layout>
   );
 };
 

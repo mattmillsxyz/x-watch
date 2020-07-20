@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { isEmpty } from 'lodash';
 import { LazyImage } from 'react-lazy-images';
 import Spinner from 'react-spinkit';
 
 const Wrapper = styled.div`
   width: 100%;
-  border-bottom: 1px solid ${props => props.theme.borderColor};
+  border-bottom: 1px solid ${(props) => props.theme.borderColor};
 `;
 
 const Header = styled.div`
@@ -42,7 +41,7 @@ const ImageLink = styled.a`
 const PlaceholderDiv = styled.div`
   width: 100%;
   height: 170px;
-  border: 1px solid ${props => props.theme.backgroundColor};
+  border: 1px solid ${(props) => props.theme.backgroundColor};
   border-bottom: 0;
   display: flex;
   justify-content: center;
@@ -52,7 +51,7 @@ const PlaceholderDiv = styled.div`
 const ImageDiv = styled.div`
   width: 100%;
   height: 170px;
-  border: 1px solid ${props => props.theme.backgroundColor};
+  border: 1px solid ${(props) => props.theme.backgroundColor};
   border-bottom: 0;
   display: flex;
   justify-content: center;
@@ -91,7 +90,7 @@ const ImageDiv = styled.div`
   }
 `;
 
-const renderImages = imageData => {
+const renderImages = (imageData) => {
   return imageData.map((image, index) => {
     return (
       <ImageLink
@@ -130,7 +129,7 @@ const Images = ({ imageData }) => {
         <Heading>IMAGES</Heading>
       </Header>
       <Container>
-        {!isEmpty(imageData)
+        {Object.entries(imageData).length > 0
           ? renderImages(imageData)
           : 'Sorry, no images available.'}
       </Container>

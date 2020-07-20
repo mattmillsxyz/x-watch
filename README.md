@@ -10,18 +10,20 @@
 
 <strong>DISCLAIMER:</strong> The maintainers of this project have no affiliation with [SpaceX](https://www.spacex.com/). The content herein should be considered for educational purposes only.
 
-This project was built using [Gatsby JS](https://gatsbyjs.org), [React JS](https://reactjs.org/), [Styled Components](https://www.styled-components.com/), and the [SpaceX-API](https://github.com/r-spacex/SpaceX-API).
+View the live site at [https://x-watch.xyz](https://x-watch.xyz).
+
+This project was built using [React JS](https://reactjs.org/), [Styled Components](https://www.styled-components.com/), and the [SpaceX-API](https://github.com/r-spacex/SpaceX-API).
 
 ## 🚀 Development
 
 1. **Clone this repository.**
 
-1. **Install Gatsby.**
+1. **Install Dependencies.**
 
-   Install the Gatsby cli.
+   Install project dependencies.
 
    ```sh
-   npm install --global gatsby-cli
+   yarn install
    ```
 
 1. **Start developing.**
@@ -29,14 +31,12 @@ This project was built using [Gatsby JS](https://gatsbyjs.org), [React JS](https
    Navigate into the project directory and start it up.
 
    ```sh
-   gatsby develop
+   yarn start
    ```
 
 1. **Open the source code and start editing!**
 
-   X-Watch is now running at `http://localhost:8000`!
-
-   _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+   X-Watch is now running at `http://localhost:3000`!
 
    Open the project directory in your code editor of choice and edit a page or component. Save your changes and the browser will update in real time!
 

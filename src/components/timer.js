@@ -8,12 +8,10 @@ const TimerWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   svg {
     width: 100%;
-
     text {
-      fill: ${props => props.theme.linkColor};
+      fill: ${(props) => props.theme.linkColor};
     }
   }
 `;
@@ -32,7 +30,7 @@ const UnitWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
-
+  margin-bottom: 2rem;
   @media (max-width: 768px) {
     margin-top: 0.8rem;
   }
@@ -43,7 +41,6 @@ const Unit = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
-
   @media (max-width: 768px) {
     font-size: 0.8rem;
   }
@@ -58,7 +55,6 @@ class Timer extends React.Component {
       hours: '',
       minutes: '',
       seconds: '',
-      launchDate: props.launchDate,
     };
   }
 
@@ -72,28 +68,15 @@ class Timer extends React.Component {
 
   getLaunchTime() {
     const now = moment();
-    const nowUtc = now.utc();
-    const liftoff = moment(this.state.launchDate);
-    const diff = liftoff.diff(nowUtc);
+    const liftoff = moment(this.props.launchDate);
+    const diff = liftoff.diff(now);
     const diffDuration = moment.duration(diff);
 
     this.setState({
-      days: diffDuration
-        .days()
-        .toString()
-        .padStart(2, '0'),
-      hours: diffDuration
-        .hours()
-        .toString()
-        .padStart(2, '0'),
-      minutes: diffDuration
-        .minutes()
-        .toString()
-        .padStart(2, '0'),
-      seconds: diffDuration
-        .seconds()
-        .toString()
-        .padStart(2, '0'),
+      days: diffDuration.days().toString().padStart(2, '0'),
+      hours: diffDuration.hours().toString().padStart(2, '0'),
+      minutes: diffDuration.minutes().toString().padStart(2, '0'),
+      seconds: diffDuration.seconds().toString().padStart(2, '0'),
     });
   }
 

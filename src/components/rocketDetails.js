@@ -5,7 +5,7 @@ import Flags from './flags';
 
 const Wrapper = styled.div`
   width: 100%;
-  border-bottom: 1px solid ${props => props.theme.borderColor};
+  border-bottom: 1px solid ${(props) => props.theme.borderColor};
 `;
 
 const Header = styled.div`
@@ -98,7 +98,7 @@ const DetailNumber = styled.div`
 `;
 
 const Num = styled.div`
-  color: ${props => props.theme.sectionHeadingColor};
+  color: ${(props) => props.theme.sectionHeadingColor};
   font-weight: 600;
   margin-bottom: 0.18rem;
   display: block;
@@ -121,7 +121,7 @@ const RocketNameWrapper = styled.div`
   }
 `;
 
-const renderCores = cores => {
+const renderCores = (cores) => {
   return cores.map((core, index) => {
     return (
       <DetailWrapper key={`rocket--core--${core.core_serial}`}>
@@ -159,7 +159,7 @@ const renderCores = cores => {
   });
 };
 
-const renderPayloadInfo = payloads => {
+const renderPayloadInfo = (payloads) => {
   return payloads.map((payload, index) => {
     return (
       <DetailWrapper key={`payload--${payload.payload_id}`}>
@@ -202,27 +202,27 @@ const RocketDetails = ({ rocketData }) => {
       </Header>
       <Container>
         <RocketNameWrapper>
-          <RocketName>{rocketData.rocket_name}</RocketName>
-          <RocketType>{rocketData.rocket_type}</RocketType>
+          <RocketName>{rocketData && rocketData.rocket_name}</RocketName>
+          <RocketType>{rocketData && rocketData.rocket_type}</RocketType>
         </RocketNameWrapper>
         <Stage>
           <StageHeading>FIRST STAGE</StageHeading>
           <Detail>
             <DetailHeading>CORES:</DetailHeading>
-            {rocketData.first_stage.cores.length}
+            {rocketData && rocketData.first_stage.cores.length}
           </Detail>
-          {renderCores(rocketData.first_stage.cores)}
+          {rocketData && renderCores(rocketData.first_stage.cores)}
         </Stage>
         <Stage>
           <StageHeading>SECOND STAGE</StageHeading>
           <Detail>
             <DetailHeading>PAYLOADS:</DetailHeading>
-            {rocketData.second_stage.payloads.length}
+            {rocketData && rocketData.second_stage.payloads.length}
           </Detail>
         </Stage>
         <Stage>
           <StageHeading>PAYLOAD INFO</StageHeading>
-          {renderPayloadInfo(rocketData.second_stage.payloads)}
+          {rocketData && renderPayloadInfo(rocketData.second_stage.payloads)}
         </Stage>
       </Container>
     </Wrapper>

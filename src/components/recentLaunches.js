@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticQuery, graphql, Link } from 'gatsby';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
+
+import { useFetch } from '../hooks/useFetch';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -9,6 +12,7 @@ const Wrapper = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Heading = styled.h5`
@@ -16,11 +20,22 @@ const Heading = styled.h5`
   margin-top: 3rem;
 `;
 
-const HeadingLink = styled(Link)`
+const HeadingLinkWrapper = styled.div`
   margin-top: 3rem;
-  color: ${props => props.theme.linkColor};
-  font-weight: 600;
   margin-right: 5%;
+`;
+
+const HeadingLink = styled(Link)`
+  background: none;
+  color: ${(props) => props.theme.linkColor};
+  border: 1px solid ${(props) => props.theme.linkColor};
+  border-radius: 3px;
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 1rem;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 600;
 `;
 
 const Container = styled.div`
@@ -30,99 +45,83 @@ const Container = styled.div`
 const BadgeContainer = styled.div`
   display: flex;
   justify-content: space-between;
-
+  flex-wrap: wrap;
   @media (max-width: 740px) {
-    flex-wrap: wrap;
     justify-content: flex-start;
+  }
+`;
+
+const BadgeWrapper = styled.div`
+  background-color: ${(props) => props.theme.highlightColor};
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid ${(props) => props.theme.backgroundColor};
+  border-radius: 6px;
+  &:hover {
+    border-color: #222222;
+  }
+  @media (max-width: 740px) {
+    width: auto;
+    flex: 1 0 auto;
   }
 `;
 
 const Badge = styled.img`
   height: 60px;
-
   svg {
     height: 60px;
   }
-
-  @media (max-width: 740px) {
-    margin-right: 1rem;
-  }
 `;
 
-const Date = styled.div`
+const LaunchDate = styled.div`
   font-size: 0.75rem;
   margin-top: 0.5rem;
-
-  @media (max-width: 740px) {
-    margin-bottom: 1rem;
-    margin-right: 1rem;
-  }
 `;
 
-const renderBadges = badges => {
-  const { edges } = badges.allInternalPastLaunches;
-
-  return edges.map(edge => {
+const renderBadges = (launches) => {
+  return launches.map((launch) => {
     return (
-      <div
-        style={{ textAlign: 'center' }}
-        key={`badge--${edge.node.flight_number}`}
+      <Link
+        to={`/launch/${launch.flight_number}`}
+        aria-label={`Go to flight number ${launch.flight_number} details`}
+        key={`launch--${launch.flight_number}`}
       >
-        <Link
-          to={edge.node.fields.slug}
-          aria-label={`Go to flight number ${edge.node.flight_number} details`}
-        >
+        <BadgeWrapper key={`badge--${launch.flight_number}`}>
           <Badge
-            src={edge.node.mission_patch.childImageSharp.fixed.src}
-            alt={`${edge.node.flight_number} mission patch`}
+            src={launch.links.mission_patch || '/images/space-x-badge.png'}
+            alt={`${launch.flight_number} mission patch`}
           />
-        </Link>
-        <Date>{edge.node.launch_date_utc}</Date>
-      </div>
+
+          <LaunchDate>
+            {moment(launch.launch_date_local).format('MM.DD.YYYY')}
+          </LaunchDate>
+        </BadgeWrapper>
+      </Link>
     );
   });
 };
 
-const RecentLaunches = () => (
-  <StaticQuery
-    query={launchBadges}
-    render={data => (
-      <Wrapper>
-        <Header>
-          <Heading>RECENT LAUNCHES</Heading>
-          <HeadingLink to="/launches/">VIEW ALL</HeadingLink>
-        </Header>
-        <Container>
-          <BadgeContainer>{renderBadges(data)}</BadgeContainer>
-        </Container>
-      </Wrapper>
-    )}
-  />
-);
+const RecentLaunches = () => {
+  const url = 'https://api.spacexdata.com/v3/launches/past?order=desc&limit=7';
 
-const launchBadges = graphql`
-  {
-    allInternalPastLaunches(limit: 7) {
-      edges {
-        node {
-          flight_number
-          id
-          launch_date_utc(formatString: "MM.DD.YYYY")
-          launch_year
-          mission_patch {
-            childImageSharp {
-              fixed(width: 120) {
-                src
-              }
-            }
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  }
-`;
+  const { status, data, error } = useFetch(url);
+
+  return (
+    <Wrapper>
+      <Header>
+        <Heading>RECENT LAUNCHES</Heading>
+        <HeadingLinkWrapper>
+          <HeadingLink to="/launches/">VIEW ALL</HeadingLink>
+        </HeadingLinkWrapper>
+      </Header>
+      <Container>
+        <BadgeContainer>{renderBadges(data)}</BadgeContainer>
+      </Container>
+    </Wrapper>
+  );
+};
 
 export default RecentLaunches;

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticQuery, graphql, Link } from 'gatsby';
+import { Link } from 'react-router-dom';
+
+import { useFetch } from '../hooks/useFetch';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,9 +36,11 @@ const Launch = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid ${props => props.theme.borderColor};
+  background-color: ${(props) => props.theme.highlightColor};
+  border: 3px solid ${(props) => props.theme.backgroundColor};
+  padding: 18px;
   padding-bottom: 2rem;
-
+  border-radius: 4px;
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
@@ -122,7 +126,7 @@ const MissionWrapper = styled.div`
   }
 `;
 
-const getStatusStyle = status => {
+const getStatusStyle = (status) => {
   if (status) {
     return {
       color: '#27d872',
@@ -134,38 +138,35 @@ const getStatusStyle = status => {
 };
 
 const renderList = (launches, latest) => {
-  const { edges } = launches;
-  const latestFlight = latest.edges[0].node.flight_number;
+  const latestFlight = latest.flight_number;
 
-  return edges.map(edge => {
-    if (edge.node.flight_number && edge.node.flight_number !== latestFlight) {
+  return launches.map((launch) => {
+    if (launch.flight_number && launch.flight_number !== latestFlight) {
       return (
-        <Launch key={`previous-list--${edge.node.flight_number}`}>
+        <Launch key={`previous-list--${launch.flight_number}`}>
           <Link
-            to={edge.node.fields.slug}
-            aria-label={`Go to ${edge.node.mission_name} launch details`}
+            to={`/launch/${launch.flight_number}`}
+            aria-label={`Go to ${launch.mission_name} launch details`}
           >
             <Patch>
               <img
-                src={edge.node.mission_patch.childImageSharp.fixed.src}
-                alt={`${edge.node.mission_name} mission patch`}
+                src={launch.links.mission_patch || '/images/space-x-badge.png'}
+                alt={`${launch.mission_name} mission patch`}
               />
             </Patch>
           </Link>
           <MissionWrapper>
             <Mission>
-              <MissionName>{edge.node.mission_name}</MissionName>
+              <MissionName>{launch.mission_name}</MissionName>
               <Details>
-                {edge.node.details
-                  ? `${edge.node.details.substring(0, 140)}...`
+                {launch.details
+                  ? `${launch.details.substring(0, 140)}...`
                   : 'No description provided.'}
 
                 <DetailsLink>
                   <Link
-                    to={edge.node.fields.slug}
-                    aria-label={`Go to ${
-                      edge.node.mission_name
-                    } launch details`}
+                    to={`/launch/${launch.flight_number}`}
+                    aria-label={`Go to ${launch.mission_name} launch details`}
                   >
                     LAUNCH DETAILS
                   </Link>
@@ -174,14 +175,14 @@ const renderList = (launches, latest) => {
             </Mission>
             <StatWrapper>
               <DateWrapper>
-                <Date>{edge.node.launch_date_utc}</Date>
+                <Date>{launch.launch_date_local}</Date>
                 <Number>
                   <span>#</span>
-                  {edge.node.flight_number}
+                  {launch.flight_number}
                 </Number>
               </DateWrapper>
-              <Status style={getStatusStyle(edge.node.launch_success)}>
-                {edge.node.launch_success ? 'SUCCESSFUL' : 'FAILURE'}
+              <Status style={getStatusStyle(launch.launch_success)}>
+                {launch.launch_success ? 'SUCCESSFUL' : 'FAILURE'}
               </Status>
             </StatWrapper>
           </MissionWrapper>
@@ -193,59 +194,20 @@ const renderList = (launches, latest) => {
   });
 };
 
-const PreviousLaunches = data => (
-  <StaticQuery
-    query={previousLaunches}
-    render={data => (
-      <Wrapper>
-        <Header>
-          <Heading>PREVIOUS LAUNCHES</Heading>
-        </Header>
-        <Container>
-          <LaunchList>
-            {renderList(
-              data.allInternalPastLaunches,
-              data.allInternalLatestLaunch
-            )}
-          </LaunchList>
-        </Container>
-      </Wrapper>
-    )}
-  />
-);
+const PreviousLaunches = (props) => {
+  const url = `https://api.spacexdata.com/v3/launches/past?order=desc`;
+  const { status, data, error } = useFetch(url);
 
-const previousLaunches = graphql`
-  {
-    allInternalPastLaunches {
-      edges {
-        node {
-          flight_number
-          mission_name
-          id
-          launch_date_utc(formatString: "MM.DD.YYYY")
-          details
-          mission_patch {
-            childImageSharp {
-              fixed(width: 120) {
-                src
-              }
-            }
-          }
-          launch_success
-          fields {
-            slug
-          }
-        }
-      }
-    }
-    allInternalLatestLaunch {
-      edges {
-        node {
-          flight_number
-        }
-      }
-    }
-  }
-`;
+  return (
+    <Wrapper>
+      <Header>
+        <Heading>PREVIOUS LAUNCHES</Heading>
+      </Header>
+      <Container>
+        <LaunchList>{renderList(data, props.latestlaunchData)}</LaunchList>
+      </Container>
+    </Wrapper>
+  );
+};
 
 export default PreviousLaunches;
