@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import LaunchDetails from './launchDetails';
 
 const Wrapper = styled.div`
-  background-color: ${props => props.theme.heroColor};
+  background-color: ${(props) => props.theme.highlightColor};
   width: 100%;
   margin-bottom: 1.5rem;
+  border-radius: 6px;
 `;
 
 const Heading = styled.h5`
