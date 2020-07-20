@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { StaticQuery, graphql } from 'gatsby';
+import moment from 'moment';
 
+import { useFetch } from '../hooks/useFetch';
 import Flags from './flags';
 
 const Wrapper = styled.div`
@@ -30,9 +31,8 @@ const LaunchList = styled.div`
   justify-content: space-between;
 `;
 
-const Date = styled.div`
+const LaunchDate = styled.div`
   min-width: 6rem;
-
   @media (max-width: 740px) {
     margin-bottom: 0.5rem;
   }
@@ -42,12 +42,10 @@ const Launch = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  &:not(:last-child) {
-    margin-bottom: 2rem;
-    border-bottom: 1px solid ${props => props.theme.borderColor};
-  }
-
+  background-color: ${(props) => props.theme.highlightColor};
+  border: 3px solid ${(props) => props.theme.backgroundColor};
+  padding: 18px;
+  border-radius: 4px;
   @media (max-width: 740px) {
     flex-direction: column;
     padding-bottom: 2rem;
@@ -69,8 +67,6 @@ const MissionName = styled.div`
 `;
 
 const LaunchSite = styled.div`
-  margin-bottom: 2rem;
-
   span {
     font-weight: 600;
   }
@@ -86,7 +82,6 @@ const Rocket = styled.div`
 const Number = styled.div`
   font-size: 1.5rem;
   line-height: 1;
-
   span {
     font-size: 1rem;
     line-height: 1;
@@ -99,48 +94,60 @@ const RocketDetails = styled.div`
   flex-direction: row;
   flex: 1;
 `;
+const ShowAllWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const ShowAll = styled.button`
-  padding: 0.5rem;
-  background: ${props => props.theme.heroColor};
-  color: ${props => props.theme.linkColor};
-  border: none;
+  background: none;
+  color: ${(props) => props.theme.linkColor};
+  border: 1px solid ${(props) => props.theme.linkColor};
+  border-radius: 3px;
+  display: inline-block;
+  padding: 4px 12px;
   font-size: 1rem;
   cursor: pointer;
   font-weight: 600;
-  text-decoration: underline;
-
-  &:hover {
-    text-decoration: none;
-  }
 `;
 
-const renderList = (launches, limit) => {
-  const { edges } = launches.allInternalUpcomingLaunches;
-  const limitEdges = limit ? edges.slice(0, limit) : edges;
+const isPast = (date) => {
+  if (moment(Date()).isBefore(date)) {
+    return false;
+  }
+  return true;
+};
 
-  return limitEdges.map(edge => {
-    if (edge.node.flight_number) {
+const renderList = (launches, limit) => {
+  launches.sort((a, b) => (a.flight_number > b.flight_number ? 1 : -1));
+  const limitLaunches = limit ? launches.slice(0, limit) : launches;
+
+  return limitLaunches.map((launch) => {
+    if (launch.flight_number) {
       return (
-        <Launch key={`upcoming-list--${edge.node.flight_number}`}>
-          <Date>{edge.node.launch_date_utc}</Date>
+        <Launch key={`upcoming-list--${launch.flight_number}`}>
+          <LaunchDate>
+            {isPast(launch.launch_date_local)
+              ? 'TBD'
+              : moment(launch.launch_date_local).format('MM.DD.YYYY')}
+          </LaunchDate>
           <Mission>
-            <MissionName>{edge.node.mission_name}</MissionName>
+            <MissionName>{launch.mission_name}</MissionName>
             <LaunchSite>
-              <span>LAUNCH SITE:</span> {edge.node.launch_site.site_name_long}
+              <span>LAUNCH SITE:</span> {launch.launch_site.site_name_long}
             </LaunchSite>
           </Mission>
           <RocketDetails>
             <Rocket>
-              <span>ROCKET:</span> {edge.node.rocket.rocket_name}
+              <span>ROCKET:</span> {launch.rocket.rocket_name}
               <Flags
-                id={edge.node.id}
-                payloads={edge.node.rocket.second_stage.payloads}
+                id={launch.id}
+                payloads={launch.rocket.second_stage.payloads}
               />
             </Rocket>
             <Number>
               <span>#</span>
-              {edge.node.flight_number}
+              {launch.flight_number}
             </Number>
           </RocketDetails>
         </Launch>
@@ -154,52 +161,25 @@ const UpcomingLaunches = () => {
   const count = 5;
   const [limit, setLimit] = useState(count);
 
+  const url = `https://api.spacexdata.com/v3/launches/upcoming?order=desc`;
+
+  const { status, data, error } = useFetch(url);
+
   return (
-    <StaticQuery
-      query={upcomingLaunches}
-      render={data => {
-        return (
-          <Wrapper>
-            <Header>
-              <Heading>UPCOMING LAUNCHES</Heading>
-            </Header>
-            <Container>
-              <LaunchList>{renderList(data, limit)}</LaunchList>
-              <ShowAll onClick={() => setLimit(limit ? null : count)}>
-                {limit ? 'SHOW ALL' : 'SHOW LESS'}
-              </ShowAll>
-            </Container>
-          </Wrapper>
-        );
-      }}
-    />
+    <Wrapper>
+      <Header>
+        <Heading>UPCOMING LAUNCHES</Heading>
+      </Header>
+      <Container>
+        <LaunchList>{renderList(data, limit)}</LaunchList>
+      </Container>
+      <ShowAllWrapper>
+        <ShowAll onClick={() => setLimit(limit ? null : count)}>
+          {limit ? 'SHOW ALL' : 'SHOW LESS'}
+        </ShowAll>
+      </ShowAllWrapper>
+    </Wrapper>
   );
 };
-
-const upcomingLaunches = graphql`
-  {
-    allInternalUpcomingLaunches {
-      edges {
-        node {
-          flight_number
-          mission_name
-          id
-          launch_date_utc(formatString: "MM.DD.YYYY")
-          launch_site {
-            site_name_long
-          }
-          rocket {
-            rocket_name
-            second_stage {
-              payloads {
-                nationality
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default UpcomingLaunches;

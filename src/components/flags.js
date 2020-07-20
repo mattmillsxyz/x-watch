@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { codes } from 'iso-country-codes';
 import Flag from 'react-flagkit';
-import { find } from 'lodash';
 
 const Container = styled.div`
   img {
@@ -13,12 +12,12 @@ const Container = styled.div`
   }
 `;
 
-const getCountryCode = country => {
+const getCountryCode = (country) => {
   if (country === 'United States') {
     country = 'United States of America';
   }
-  const code = find(codes, o => {
-    return o.name.includes(country);
+  const code = codes.find((code) => {
+    return code.name.includes(country);
   });
   if (code) {
     return code.alpha2;

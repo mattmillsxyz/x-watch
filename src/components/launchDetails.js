@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -78,18 +78,6 @@ const Actions = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
-
-  a {
-    padding: 0.75rem 1.75rem;
-    border: 2px solid ${props => props.theme.linkColor};
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.125s ease-in-out;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 `;
 
 const Number = styled.div`
@@ -112,39 +100,69 @@ const Number = styled.div`
   }
 `;
 
+const DetailsButton = styled(Link)`
+  background: none;
+  color: ${(props) => props.theme.linkColor};
+  border: 1px solid ${(props) => props.theme.linkColor};
+  border-radius: 3px;
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 1rem;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 600;
+`;
+
+const PresskitButton = styled.a`
+  background: none;
+  color: ${(props) => props.theme.linkColor};
+  border: 1px solid ${(props) => props.theme.linkColor};
+  border-radius: 3px;
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 1rem;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 600;
+`;
+
 const renderActionButton = (type, launchData) => {
   if (type === 'details') {
     if (launchData.links.presskit) {
       return (
-        <a
+        <PresskitButton
           href={launchData.links.presskit}
           target="_blank"
           rel="noopener noreferrer"
           arial-label="Go to flight press kit"
         >
           PRESS KIT
-        </a>
+        </PresskitButton>
       );
     } else {
       return <div>Sorry, no press kit available.</div>;
     }
   }
   return (
-    <Link to={launchData.fields.slug} arial-label="Go to flight details">
+    <DetailsButton
+      to={`/launch/${launchData.flight_number}`}
+      arial-label="Go to flight details"
+    >
       LAUNCH DETAILS
-    </Link>
+    </DetailsButton>
   );
 };
 
 const LaunchDetails = ({ launchData, type }) => {
+  if (!launchData) return 'Loading...';
   const {
     mission_name,
-    launch_date_utc,
+    launch_date_local,
     launch_site,
     flight_number,
     launch_success,
     details,
-    mission_patch,
+    links,
   } = launchData;
 
   return (
@@ -163,16 +181,20 @@ const LaunchDetails = ({ launchData, type }) => {
           </Detail>
           <Detail>
             <Heading>LAUNCH DATE:</Heading>
-            {launch_date_utc}
+            {launch_date_local}
           </Detail>
           <Detail>
             <Heading>LAUNCH SITE:</Heading>
-            {launch_site.site_name_long}
+            {launch_site && launch_site.site_name_long}
           </Detail>
         </DetailsBlock>
         <PatchBlock>
           <img
-            src={mission_patch.childImageSharp.fixed.src}
+            src={
+              links && links.mission_patch
+                ? links.mission_patch
+                : '/images/space-x-badge.png'
+            }
             alt={`${mission_name} patch`}
           />
         </PatchBlock>

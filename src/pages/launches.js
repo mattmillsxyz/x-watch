@@ -1,51 +1,21 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 
-import SEO from '../components/seo';
+import { useFetch } from '../hooks/useFetch';
+import Layout from '../components/layout';
 import Launch from '../components/launch';
 import PreviousLaunches from '../components/previousLaunches';
 
-const LaunchesPage = data => {
+const LaunchesPage = () => {
+  const url = `https://api.spacexdata.com/v3/launches/latest`;
+
+  const { status, data, error } = useFetch(url);
+
   return (
-    <>
-      <SEO title="Recent Launches" />
-      <Launch
-        heading="LATEST LAUNCH"
-        launchData={data.data.internalLatestLaunch}
-        type="latest"
-      />
-      <PreviousLaunches />
-    </>
+    <Layout>
+      <Launch heading="LATEST LAUNCH" launchData={data} type="latest" />
+      <PreviousLaunches latestlaunchData={data} />
+    </Layout>
   );
 };
-
-export const query = graphql`
-  {
-    internalLatestLaunch {
-      flight_number
-      id
-      launch_date_utc(formatString: "MM.DD.YYYY")
-      mission_name
-      mission_patch {
-        childImageSharp {
-          fixed(width: 320) {
-            src
-          }
-        }
-      }
-      links {
-        presskit
-      }
-      launch_site {
-        site_name_long
-      }
-      launch_success
-      details
-      fields {
-        slug
-      }
-    }
-  }
-`;
 
 export default LaunchesPage;

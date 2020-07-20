@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import CloseIcon from '../images/close-icon.svg';
+import Logo from '../images/x-watch-logo.svg';
 
 const Menu = styled.div`
   position: fixed;
   top: 0;
-  height: 100vh;
+  height: calc(100vh - 4rem);
   width: 240px;
-  background-color: black;
-  padding: 6rem 2rem;
+  background-color: #111111;
+  padding: 2rem;
   transition: all 0.25s ease-in-out;
   display: flex;
   flex-direction: column;
-
+  box-shadow: -5px 0 10px 0 rgba(0, 0, 0, 0.5);
   a {
     font-size: 1.25rem;
     padding: 1rem 1.5rem;
@@ -24,7 +25,7 @@ const Menu = styled.div`
 
 const MenuButton = styled.button`
   position: fixed;
-  top: 1.85rem;
+  top: 2.15rem;
   right: 5%;
   background: 0;
   border: 0;
@@ -37,9 +38,6 @@ const MenuButton = styled.button`
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
-  top: 1.85rem;
-  right: 1.75rem;
   background: 0;
   border: 0;
   cursor: pointer;
@@ -48,25 +46,51 @@ const CloseButton = styled.button`
   justify-content: center;
 `;
 
+const MenuHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  span {
+    font-size: 2rem;
+    color: white;
+  }
+`;
+
 const MenuWrapper = styled.div`
   display: none;
-
   @media (max-width: 740px) {
     display: block;
   }
 `;
 
-const MobileMenu = props => {
+const MenuFooter = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  img {
+    width: 80px;
+  }
+`;
+
+const MobileMenu = (props) => {
   const [open, setOpen] = useState(false);
 
   return (
     <MenuWrapper>
       <MenuButton onClick={() => setOpen(!open)}>MENU</MenuButton>
       <Menu style={{ right: open ? 0 : '-320px' }}>
-        <CloseButton onClick={() => setOpen(!open)}>
-          <img src={CloseIcon} alt="Close menu" />
-        </CloseButton>
+        <MenuHeader>
+          <span>MENU</span>
+          <CloseButton onClick={() => setOpen(!open)}>
+            <img src={CloseIcon} alt="Close menu" />
+          </CloseButton>
+        </MenuHeader>
         {props.children}
+        <MenuFooter>
+          <img src={Logo} alt="X-Watch logo" />
+        </MenuFooter>
       </Menu>
     </MenuWrapper>
   );

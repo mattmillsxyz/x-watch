@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link, graphql, StaticQuery } from 'gatsby';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: ${props => props.theme.backgroundColor};
+  background-color: ${(props) => props.theme.backgroundColor};
   padding: 1rem 0;
 
   a {
@@ -19,63 +19,39 @@ const Wrapper = styled.div`
   }
 `;
 
-const renderNavLink = (direction, flightNumber, pages) => {
+const renderNavLinks = (flightNumber, allFlightNumbers) => {
   // TODO: Make this better
-  const toLaunch = direction === 'prev' ? flightNumber - 1 : flightNumber + 1;
-  let pageArr = [];
-  pages.forEach(page => {
-    if (page.node.flight_number != null) {
-      pageArr.push(page.node.flight_number);
-    }
-  });
+  const prevPage = flightNumber - 1;
+  const nextPage = flightNumber + 1;
 
-  if (pageArr.includes(toLaunch)) {
-    return (
-      <Link
-        to={`/launch/${toLaunch}`}
-        aria-label={`Go to flight number ${toLaunch} details`}
-      >
-        {direction === 'prev' ? (
+  return (
+    <>
+      {allFlightNumbers.includes(prevPage) ? (
+        <Link
+          to={`/launch/${prevPage}`}
+          aria-label={`Go to flight number ${prevPage} details`}
+        >
           <div>&laquo; PREVIOUS</div>
-        ) : (
+        </Link>
+      ) : (
+        <div></div>
+      )}
+      {allFlightNumbers.includes(nextPage) ? (
+        <Link
+          to={`/launch/${nextPage}`}
+          aria-label={`Go to flight number ${nextPage} details`}
+        >
           <div>NEXT &raquo;</div>
-        )}
-      </Link>
-    );
-  }
-  return <div />;
+        </Link>
+      ) : (
+        <div></div>
+      )}
+    </>
+  );
 };
 
-const LaunchNav = ({ flightNumber }) => (
-  <StaticQuery
-    query={allPages}
-    render={data => (
-      <Wrapper>
-        {renderNavLink(
-          'prev',
-          flightNumber,
-          data.allInternalPastLaunches.edges
-        )}
-        {renderNavLink(
-          'next',
-          flightNumber,
-          data.allInternalPastLaunches.edges
-        )}
-      </Wrapper>
-    )}
-  />
+const LaunchNav = ({ flightNumber, allFlightNumbers }) => (
+  <Wrapper>{renderNavLinks(flightNumber, allFlightNumbers)}</Wrapper>
 );
-
-const allPages = graphql`
-  {
-    allInternalPastLaunches {
-      edges {
-        node {
-          flight_number
-        }
-      }
-    }
-  }
-`;
 
 export default LaunchNav;
