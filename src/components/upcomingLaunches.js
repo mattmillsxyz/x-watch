@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import { useFetch } from '../hooks/useFetch';
 import Flags from './flags';
 
 const Wrapper = styled.div`
@@ -119,11 +118,10 @@ const isPast = (date) => {
 };
 
 const renderList = (launches, limit) => {
-  launches.sort((a, b) => (a.flight_number > b.flight_number ? 1 : -1));
   const limitLaunches = limit ? launches.slice(0, limit) : launches;
 
   return limitLaunches.map((launch) => {
-    if (launch.flight_number) {
+    if (launch.flight_number && !isPast(launch.launch_date_local)) {
       return (
         <Launch key={`upcoming-list--${launch.flight_number}`}>
           <LaunchDate>
@@ -134,7 +132,8 @@ const renderList = (launches, limit) => {
           <Mission>
             <MissionName>{launch.mission_name}</MissionName>
             <LaunchSite>
-              <span>LAUNCH SITE:</span> {launch.launch_site.site_name_long}
+              <span>LAUNCH SITE:</span>{' '}
+              {launch.launch_site.site_name_long || 'TBD'}
             </LaunchSite>
           </Mission>
           <RocketDetails>
@@ -157,13 +156,9 @@ const renderList = (launches, limit) => {
   });
 };
 
-const UpcomingLaunches = () => {
+const UpcomingLaunches = ({ launches }) => {
   const count = 5;
   const [limit, setLimit] = useState(count);
-
-  const url = `https://api.spacexdata.com/v3/launches/upcoming?order=desc`;
-
-  const { status, data, error } = useFetch(url);
 
   return (
     <Wrapper>
@@ -171,7 +166,7 @@ const UpcomingLaunches = () => {
         <Heading>UPCOMING LAUNCHES</Heading>
       </Header>
       <Container>
-        <LaunchList>{renderList(data, limit)}</LaunchList>
+        <LaunchList>{renderList(launches, limit)}</LaunchList>
       </Container>
       <ShowAllWrapper>
         <ShowAll onClick={() => setLimit(limit ? null : count)}>
