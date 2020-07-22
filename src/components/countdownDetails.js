@@ -63,21 +63,21 @@ const CountdownDetails = (props) => {
         </Detail>
         <Detail>
           <Heading>LAUNCH SITE:</Heading>
-          {launch_site && launch_site.site_name_long}
+          {(launch_site && launch_site.site_name_long) || 'TBD'}
         </Detail>
       </LeftBlock>
       <RightBlock>
         <Detail>
           <Heading>ROCKET:</Heading>
-          {rocket && rocket.rocket_name}
+          {(rocket && rocket.rocket_name) || 'N/A'}
         </Detail>
         <Detail>
           <Heading>PAYLOAD TYPE:</Heading>
-          {rocket && rocket.second_stage.payloads[0].payload_type}
+          {(rocket && rocket.second_stage.payloads[0].payload_type) || 'N/A'}
         </Detail>
         <Detail>
           <Heading>MANUFACTURER:</Heading>
-          {rocket && rocket.second_stage.payloads[0].manufacturer}
+          {(rocket && rocket.second_stage.payloads[0].manufacturer) || 'N/A'}
         </Detail>
       </RightBlock>
     </Wrapper>

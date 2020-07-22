@@ -27,21 +27,17 @@ const isPast = (date) => {
   return true;
 };
 
-const Countdown = () => {
-  const url = `https://api.spacexdata.com/v3/launches/next`;
-
-  const { status, data, error } = useFetch(url);
+const Countdown = ({ launches }) => {
+  const launch = launches.find((launch) => !isPast(launch.launch_date_local));
 
   return (
     <Wrapper>
       <Heading>NEXT LAUNCH</Heading>
       <Container>
-        {isPast(data.launch_date_local) ? (
-          <CountdownDetails data={data} />
-        ) : (
+        {launch && (
           <>
-            <Timer launchDate={data.launch_date_local} />
-            <CountdownDetails data={data} />
+            <Timer launchDate={launch.launch_date_local} />
+            <CountdownDetails data={launch} />
           </>
         )}
       </Container>
