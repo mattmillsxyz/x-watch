@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
@@ -46,105 +46,101 @@ const Unit = styled.div`
   }
 `;
 
-class Timer extends React.Component {
-  constructor(props) {
-    super(props);
+const Timer = ({ launchDate }) => {
+  useEffect(() => {
+    const getLaunchTime = () => {
+      const now = moment();
+      const liftoff = moment(launchDate);
+      const diff = liftoff.diff(now);
+      const diffDuration = moment.duration(diff);
 
-    this.state = {
-      days: '',
-      hours: '',
-      minutes: '',
-      seconds: '',
+      setCurrTime({
+        days: diffDuration.days().toString().padStart(2, '0'),
+        hours: diffDuration.hours().toString().padStart(2, '0'),
+        minutes: diffDuration.minutes().toString().padStart(2, '0'),
+        seconds: diffDuration.seconds().toString().padStart(2, '0'),
+      });
     };
-  }
 
-  componentDidMount() {
-    timer = setInterval(() => this.getLaunchTime(), 1000);
-  }
+    timer = setInterval(() => getLaunchTime(), 1000);
 
-  componentWillUnmount() {
-    clearInterval(timer);
-  }
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('mousemove', () => {});
+    };
+  }, [launchDate]);
 
-  getLaunchTime() {
-    const now = moment();
-    const liftoff = moment(this.props.launchDate);
-    const diff = liftoff.diff(now);
-    const diffDuration = moment.duration(diff);
+  const initialTime = {
+    days: '00',
+    hours: '00',
+    minutes: '00',
+    seconds: '00',
+  };
+  const [currTime, setCurrTime] = useState(initialTime);
 
-    this.setState({
-      days: diffDuration.days().toString().padStart(2, '0'),
-      hours: diffDuration.hours().toString().padStart(2, '0'),
-      minutes: diffDuration.minutes().toString().padStart(2, '0'),
-      seconds: diffDuration.seconds().toString().padStart(2, '0'),
-    });
-  }
-
-  render() {
-    return (
-      <>
-        <TimerWrapper>
-          <TimeBlock>
-            <svg viewBox="0 0 18 12">
-              <text
-                style={{ fontFamily: 'Rajdhani' }}
-                x="50%"
-                y="12"
-                textAnchor="middle"
-              >
-                {this.state.days ? this.state.days : '00'}
-              </text>
-            </svg>
-          </TimeBlock>
-          <Divider>:</Divider>
-          <TimeBlock>
-            <svg viewBox="0 0 18 12">
-              <text
-                style={{ fontFamily: 'Rajdhani' }}
-                x="50%"
-                y="12"
-                textAnchor="middle"
-              >
-                {this.state.hours ? this.state.hours : '00'}
-              </text>
-            </svg>
-          </TimeBlock>
-          <Divider>:</Divider>
-          <TimeBlock>
-            <svg viewBox="0 0 18 12">
-              <text
-                style={{ fontFamily: 'Rajdhani' }}
-                x="50%"
-                y="12"
-                textAnchor="middle"
-              >
-                {this.state.minutes ? this.state.minutes : '00'}
-              </text>
-            </svg>
-          </TimeBlock>
-          <Divider>:</Divider>
-          <TimeBlock>
-            <svg viewBox="0 0 18 12">
-              <text
-                style={{ fontFamily: 'Rajdhani' }}
-                x="50%"
-                y="12"
-                textAnchor="middle"
-              >
-                {this.state.seconds ? this.state.seconds : '00'}
-              </text>
-            </svg>
-          </TimeBlock>
-        </TimerWrapper>
-        <UnitWrapper>
-          <Unit>DAYS</Unit>
-          <Unit>HOURS</Unit>
-          <Unit>MINUTES</Unit>
-          <Unit>SECONDS</Unit>
-        </UnitWrapper>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <TimerWrapper>
+        <TimeBlock>
+          <svg viewBox="0 0 18 12">
+            <text
+              style={{ fontFamily: 'Rajdhani' }}
+              x="50%"
+              y="12"
+              textAnchor="middle"
+            >
+              {currTime.days}
+            </text>
+          </svg>
+        </TimeBlock>
+        <Divider>:</Divider>
+        <TimeBlock>
+          <svg viewBox="0 0 18 12">
+            <text
+              style={{ fontFamily: 'Rajdhani' }}
+              x="50%"
+              y="12"
+              textAnchor="middle"
+            >
+              {currTime.hours}
+            </text>
+          </svg>
+        </TimeBlock>
+        <Divider>:</Divider>
+        <TimeBlock>
+          <svg viewBox="0 0 18 12">
+            <text
+              style={{ fontFamily: 'Rajdhani' }}
+              x="50%"
+              y="12"
+              textAnchor="middle"
+            >
+              {currTime.minutes}
+            </text>
+          </svg>
+        </TimeBlock>
+        <Divider>:</Divider>
+        <TimeBlock>
+          <svg viewBox="0 0 18 12">
+            <text
+              style={{ fontFamily: 'Rajdhani' }}
+              x="50%"
+              y="12"
+              textAnchor="middle"
+            >
+              {currTime.seconds}
+            </text>
+          </svg>
+        </TimeBlock>
+      </TimerWrapper>
+      <UnitWrapper>
+        <Unit>DAYS</Unit>
+        <Unit>HOURS</Unit>
+        <Unit>MINUTES</Unit>
+        <Unit>SECONDS</Unit>
+      </UnitWrapper>
+    </>
+  );
+};
 
 export default Timer;

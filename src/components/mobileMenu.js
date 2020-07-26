@@ -25,7 +25,7 @@ const Menu = styled.div`
 
 const MenuButton = styled.button`
   position: fixed;
-  top: 2.15rem;
+  top: 30px;
   right: 5%;
   background: 0;
   border: 0;
@@ -35,6 +35,15 @@ const MenuButton = styled.button`
   align-items: center;
   justify-content: center;
   color: white;
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: white;
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
 `;
 
 const CloseButton = styled.button`
@@ -79,7 +88,11 @@ const MobileMenu = (props) => {
 
   return (
     <MenuWrapper>
-      <MenuButton onClick={() => setOpen(!open)}>MENU</MenuButton>
+      <MenuButton onClick={() => setOpen(!open)}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </MenuButton>
       <Menu style={{ right: open ? 0 : '-320px' }}>
         <MenuHeader>
           <span>MENU</span>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import { useFetch } from '../hooks/useFetch';
 
@@ -38,8 +39,7 @@ const Launch = styled.div`
   justify-content: space-between;
   background-color: ${(props) => props.theme.highlightColor};
   border: 3px solid ${(props) => props.theme.backgroundColor};
-  padding: 18px;
-  padding-bottom: 2rem;
+  padding: 36px 24px;
   border-radius: 4px;
   &:not(:last-child) {
     margin-bottom: 2rem;
@@ -175,7 +175,11 @@ const renderList = (launches, latest) => {
             </Mission>
             <StatWrapper>
               <DateWrapper>
-                <Date>{launch.launch_date_local}</Date>
+                <Date>
+                  {launch.launch_date_local
+                    ? moment(launch.launch_date_local).format('MM.DD.YYYY')
+                    : 'N/A'}
+                </Date>
                 <Number>
                   <span>#</span>
                   {launch.flight_number}
@@ -196,7 +200,7 @@ const renderList = (launches, latest) => {
 
 const PreviousLaunches = (props) => {
   const url = `https://api.spacexdata.com/v3/launches/past?order=desc`;
-  const { status, data, error } = useFetch(url);
+  const { data } = useFetch(url);
 
   return (
     <Wrapper>

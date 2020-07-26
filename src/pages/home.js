@@ -9,7 +9,7 @@ import UpcomingLaunches from '../components/upcomingLaunches';
 const Home = () => {
   const url = `https://api.spacexdata.com/v3/launches/upcoming?order=ascc`;
 
-  const { status, data, error } = useFetch(url);
+  const { data } = useFetch(url);
 
   return (
     <Layout>
