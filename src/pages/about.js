@@ -95,23 +95,12 @@ const AboutPage = () => {
               details (launch data, photos, and links to media) about each
               previous launch.
             </p>
-
-            <h3>WHY</h3>
-            <p>
-              I believe the work SpaceX is doing to advance our species is very
-              important. We have long dreamed of expanding the possibilities of
-              life outside of our planet, and Elon Musk is taking that dream and
-              running with it. This application, is a small window into the
-              steps that have been taken so far. Hopefully, to help us inspire
-              future generations to dream about space travel.
-            </p>
-
             <h3>HOW</h3>
             <p>
               The data found here is sourced from the SpaceX-API. The
-              application is built using Gatbsy JS, React JS, and Styled
-              Components. If you are interested in seeing the source code and/or
-              contributing to this project, check out{' '}
+              application is built using React JS, and Styled Components. If you
+              are interested in seeing the source code and/or contributing to
+              this project, check out{' '}
               <a
                 href="https://github.com/mattmillsxyz/x-watch"
                 aria-label="Go to the X-Watch source code on GitHub"
@@ -120,7 +109,6 @@ const AboutPage = () => {
               </a>
               .
             </p>
-
             <h3>WHO</h3>
             <p>
               This application was developed by Matt Mills, a software engineer,
