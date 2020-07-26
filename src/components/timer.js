@@ -48,27 +48,27 @@ const Unit = styled.div`
 
 const Timer = ({ launchDate }) => {
   useEffect(() => {
+    const getLaunchTime = () => {
+      const now = moment();
+      const liftoff = moment(launchDate);
+      const diff = liftoff.diff(now);
+      const diffDuration = moment.duration(diff);
+
+      setCurrTime({
+        days: diffDuration.days().toString().padStart(2, '0'),
+        hours: diffDuration.hours().toString().padStart(2, '0'),
+        minutes: diffDuration.minutes().toString().padStart(2, '0'),
+        seconds: diffDuration.seconds().toString().padStart(2, '0'),
+      });
+    };
+
     timer = setInterval(() => getLaunchTime(), 1000);
 
     return () => {
       clearInterval(timer);
       window.removeEventListener('mousemove', () => {});
     };
-  }, []);
-
-  const getLaunchTime = () => {
-    const now = moment();
-    const liftoff = moment(launchDate);
-    const diff = liftoff.diff(now);
-    const diffDuration = moment.duration(diff);
-
-    setCurrTime({
-      days: diffDuration.days().toString().padStart(2, '0'),
-      hours: diffDuration.hours().toString().padStart(2, '0'),
-      minutes: diffDuration.minutes().toString().padStart(2, '0'),
-      seconds: diffDuration.seconds().toString().padStart(2, '0'),
-    });
-  };
+  }, [launchDate]);
 
   const initialTime = {
     days: '00',
