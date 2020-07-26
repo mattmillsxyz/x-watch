@@ -33,6 +33,7 @@ const Story = styled.div`
   padding-right: 4rem;
 
   p {
+    line-height: 1.8;
     margin-top: 0.5rem;
   }
 
@@ -83,7 +84,7 @@ const AboutPage = () => {
   return (
     <Layout>
       <Wrapper>
-        <h1>About X-Watch</h1>
+        <h5>ABOUT</h5>
         <Container>
           <Story>
             <h3>WHAT</h3>

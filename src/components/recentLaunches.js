@@ -55,7 +55,7 @@ const BadgeWrapper = styled.div`
   background-color: ${(props) => props.theme.highlightColor};
   display: flex;
   flex-direction: column;
-  padding: 18px;
+  padding: 36px;
   justify-content: center;
   align-items: center;
   border: 3px solid ${(props) => props.theme.backgroundColor};
@@ -70,14 +70,13 @@ const BadgeWrapper = styled.div`
 `;
 
 const Badge = styled.img`
-  height: 60px;
+  height: 80px;
   svg {
-    height: 60px;
+    height: 80px;
   }
 `;
 
 const LaunchDate = styled.div`
-  font-size: 0.75rem;
   margin-top: 0.5rem;
 `;
 
@@ -94,7 +93,6 @@ const renderBadges = (launches) => {
             src={launch.links.mission_patch || '/images/space-x-badge.png'}
             alt={`${launch.flight_number} mission patch`}
           />
-
           <LaunchDate>
             {moment(launch.launch_date_local).format('MM.DD.YYYY')}
           </LaunchDate>
@@ -105,7 +103,7 @@ const renderBadges = (launches) => {
 };
 
 const RecentLaunches = () => {
-  const url = 'https://api.spacexdata.com/v3/launches/past?order=desc&limit=7';
+  const url = 'https://api.spacexdata.com/v3/launches/past?order=desc&limit=5';
 
   const { status, data, error } = useFetch(url);
 

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import { useFetch } from '../hooks/useFetch';
 import CountdownDetails from './countdownDetails';
 import Timer from './timer';
 
