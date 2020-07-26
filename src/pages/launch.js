@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
 import { useFetch } from '../hooks/useFetch';
@@ -9,11 +10,19 @@ import RocketDetails from '../components/rocketDetails';
 import Images from '../components/images';
 import MediaLinks from '../components/mediaLinks';
 
+const Error = styled.div`
+  margin: 0 auto;
+  padding: 100px 50px;
+  font-size: 1.5rem;
+  background-color: #111111;
+  border-radius: 4px;
+`;
+
 const LaunchPage = (props) => {
   let { id } = useParams();
   const url = `https://api.spacexdata.com/v3/launches/past?order=desc`;
 
-  const { status, data, error } = useFetch(url);
+  const { status, data } = useFetch(url);
 
   if (data) {
     const currentLaunchData = data.find(
@@ -41,7 +50,11 @@ const LaunchPage = (props) => {
       </Layout>
     );
   } else {
-    return <span>nope</span>;
+    return (
+      <Layout>
+        <Error>Sorry, could not get launch details.</Error>
+      </Layout>
+    );
   }
 };
 

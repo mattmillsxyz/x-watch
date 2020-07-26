@@ -200,7 +200,7 @@ const renderList = (launches, latest) => {
 
 const PreviousLaunches = (props) => {
   const url = `https://api.spacexdata.com/v3/launches/past?order=desc`;
-  const { status, data, error } = useFetch(url);
+  const { data } = useFetch(url);
 
   return (
     <Wrapper>

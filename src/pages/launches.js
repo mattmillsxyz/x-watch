@@ -8,7 +8,7 @@ import PreviousLaunches from '../components/previousLaunches';
 const LaunchesPage = () => {
   const url = `https://api.spacexdata.com/v3/launches/latest`;
 
-  const { status, data, error } = useFetch(url);
+  const { data } = useFetch(url);
 
   return (
     <Layout>

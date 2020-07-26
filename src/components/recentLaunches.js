@@ -105,7 +105,7 @@ const renderBadges = (launches) => {
 const RecentLaunches = () => {
   const url = 'https://api.spacexdata.com/v3/launches/past?order=desc&limit=5';
 
-  const { status, data, error } = useFetch(url);
+  const { data } = useFetch(url);
 
   return (
     <Wrapper>
