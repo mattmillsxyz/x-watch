@@ -22,8 +22,6 @@ const LaunchPage = (props) => {
     const allFlightNumbers = data.map((launch) => launch.flight_number);
     return (
       <Layout>
-        {status === 'fetching' && <span>Loading...</span>}
-        {status === 'fetching' && <span>{error}</span>}
         {status === 'fetched' && (
           <>
             <LaunchNav

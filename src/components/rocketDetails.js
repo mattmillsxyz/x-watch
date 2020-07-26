@@ -61,7 +61,6 @@ const Stage = styled.div`
 const StageHeading = styled.div`
   font-size: 1.25rem;
   line-height: 1;
-  font-weight: 600;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 `;
@@ -73,7 +72,7 @@ const Detail = styled.div`
 `;
 
 const DetailHeading = styled.span`
-  font-weight: 600;
+  color: grey;
   margin-right: 0.5rem;
 `;
 

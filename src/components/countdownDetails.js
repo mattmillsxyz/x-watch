@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import { useFetch } from '../hooks/useFetch';
-
 const Wrapper = styled.div`
   display: flex;
   @media (max-width: 768px) {
@@ -12,8 +10,8 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.span`
-  font-weight: 600;
   margin-right: 0.5rem;
+  color: grey;
 `;
 
 const LeftBlock = styled.div`
@@ -35,7 +33,7 @@ const RightBlock = styled.div`
 
 const Detail = styled.div`
   &:not(:last-child) {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
 `;
 

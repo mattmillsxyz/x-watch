@@ -30,6 +30,11 @@ const LaunchList = styled.div`
   justify-content: space-between;
 `;
 
+const LaunchHeading = styled.span`
+  color: grey;
+  margin-right: 0.5rem;
+`;
+
 const LaunchDate = styled.div`
   min-width: 6rem;
   @media (max-width: 740px) {
@@ -43,11 +48,11 @@ const Launch = styled.div`
   justify-content: space-between;
   background-color: ${(props) => props.theme.highlightColor};
   border: 3px solid ${(props) => props.theme.backgroundColor};
-  padding: 18px;
+  padding: 36px 24px;
   border-radius: 4px;
+  margin-bottom: 2rem;
   @media (max-width: 740px) {
     flex-direction: column;
-    padding-bottom: 2rem;
   }
 `;
 
@@ -62,20 +67,11 @@ const MissionName = styled.div`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  margin-bottom: 0.5rem;
-`;
-
-const LaunchSite = styled.div`
-  span {
-    font-weight: 600;
-  }
+  margin-bottom: 1rem;
 `;
 
 const Rocket = styled.div`
   flex: 1;
-  span {
-    font-weight: 600;
-  }
 `;
 
 const Number = styled.div`
@@ -93,9 +89,14 @@ const RocketDetails = styled.div`
   flex-direction: row;
   flex: 1;
 `;
+
 const ShowAllWrapper = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+const FlagWrapper = styled.div`
+  margin-top: 1rem;
 `;
 
 const ShowAll = styled.button`
@@ -131,18 +132,20 @@ const renderList = (launches, limit) => {
           </LaunchDate>
           <Mission>
             <MissionName>{launch.mission_name}</MissionName>
-            <LaunchSite>
-              <span>LAUNCH SITE:</span>{' '}
+            <div>
+              <LaunchHeading>LAUNCH SITE:</LaunchHeading>{' '}
               {launch.launch_site.site_name_long || 'TBD'}
-            </LaunchSite>
+            </div>
           </Mission>
           <RocketDetails>
             <Rocket>
-              <span>ROCKET:</span> {launch.rocket.rocket_name}
-              <Flags
-                id={launch.id}
-                payloads={launch.rocket.second_stage.payloads}
-              />
+              <LaunchHeading>ROCKET:</LaunchHeading> {launch.rocket.rocket_name}
+              <FlagWrapper>
+                <Flags
+                  id={launch.id}
+                  payloads={launch.rocket.second_stage.payloads}
+                />
+              </FlagWrapper>
             </Rocket>
             <Number>
               <span>#</span>
