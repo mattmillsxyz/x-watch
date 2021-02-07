@@ -81,29 +81,32 @@ const LaunchDate = styled.div`
 `;
 
 const renderBadges = (launches) => {
-  return launches.map((launch) => {
-    return (
-      <Link
-        to={`/launch/${launch.flight_number}`}
-        aria-label={`Go to flight number ${launch.flight_number} details`}
-        key={`launch--${launch.flight_number}`}
-      >
-        <BadgeWrapper key={`badge--${launch.flight_number}`}>
-          <Badge
-            src={launch.links.mission_patch || '/images/space-x-badge.png'}
-            alt={`${launch.flight_number} mission patch`}
-          />
-          <LaunchDate>
-            {moment(launch.date_local).format('MM.DD.YYYY')}
-          </LaunchDate>
-        </BadgeWrapper>
-      </Link>
-    );
-  });
+  return launches
+    .sort((a, b) => b.flight_number - a.flight_number)
+    .slice(0, 5)
+    .map((launch) => {
+      return (
+        <Link
+          to={`/launch/${launch.flight_number}`}
+          aria-label={`Go to flight number ${launch.flight_number} details`}
+          key={`launch--${launch.flight_number}`}
+        >
+          <BadgeWrapper key={`badge--${launch.flight_number}`}>
+            <Badge
+              src={launch.links.patch.small || '/images/space-x-badge.png'}
+              alt={`${launch.flight_number} mission patch`}
+            />
+            <LaunchDate>
+              {moment(launch.date_local).format('MM.DD.YYYY')}
+            </LaunchDate>
+          </BadgeWrapper>
+        </Link>
+      );
+    });
 };
 
 const RecentLaunches = () => {
-  const url = 'https://api.spacexdata.com/v4/launches/past?order=desc&limit=5';
+  const url = 'https://api.spacexdata.com/v4/launches/past';
 
   const { data } = useFetch(url);
 
