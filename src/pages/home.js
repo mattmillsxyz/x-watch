@@ -15,7 +15,7 @@ const Home = () => {
     <Layout>
       <Countdown launches={data} />
       <RecentLaunches />
-      {/* <UpcomingLaunches launches={data} /> */}
+      <UpcomingLaunches launches={data} />
     </Layout>
   );
 };

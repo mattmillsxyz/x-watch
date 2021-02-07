@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
+import { useFetch } from '../hooks/useFetch';
 import Flags from './flags';
 
 const Wrapper = styled.div`
@@ -118,7 +119,7 @@ const isPast = (date) => {
   return true;
 };
 
-const renderList = (launches, limit) => {
+const renderList = (launches, limit, launchpadData) => {
   let launchCount = 0;
   const maxLaunches = limit || launches.length;
 
@@ -129,6 +130,10 @@ const renderList = (launches, limit) => {
       launchCount < maxLaunches
     ) {
       launchCount++;
+      const launchpadDetails = launchpadData.filter((launchpad) => {
+        return launchpad.id === launch.launchpad;
+      })[0];
+      console.log(launchpadDetails);
 
       return (
         <Launch key={`upcoming-list--${launch.flight_number}`}>
@@ -138,20 +143,20 @@ const renderList = (launches, limit) => {
               : moment(launch.date_local).format('MM.DD.YYYY')}
           </LaunchDate>
           <Mission>
-            <MissionName>{launch.mission_name}</MissionName>
+            <MissionName>{launch.name}</MissionName>
             <div>
               <LaunchHeading>LAUNCH SITE:</LaunchHeading>{' '}
-              {launch.launch_site.site_name_long || 'TBD'}
+              {launchpadDetails.full_name || 'TBD'}
             </div>
           </Mission>
           <RocketDetails>
             <Rocket>
               <LaunchHeading>ROCKET:</LaunchHeading> {launch.rocket.rocket_name}
               <FlagWrapper>
-                <Flags
+                {/* <Flags
                   id={launch.id}
                   payloads={launch.rocket.second_stage.payloads}
-                />
+                /> */}
               </FlagWrapper>
             </Rocket>
             <Number>
@@ -167,6 +172,8 @@ const renderList = (launches, limit) => {
 };
 
 const UpcomingLaunches = ({ launches }) => {
+  const launchpadUrl = `https://api.spacexdata.com/v4/launchpads/`;
+  const { data: launchpadData } = useFetch(launchpadUrl);
   const count = 5;
   const [limit, setLimit] = useState(count);
 
@@ -176,7 +183,7 @@ const UpcomingLaunches = ({ launches }) => {
         <Heading>UPCOMING LAUNCHES</Heading>
       </Header>
       <Container>
-        <LaunchList>{renderList(launches, limit)}</LaunchList>
+        <LaunchList>{renderList(launches, limit, launchpadData)}</LaunchList>
       </Container>
       <ShowAllWrapper>
         <ShowAll onClick={() => setLimit(limit ? null : count)}>
