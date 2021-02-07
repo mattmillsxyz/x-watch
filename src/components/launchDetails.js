@@ -105,7 +105,7 @@ const Number = styled.div`
 const LaunchDetails = ({ launchData, type }) => {
   const {
     mission_name,
-    launch_date_local,
+    date_local,
     launch_site,
     flight_number,
     launch_success,
@@ -129,7 +129,7 @@ const LaunchDetails = ({ launchData, type }) => {
           </Detail>
           <Detail>
             <Heading>LAUNCH DATE:</Heading>
-            {launch_date_local}
+            {date_local}
           </Detail>
           <Detail>
             <Heading>LAUNCH SITE:</Heading>

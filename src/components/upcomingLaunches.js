@@ -125,7 +125,7 @@ const renderList = (launches, limit) => {
   return launches.map((launch) => {
     if (
       launch.flight_number &&
-      !isPast(launch.launch_date_local) &&
+      !isPast(launch.date_local) &&
       launchCount < maxLaunches
     ) {
       launchCount++;
@@ -133,9 +133,9 @@ const renderList = (launches, limit) => {
       return (
         <Launch key={`upcoming-list--${launch.flight_number}`}>
           <LaunchDate>
-            {isPast(launch.launch_date_local)
+            {isPast(launch.date_local)
               ? 'TBD'
-              : moment(launch.launch_date_local).format('MM.DD.YYYY')}
+              : moment(launch.date_local).format('MM.DD.YYYY')}
           </LaunchDate>
           <Mission>
             <MissionName>{launch.mission_name}</MissionName>

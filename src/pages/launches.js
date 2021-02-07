@@ -6,7 +6,7 @@ import Launch from '../components/launch';
 import PreviousLaunches from '../components/previousLaunches';
 
 const LaunchesPage = () => {
-  const url = `https://api.spacexdata.com/v3/launches/latest`;
+  const url = `https://api.spacexdata.com/v4/launches/latest`;
 
   const { data } = useFetch(url);
 

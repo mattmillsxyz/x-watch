@@ -7,7 +7,7 @@ import RecentLaunches from '../components/recentLaunches';
 import UpcomingLaunches from '../components/upcomingLaunches';
 
 const Home = () => {
-  const url = `https://api.spacexdata.com/v3/launches/upcoming?order=ascc`;
+  const url = `https://api.spacexdata.com/v4/launches/upcoming?order=ascc`;
 
   const { data } = useFetch(url);
 
@@ -15,7 +15,7 @@ const Home = () => {
     <Layout>
       <Countdown launches={data} />
       <RecentLaunches />
-      <UpcomingLaunches launches={data} />
+      {/* <UpcomingLaunches launches={data} /> */}
     </Layout>
   );
 };

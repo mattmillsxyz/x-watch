@@ -176,8 +176,8 @@ const renderList = (launches, latest) => {
             <StatWrapper>
               <DateWrapper>
                 <Date>
-                  {launch.launch_date_local
-                    ? moment(launch.launch_date_local).format('MM.DD.YYYY')
+                  {launch.date_local
+                    ? moment(launch.date_local).format('MM.DD.YYYY')
                     : 'N/A'}
                 </Date>
                 <Number>
@@ -199,7 +199,7 @@ const renderList = (launches, latest) => {
 };
 
 const PreviousLaunches = (props) => {
-  const url = `https://api.spacexdata.com/v3/launches/past?order=desc`;
+  const url = `https://api.spacexdata.com/v4/launches/past?order=desc`;
   const { data } = useFetch(url);
 
   return (

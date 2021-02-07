@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
+import { useFetch } from '../hooks/useFetch';
+
 const Wrapper = styled.div`
   display: flex;
   @media (max-width: 768px) {
@@ -45,15 +47,19 @@ const isPast = (date) => {
 };
 
 const CountdownDetails = (props) => {
-  const { mission_name, launch_date_local, launch_site, rocket } = props.data;
-  const launchDate = moment(launch_date_local).format('MM.DD.YYYY hh:mm A');
+  const { name, date_local, launchpad, rocket } = props.data;
+  const launchDate = moment(date_local).format('MM.DD.YYYY hh:mm A');
+  const url = `https://api.spacexdata.com/v4/rockets/${rocket}`;
+  const { data: rocketData } = useFetch(url);
+  const launchpadUrl = `https://api.spacexdata.com/v4/launchpads/${launchpad}`;
+  const { data: launchpadData } = useFetch(launchpadUrl);
 
   return (
     <Wrapper>
       <LeftBlock>
         <Detail>
           <Heading>MISSION NAME:</Heading>
-          {mission_name}
+          {name ? name : 'UNKNOWN'}
         </Detail>
         <Detail>
           <Heading>LAUNCH DATE:</Heading>
@@ -61,21 +67,23 @@ const CountdownDetails = (props) => {
         </Detail>
         <Detail>
           <Heading>LAUNCH SITE:</Heading>
-          {(launch_site && launch_site.site_name_long) || 'TBD'}
+          {launchpadData
+            ? `${launchpadData.locality}, ${launchpadData.region}`
+            : 'TBD'}
         </Detail>
       </LeftBlock>
       <RightBlock>
         <Detail>
           <Heading>ROCKET:</Heading>
-          {(rocket && rocket.rocket_name) || 'N/A'}
+          {rocketData ? rocketData.name : 'N/A'}
         </Detail>
         <Detail>
-          <Heading>PAYLOAD TYPE:</Heading>
-          {(rocket && rocket.second_stage.payloads[0].payload_type) || 'N/A'}
+          <Heading>COUNTRY:</Heading>
+          {rocketData ? rocketData.country : 'N/A'}
         </Detail>
         <Detail>
-          <Heading>MANUFACTURER:</Heading>
-          {(rocket && rocket.second_stage.payloads[0].manufacturer) || 'N/A'}
+          <Heading>COMPANY:</Heading>
+          {rocketData ? rocketData.company : 'N/A'}
         </Detail>
       </RightBlock>
     </Wrapper>

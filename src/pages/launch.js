@@ -20,7 +20,7 @@ const Error = styled.div`
 
 const LaunchPage = (props) => {
   let { id } = useParams();
-  const url = `https://api.spacexdata.com/v3/launches/past?order=desc`;
+  const url = `https://api.spacexdata.com/v4/launches/past?order=desc`;
 
   const { status, data } = useFetch(url);
 

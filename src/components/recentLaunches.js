@@ -94,7 +94,7 @@ const renderBadges = (launches) => {
             alt={`${launch.flight_number} mission patch`}
           />
           <LaunchDate>
-            {moment(launch.launch_date_local).format('MM.DD.YYYY')}
+            {moment(launch.date_local).format('MM.DD.YYYY')}
           </LaunchDate>
         </BadgeWrapper>
       </Link>
@@ -103,7 +103,7 @@ const renderBadges = (launches) => {
 };
 
 const RecentLaunches = () => {
-  const url = 'https://api.spacexdata.com/v3/launches/past?order=desc&limit=5';
+  const url = 'https://api.spacexdata.com/v4/launches/past?order=desc&limit=5';
 
   const { data } = useFetch(url);
 

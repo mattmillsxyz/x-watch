@@ -27,7 +27,7 @@ const isPast = (date) => {
 };
 
 const Countdown = ({ launches }) => {
-  const launch = launches.find((launch) => !isPast(launch.launch_date_local));
+  const launch = launches.find((launch) => !isPast(launch.date_local));
 
   return (
     <Wrapper>
@@ -35,7 +35,7 @@ const Countdown = ({ launches }) => {
       <Container>
         {launch && (
           <>
-            <Timer launchDate={launch.launch_date_local} />
+            <Timer launchDate={launch.date_local} />
             <CountdownDetails data={launch} />
           </>
         )}
